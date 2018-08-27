@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="townItemSelected8">
+        <item>쇠채찍</item>
+        <item>다크소드</item>
+        <item>금고</item>
+        <item>스켈레톤오거갑옷</item>
+        <item>모조모르간트헬멧</item>
+    </string-array>
+</resources>

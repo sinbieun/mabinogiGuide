@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="titleSelected2">
+        <item>카테고리 선택</item>
+        <item>전투</item>
+        <item>마법</item>
+        <item>연금</item>
+        <item>격투</item>
+        <item>음악</item>
+        <item>인형술</item>
+        <item>히든재능</item>
+        <item>듀얼건</item>
+        <item>메인스트림</item>
+        <item>씰 브레이커</item>
+        <item>재능</item>
+        <item>아르바이트</item>
+        <item>기타</item>
+    </string-array>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="townItemSelected3">
+        <item>반호르산석탄</item>
+        <item>대리석</item>
+        <item>황수정</item>
+        <item>하이랜더광석</item>
+        <item>납</item>
+    </string-array>
+</resources>

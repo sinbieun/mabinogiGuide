@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="townItemSelected2">
+        <item>거미줄장갑</item>
+        <item>양털부츠</item>
+        <item>오거도살자가면</item>
+        <item>인큐버스정장</item>
+        <item>서큐버스수영복</item>
+    </string-array>
+</resources>

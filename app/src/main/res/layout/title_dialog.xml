@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:orientation="vertical" android:id="@+id/titlePopup" android:background="#ff191a19" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <TextView android:textSize="15.0sp" android:typeface="normal" android:textStyle="bold" android:textColor="#ffb4b4b4" android:layout_gravity="center" android:id="@+id/contentTextView" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="내용" />
+    </LinearLayout>
+</ScrollView>

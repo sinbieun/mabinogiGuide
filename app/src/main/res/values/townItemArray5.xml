@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="townItemSelected5">
+        <item>열기의결정</item>
+        <item>오르골보존석</item>
+        <item>팔라라결정</item>
+        <item>원형방호벽결정</item>
+        <item>연금결정</item>
+    </string-array>
+</resources>

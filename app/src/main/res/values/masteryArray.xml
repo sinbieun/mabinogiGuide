@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="masterySelected">
+        <item>연습랭크</item>
+        <item>F랭크</item>
+        <item>E랭크</item>
+        <item>D랭크</item>
+        <item>C랭크</item>
+        <item>B랭크</item>
+        <item>A랭크</item>
+        <item>9랭크</item>
+        <item>8랭크</item>
+        <item>7랭크</item>
+        <item>6랭크</item>
+        <item>5랭크</item>
+        <item>4랭크</item>
+        <item>3랭크</item>
+        <item>2랭크</item>
+        <item>1랭크</item>
+    </string-array>
+</resources>

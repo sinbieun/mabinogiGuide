@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="townItemSelected6">
+        <item>미니화장대</item>
+        <item>티테이블</item>
+        <item>흔들의자</item>
+        <item>어린이2층침대</item>
+        <item>대형와인랙</item>
+    </string-array>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="townItemSelected4">
+        <item>베리그래놀라</item>
+        <item>버터맥주</item>
+        <item>훈제야생동물구이</item>
+        <item>트뤼플파스타</item>
+        <item>통곰바베큐</item>
+    </string-array>
+</resources>

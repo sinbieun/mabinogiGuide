@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@+id/titleLayout" android:background="@drawable/background_1" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@drawable/border"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+        <GridLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:rowCount="4"
+            android:columnCount="3">
+            <TextView
+                android:textSize="17dp"
+                android:textColor="#ffffffff"
+                android:gravity="center"
+                android:background="@drawable/title_background2"
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:text="타이틀 도우미"
+                android:layout_centerInParent="true"
+                android:layout_columnSpan="3" />
+            <TextView
+                android:textColor="#ff000000"
+                android:gravity="left"
+                android:layout_gravity="fill_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="0dp"
+                android:text="분류" />
+            <Spinner
+                android:layout_gravity="fill_horizontal"
+                android:id="@+id/titleKindSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="0dp"
+                android:layout_columnSpan="2" />
+            <View
+                android:background="#ffff5e00"
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:layout_centerInParent="true"
+                android:layout_columnSpan="3" />
+            <TextView
+                android:textColor="#ff000000"
+                android:gravity="left"
+                android:layout_gravity="fill_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="0dp"
+                android:text="카테고리" />
+            <Spinner
+                android:layout_gravity="fill_horizontal"
+                android:id="@+id/titleCategorySpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="0dp"
+                android:layout_columnSpan="2" />
+            <View
+                android:background="#ffff5e00"
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:layout_centerInParent="true"
+                android:layout_columnSpan="3" />
+            <TextView
+                android:textColor="#ff000000"
+                android:gravity="left"
+                android:layout_gravity="fill_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="0dp"
+                android:text="능력치" />
+            <Spinner
+                android:layout_gravity="fill_horizontal"
+                android:id="@+id/titleStatSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="0dp" />
+            <Spinner
+                android:layout_gravity="fill_horizontal"
+                android:id="@+id/titleTransSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="0dp" />
+            <View
+                android:background="#ffff5e00"
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:layout_centerInParent="true"
+                android:layout_columnSpan="3" />
+            <TextView
+                android:textColor="#ff000000"
+                android:gravity="left"
+                android:layout_gravity="fill_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="0dp"
+                android:text="타이틀명" />
+            <EditText
+                android:layout_gravity="fill_horizontal"
+                android:id="@+id/titleNameEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="0dp"
+                android:layout_columnSpan="2" />
+            <Button
+                android:id="@+id/searchBtn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="검색" android:layout_columnSpan="3" />
+        </GridLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@drawable/border"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+            <TextView
+                android:textSize="17dp"
+                android:textColor="#ffffffff"
+                android:gravity="center"
+                android:background="@drawable/title_background2"
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:text="타이틀 목록"
+                android:layout_centerInParent="true" />
+            <ListView
+                android:id="@+id/titleListView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"  />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

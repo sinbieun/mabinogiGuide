@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="titleSelected1">
+        <item>분류 선택</item>
+        <item>1차</item>
+        <item>2차</item>
+    </string-array>
+</resources>

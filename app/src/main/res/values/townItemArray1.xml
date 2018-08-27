@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="townItemSelected1">
+        <item>베이비포션</item>
+        <item>다이어트포션</item>
+        <item>코골이방지포션</item>
+        <item>산삼포션</item>
+        <item>러블리포션</item>
+    </string-array>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="LOGSelected">
+        <item>사용안함(0%)</item>
+        <item>오거 (30%)</item>
+        <item>고블린 (40%)</item>
+        <item>임프 (50%)</item>
+        <item>고급 오거 (90%)</item>
+        <item>고급 고블린 (120%)</item>
+        <item>고급 임프 (150%)</item>
+    </string-array>
+</resources>

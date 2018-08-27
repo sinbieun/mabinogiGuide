@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="townItemSelected7">
+        <item>카브산김</item>
+        <item>카브산굴</item>
+        <item>상어지느러미</item>
+        <item>젤리해파리</item>
+        <item>네이드비늘</item>
+    </string-array>
+</resources>

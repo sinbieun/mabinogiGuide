@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="townSelected">
+        <item>티르코네일</item>
+        <item>던바튼</item>
+        <item>반호르</item>
+        <item>이멘마하</item>
+        <item>탈틴</item>
+        <item>타라</item>
+        <item>카브항구</item>
+        <item>벨바스트</item>
+    </string-array>
+</resources>
