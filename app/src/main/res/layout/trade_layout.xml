@@ -1,159 +1,946 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical" android:id="@+id/tradeLayout" android:background="@drawable/background_1" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <LinearLayout android:orientation="vertical" android:background="@drawable/border" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="10.0dip">
-        <GridLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="10.0dip" android:rowCount="7" android:columnCount="2">
-            <TextView android:textSize="17.0dip" android:textColor="#ffffffff" android:gravity="center" android:background="@drawable/title_background" android:layout_width="fill_parent" android:layout_height="30.0dip" android:text="교역도우미" android:layout_centerInParent="true" android:layout_columnSpan="2" />
-            <TextView android:textColor="#ff000000" android:gravity="left" android:layout_gravity="fill_horizontal" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:text="보증서" />
-            <Spinner android:layout_gravity="fill_horizontal" android:id="@+id/LOGSpinner" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginTop="0.0dip" />
-            <View android:background="#ff5853eb" android:layout_width="fill_parent" android:layout_height="2.0dip" android:layout_centerInParent="true" android:layout_columnSpan="2" />
-            <TextView android:textColor="#ff000000" android:gravity="left" android:layout_gravity="fill_horizontal" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="5.0dip" android:text="교역마스터리" />
-            <Spinner android:layout_gravity="fill_horizontal" android:id="@+id/masterySpinner" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginTop="5.0dip" />
-            <View android:background="#ff5853eb" android:layout_width="fill_parent" android:layout_height="2.0dip" android:layout_centerInParent="true" android:layout_columnSpan="2" />
-            <TextView android:textColor="#ff000000" android:gravity="left" android:layout_gravity="fill_horizontal" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="5.0dip" android:text="그랜드마스터" />
-            <Spinner android:layout_gravity="fill_horizontal" android:id="@+id/grandMasterSpinner" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginTop="5.0dip" />
-            <View android:background="#ff5853eb" android:layout_width="fill_parent" android:layout_height="2.0dip" android:layout_centerInParent="true" android:layout_columnSpan="2" />
-            <TextView android:textColor="#ff000000" android:gravity="left" android:layout_gravity="fill_horizontal" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="5.0dip" android:text="출발 마을" />
-            <Spinner android:layout_gravity="fill_horizontal" android:id="@+id/townSpinner" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginTop="5.0dip" />
-            <View android:background="#ff5853eb" android:layout_width="fill_parent" android:layout_height="2.0dip" android:layout_centerInParent="true" android:layout_columnSpan="2" />
-            <TextView android:textColor="#ff000000" android:gravity="left" android:layout_gravity="fill_horizontal" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="5.0dip" android:text="교역 아이템" />
-            <Spinner android:layout_gravity="fill_horizontal" android:id="@+id/itemSpinner" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginTop="5.0dip" />
-            <View android:background="#ff5853eb" android:layout_width="fill_parent" android:layout_height="2.0dip" android:layout_centerInParent="true" android:layout_columnSpan="2" />
-        </GridLayout>
-        <TextView android:gravity="center" android:id="@+id/countNumber" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginBottom="10.0dip" />
-    </LinearLayout>
-    <LinearLayout android:orientation="vertical" android:background="@drawable/border" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="10.0dip">
-        <GridLayout android:orientation="horizontal" android:id="@+id/rideLayout" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="10.0dip" android:rowCount="7" android:columnCount="2">
-            <TextView android:textSize="17.0dip" android:textColor="#ffffffff" android:gravity="center" android:background="@drawable/title_background" android:layout_width="fill_parent" android:layout_height="30.0dip" android:text="교역수단" android:layout_centerInParent="true" android:layout_columnSpan="2" />
-            <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/rideTitle1" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:text="운송수단" />
-            <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/rideTitle2" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:text="최대수량" />
-            <View android:background="#ff5853eb" android:layout_width="fill_parent" android:layout_height="2.0dip" android:layout_centerInParent="true" android:layout_columnSpan="2" />
-            <Button
-                android:textColor="#ff000000"
-                android:gravity="center"
-                android:layout_gravity="fill_horizontal"
-                android:id="@+id/tradeMeans_1"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_marginTop="0.0dip"
-                android:text="마차" />
-            <TextView android:textColor="#ff000000"
-                android:gravity="center"
-                android:layout_gravity="fill_horizontal"
-                android:id="@+id/rideContent1"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_marginTop="0.0dip"
-                android:text="100" />
-            <Button android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/tradeMeans_2" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:text="마차(교역파트너)" />
-            <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/rideContent2" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:text="100" />
-            <Button android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/tradeMeans_3" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:text="마차(윌리엄)" />
-            <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/rideContent3" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:text="100" />
-            <Button android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/tradeMeans_4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="0.0dip" android:text="마차(알파카)" />
-            <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/rideContent4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="0.0dip" />
-            <Button android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/tradeMeans_5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="0.0dip" android:text="코끼리" />
-            <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/rideContent5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="0.0dip" />
-            <Button android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/tradeMeans_6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="0.0dip" android:text="코끼리(교역파트너)" />
-            <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/rideContent6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="0.0dip" />
-            <Button android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/tradeMeans_7" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="0.0dip" android:text="코끼리(윌리엄)" />
-            <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/rideContent7" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="0.0dip" />
-            <Button android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/tradeMeans_8" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="0.0dip" android:text="등짐" />
-            <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/rideContent8" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="0.0dip" />
-            <Button android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/tradeMeans_9" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="0.0dip" android:text="손수레" />
-            <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/rideContent9" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="0.0dip" />
-        </GridLayout>
-        <TextView android:gravity="center" android:id="@+id/tradeMeansSelected" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginBottom="10.0dip" />
-    </LinearLayout>
-    <LinearLayout android:orientation="vertical" android:background="@drawable/border" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="10.0dip">
-        <TextView android:textSize="17.0dip" android:textColor="#ffffffff" android:gravity="center" android:background="@drawable/title_background" android:layout_width="fill_parent" android:layout_height="30.0dip" android:layout_marginLeft="10.0dip" android:layout_marginTop="10.0dip" android:layout_marginRight="10.0dip" android:layout_marginBottom="0.0dip" android:text="교역결과" android:layout_centerInParent="true" />
-        <Button android:textSize="14.0dip" android:gravity="center" android:id="@+id/tradeResetButton" android:layout_width="fill_parent" android:layout_height="40.0dip" android:layout_marginLeft="6.0dip" android:layout_marginTop="0.0dip" android:layout_marginRight="6.0dip" android:layout_marginBottom="0.0dip" android:text="차액초기화" android:layout_centerInParent="true" />
-        <HorizontalScrollView android:id="@+id/finishScrollView" android:layout_width="fill_parent" android:layout_height="wrap_content">
-            <GridLayout android:orientation="horizontal" android:id="@+id/finishLayout" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="0.0dip" android:layout_marginRight="10.0dip" android:layout_marginBottom="10.0dip" android:rowCount="7" android:columnCount="5">
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishTitle1" android:layout_width="100.0dip" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:text="도착마을" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishTitle2" android:layout_width="100.0dip" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:text="차액" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishTitle3" android:layout_width="100.0dip" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:text="순위(효율수치)" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishTitle4" android:layout_width="100.0dip" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:text="이익" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishTitle5" android:layout_width="100.0dip" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:layout_marginRight="10.0dip" android:text="소요시간(초)" />
-                <View android:background="#ff5853eb" android:layout_width="490.0dip" android:layout_height="2.0dip" android:layout_centerInParent="true" android:layout_columnSpan="5" />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <LinearLayout
+            android:id="@+id/tradeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_1"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10.0dip"
+                android:background="@drawable/border"
+                android:orientation="vertical">
+
+                <GridLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10.0dip"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    android:rowCount="7">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="30.0dip"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="@drawable/title_background"
+                        android:gravity="center"
+                        android:text="교역도우미"
+                        android:textColor="#ffffffff"
+                        android:textSize="17.0dip" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="0.0dip"
+                        android:gravity="left"
+                        android:text="보증서"
+                        android:textColor="#ff000000" />
+
+                    <Spinner
+                        android:id="@+id/LOGSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15.0dip"
+                        android:layout_marginTop="0.0dip" />
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="2.0dip"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5.0dip"
+                        android:gravity="left"
+                        android:text="교역마스터리"
+                        android:textColor="#ff000000" />
+
+                    <Spinner
+                        android:id="@+id/masterySpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15.0dip"
+                        android:layout_marginTop="5.0dip" />
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="2.0dip"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5.0dip"
+                        android:gravity="left"
+                        android:text="그랜드마스터"
+                        android:textColor="#ff000000" />
+
+                    <Spinner
+                        android:id="@+id/grandMasterSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15.0dip"
+                        android:layout_marginTop="5.0dip" />
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="2.0dip"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5.0dip"
+                        android:gravity="left"
+                        android:text="출발 마을"
+                        android:textColor="#ff000000" />
+
+                    <Spinner
+                        android:id="@+id/townSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15.0dip"
+                        android:layout_marginTop="5.0dip" />
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="2.0dip"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5.0dip"
+                        android:gravity="left"
+                        android:text="교역 아이템"
+                        android:textColor="#ff000000" />
+
+                    <Spinner
+                        android:id="@+id/itemSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15.0dip"
+                        android:layout_marginTop="5.0dip" />
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="2.0dip"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+                </GridLayout>
+
                 <TextView
-                    android:textColor="#ff000000"
-                    android:gravity="center"
-                    android:layout_gravity="fill_horizontal"
-                    android:id="@+id/finishContent1_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginTop="0.0dip"
-                    android:text="티르코네일" />
-                <EditText
-                    android:textColor="#ff000000"
-                    android:gravity="center"
-                    android:layout_gravity="fill_horizontal"
-                    android:id="@+id/finishContent1_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginTop="0.0dip"
-                    android:text=""
-                    android:inputType="number" />
+                    android:id="@+id/countNumber"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10.0dip"
+                    android:layout_marginLeft="10.0dip"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10.0dip"
+                android:background="@drawable/border"
+                android:orientation="vertical">
+
+                <GridLayout
+                    android:id="@+id/rideLayout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10.0dip"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    android:rowCount="7">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="30.0dip"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="@drawable/title_background"
+                        android:gravity="center"
+                        android:text="교역수단"
+                        android:textColor="#ffffffff"
+                        android:textSize="17.0dip" />
+
+                    <TextView
+                        android:id="@+id/rideTitle1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="0.0dip"
+                        android:gravity="center"
+                        android:text="운송수단"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/rideTitle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="0.0dip"
+                        android:gravity="center"
+                        android:text="최대수량"
+                        android:textColor="#ff000000" />
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="2.0dip"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+
+                    <Button
+                        android:id="@+id/tradeMeans_1"
+                        android:layout_width="wrap_content"
+                        android:paddingLeft="3dp"
+                        android:paddingRight="3dp"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:text="마차"
+                        android:background="#E0E0E0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/rideContent1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="0.0dip"
+                        android:gravity="center"
+                        android:text="100"
+                        android:textColor="#ff000000" />
+
+                    <Button
+                        android:id="@+id/tradeMeans_2"
+                        android:layout_width="wrap_content"
+                        android:paddingLeft="3dp"
+                        android:paddingRight="3dp"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:text="마차(교역파트너)"
+                        android:background="#E0E0E0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/rideContent2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="0.0dip"
+                        android:gravity="center"
+                        android:text="100"
+                        android:textColor="#ff000000" />
+
+                    <Button
+                        android:id="@+id/tradeMeans_3"
+                        android:layout_width="wrap_content"
+                        android:paddingLeft="3dp"
+                        android:paddingRight="3dp"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:text="마차(윌리엄)"
+                        android:background="#E0E0E0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/rideContent3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="0.0dip"
+                        android:gravity="center"
+                        android:text="100"
+                        android:textColor="#ff000000" />
+
+                    <Button
+                        android:id="@+id/tradeMeans_4"
+                        android:layout_width="wrap_content"
+                        android:paddingLeft="3dp"
+                        android:paddingRight="3dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:text="마차(알파카)"
+                        android:background="#E0E0E0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/rideContent4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="0.0dip"
+                        android:gravity="center"
+                        android:textColor="#ff000000" />
+
+                    <Button
+                        android:id="@+id/tradeMeans_5"
+                        android:layout_width="wrap_content"
+                        android:paddingLeft="3dp"
+                        android:paddingRight="3dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:text="코끼리"
+                        android:background="#E0E0E0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/rideContent5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="0.0dip"
+                        android:gravity="center"
+                        android:textColor="#ff000000" />
+
+                    <Button
+                        android:id="@+id/tradeMeans_6"
+                        android:layout_width="wrap_content"
+                        android:paddingLeft="3dp"
+                        android:paddingRight="3dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:text="코끼리(교역파트너)"
+                        android:background="#E0E0E0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/rideContent6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="0.0dip"
+                        android:gravity="center"
+                        android:textColor="#ff000000" />
+
+                    <Button
+                        android:id="@+id/tradeMeans_7"
+                        android:layout_width="wrap_content"
+                        android:paddingLeft="3dp"
+                        android:paddingRight="3dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:text="코끼리(윌리엄)"
+                        android:background="#E0E0E0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/rideContent7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="0.0dip"
+                        android:gravity="center"
+                        android:textColor="#ff000000" />
+
+                    <Button
+                        android:id="@+id/tradeMeans_8"
+                        android:layout_width="wrap_content"
+                        android:paddingLeft="3dp"
+                        android:paddingRight="3dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:text="등짐"
+                        android:background="#E0E0E0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/rideContent8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="0.0dip"
+                        android:gravity="center"
+                        android:textColor="#ff000000" />
+
+                    <Button
+                        android:id="@+id/tradeMeans_9"
+                        android:layout_width="wrap_content"
+                        android:paddingLeft="3dp"
+                        android:paddingRight="3dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:text="손수레"
+                        android:background="#E0E0E0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/rideContent9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="0.0dip"
+                        android:gravity="center"
+                        android:textColor="#ff000000" />
+                </GridLayout>
+
                 <TextView
-                    android:textColor="#ff000000"
-                    android:gravity="center"
-                    android:layout_gravity="fill_horizontal"
-                    android:id="@+id/finishContent1_3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginTop="0.0dip" />
+                    android:id="@+id/tradeMeansSelected"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10.0dip"
+                    android:layout_marginLeft="10.0dip"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10.0dip"
+                android:background="@drawable/border"
+                android:orientation="vertical">
+
                 <TextView
-                    android:textColor="#ff000000"
+                    android:layout_width="fill_parent"
+                    android:layout_height="30.0dip"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/title_background"
                     android:gravity="center"
-                    android:layout_gravity="fill_horizontal"
-                    android:id="@+id/finishContent1_4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginTop="0.0dip" />
-                <TextView
-                    android:textColor="#ff000000"
+                    android:text="교역결과"
+                    android:textColor="#ffffffff"
+                    android:textSize="17.0dip" />
+
+                <Button
+                    android:id="@+id/tradeResetButton"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:layout_gravity="fill_horizontal"
-                    android:id="@+id/finishContent1_5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginTop="0.0dip" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent2_1" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:text="던바튼" />
-                <EditText android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent2_2" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:text="" android:inputType="number" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent2_3" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent2_4" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent2_5" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent3_1" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:text="반호르" />
-                <EditText android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent3_2" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:text="" android:inputType="number" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent3_3" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent3_4" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent3_5" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent4_1" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:text="이멘마하" />
-                <EditText android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent4_2" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:text="" android:inputType="number" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent4_3" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent4_4" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent4_5" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent5_1" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:text="탈틴" />
-                <EditText android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent5_2" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:text="" android:inputType="number" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent5_3" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent5_4" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent5_5" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent6_1" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:text="타라" />
-                <EditText android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent6_2" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:text="" android:inputType="number" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent6_3" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent6_4" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent6_5" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent7_1" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:text="카브항구" />
-                <EditText android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent7_2" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:text="" android:inputType="number" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent7_3" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent7_4" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent7_5" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent8_1" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:text="벨바스트" />
-                <EditText android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent8_2" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" android:text="" android:inputType="number" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent8_3" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent8_4" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" />
-                <TextView android:textColor="#ff000000" android:gravity="center" android:layout_gravity="fill_horizontal" android:id="@+id/finishContent8_5" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginTop="0.0dip" />
-            </GridLayout>
-        </HorizontalScrollView>
-    </LinearLayout>
+                    android:text="차액초기화"
+                    android:background="#E0E0E0"
+                    android:textSize="16dp" />
+
+                <HorizontalScrollView
+                    android:id="@+id/finishScrollView"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <GridLayout
+                        android:id="@+id/finishLayout"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10.0dip"
+                        android:layout_marginLeft="10.0dip"
+                        android:layout_marginRight="10.0dip"
+                        android:layout_marginTop="0.0dip"
+                        android:columnCount="5"
+                        android:orientation="horizontal"
+                        android:rowCount="7">
+
+                        <TextView
+                            android:id="@+id/finishTitle1"
+                            android:layout_width="100.0dip"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:text="도착마을"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishTitle2"
+                            android:layout_width="100.0dip"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:text="차액"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishTitle3"
+                            android:layout_width="100.0dip"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:text="순위(효율수치)"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishTitle4"
+                            android:layout_width="100.0dip"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:text="이익"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishTitle5"
+                            android:layout_width="100.0dip"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginRight="10.0dip"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:text="소요시간(초)"
+                            android:textColor="#ff000000" />
+
+                        <View
+                            android:layout_width="490.0dip"
+                            android:layout_height="2.0dip"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="5"
+                            android:background="#ff5853eb" />
+
+                        <TextView
+                            android:id="@+id/finishContent1_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:text="티르코네일"
+                            android:textColor="#ff000000" />
+
+                        <EditText
+                            android:id="@+id/finishContent1_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:text=""
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent1_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent1_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent1_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent2_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:text="던바튼"
+                            android:textColor="#ff000000" />
+
+                        <EditText
+                            android:id="@+id/finishContent2_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:text=""
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent2_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent2_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent2_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent3_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:text="반호르"
+                            android:textColor="#ff000000" />
+
+                        <EditText
+                            android:id="@+id/finishContent3_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:text=""
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent3_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent3_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent3_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent4_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:text="이멘마하"
+                            android:textColor="#ff000000" />
+
+                        <EditText
+                            android:id="@+id/finishContent4_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:text=""
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent4_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent4_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent4_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent5_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:text="탈틴"
+                            android:textColor="#ff000000" />
+
+                        <EditText
+                            android:id="@+id/finishContent5_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:text=""
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent5_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent5_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent5_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent6_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:text="타라"
+                            android:textColor="#ff000000" />
+
+                        <EditText
+                            android:id="@+id/finishContent6_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:text=""
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent6_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent6_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent6_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent7_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:text="카브항구"
+                            android:textColor="#ff000000" />
+
+                        <EditText
+                            android:id="@+id/finishContent7_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:text=""
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent7_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent7_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent7_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent8_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:text="벨바스트"
+                            android:textColor="#ff000000" />
+
+                        <EditText
+                            android:id="@+id/finishContent8_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:text=""
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent8_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent8_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/finishContent8_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0.0dip"
+                            android:gravity="center"
+                            android:textColor="#ff000000" />
+                    </GridLayout>
+                </HorizontalScrollView>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

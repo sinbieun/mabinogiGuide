@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ergWeaponArray">
+        <item>듀얼건</item>
+        <item>인술</item>
+        <item>체인 블레이드</item>
+        <item>인형술</item>
+        <item>활, 석궁</item>
+        <item>너클</item>
+        <item>스태프</item>
+        <item>실린더</item>
+        <item>양손검</item>
+        <item>원드</item>
+        <item>한손검, 아틀라틀</item>
+        <item>랜스</item>
+        <item>양손도끼, 둔기</item>
+        <item>한손둔기</item>
+        <item>한손도끼</item>
+    </string-array>
+</resources>

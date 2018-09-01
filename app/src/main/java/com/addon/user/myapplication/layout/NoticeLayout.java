@@ -48,7 +48,7 @@ public class NoticeLayout extends BaseLinearLayout {
             }
         });
         ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = (MainActivity.thisActivity.deviceHeight - (MainActivity.thisActivity.deviceHeight / 0x7));
+        params.height = (MainActivity.thisActivity.deviceHeight - (MainActivity.thisActivity.deviceHeight / 7));
         listView.setLayoutParams(params);
         listView.requestLayout();
     }

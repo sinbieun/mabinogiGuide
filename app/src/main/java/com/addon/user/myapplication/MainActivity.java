@@ -9,10 +9,16 @@ import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.design.widget.NavigationView;
 import android.view.Gravity;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.View;
 import java.util.ArrayList;
+
+import com.addon.user.myapplication.layout.ErgLayout;
+import com.addon.user.myapplication.layout.HomeLayout;
 import com.addon.user.myapplication.view.NoticeItem;
 import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
@@ -27,6 +33,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import com.addon.user.myapplication.layout.TitleLayout;
 import com.addon.user.myapplication.layout.TradeLayout;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private long backKeyPressedTime;
@@ -36,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static MainActivity thisActivity;
     private Toast toast;
     SQLiteDatabase tradeDb;
+
+    private TextView toolbarTitleView;
     
     public MainActivity() {
         backKeyPressedTime = 0;
@@ -50,13 +63,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         thisActivity = this;
 
         dbHelper = new DBHelper(getApplicationContext(), "tradeItem.db", null, 1);
-        tradeDb = dbHelper.getWritableDatabase();
+        tradeDb = dbHelper.getReadableDatabase();
+
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         deviceWidth = displayMetrics.widthPixels;
         deviceHeight = displayMetrics.heightPixels;
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbarTitleView = (TextView) findViewById(R.id.toolbar_title);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
@@ -68,14 +83,54 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
         navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(this);
-        ScrollView contentView = (ScrollView)findViewById(R.id.contentScrollView);
+
+        RelativeLayout contentView = (RelativeLayout) findViewById(R.id.contentView);
         if(contentView != null) {
             contentView.removeAllViews();
         }
-        NoticeLayout noticeLayout = new NoticeLayout(this);
-        contentView.addView(noticeLayout);
-        noticeLayout.initialization(null);
-        noticeLayout.setData(null);
+
+        HomeLayout homeLayout = new HomeLayout(this);
+        contentView.addView(homeLayout);
+        homeLayout.initialization(null);
+        homeLayout.setData(null);
+
+        toolbarTitleView.setText("마비노기 유틸도우미");
+
+        // 광고
+        MobileAds.initialize(this, getString(R.string.ad_unit_id));
+
+
+        AdView mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                // Code to be executed when an ad request fails.
+            }
+
+            @Override
+            public void onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+            }
+
+            @Override
+            public void onAdClosed() {
+                // Code to be executed when when the user is about to return
+                // to the app after tapping on an ad.
+            }
+        });
     }
     
     public void onBackPressed() {
@@ -115,23 +170,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
-        ScrollView contentView = (ScrollView) findViewById(R.id.contentScrollView);
+        RelativeLayout contentView = (RelativeLayout) findViewById(R.id.contentView);
+
         if(id == R.id.nav_notice) {
             if(contentView != null) {
                 contentView.removeAllViews();
             }
-            NoticeLayout noticeLayout = new NoticeLayout(this);
-            contentView.addView(noticeLayout);
-            noticeLayout.initialization(null);
-            noticeLayout.setData(null);
-        } else if(id == R.id.nav_title) {
-            if (contentView != null) {
+            HomeLayout homeLayout = new HomeLayout(this);
+            contentView.addView(homeLayout);
+            homeLayout.initialization(null);
+            homeLayout.setData(null);
+
+            toolbarTitleView.setText("마비노기 유틸도우미");
+        }else if(id == R.id.nav_erg) {
+            if(contentView != null) {
                 contentView.removeAllViews();
             }
-            TitleLayout titleLayout = new TitleLayout(this);
-            contentView.addView(titleLayout);
-            titleLayout.setData(tradeDb, null);
-            titleLayout.initialization(null);
+            ErgLayout ergLayout = new ErgLayout(this);
+            contentView.addView(ergLayout);
+            ergLayout.setData(tradeDb, null);
+            ergLayout.initialization(null);
+
+            toolbarTitleView.setText("에르그도우미");
         }else if(id == R.id.nav_trade) {
             if(contentView != null) {
                 contentView.removeAllViews();
@@ -141,7 +201,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             tradeLayout.initialization(null);
             tradeLayout.setData(tradeDb, null);
             tradeLayout.tradeLayoutAdd();
+
+            toolbarTitleView.setText("교역도우미");
         }
+
+        /*
+        else if(id == R.id.nav_title) {
+            if (contentView != null) {
+                contentView.removeAllViews();
+            }
+            TitleLayout titleLayout = new TitleLayout(this);
+            contentView.addView(titleLayout);
+            titleLayout.setData(tradeDb, null);
+            titleLayout.initialization(null);
+        }*/
+
         DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
         drawer.closeDrawer(Gravity.START);
         return true;

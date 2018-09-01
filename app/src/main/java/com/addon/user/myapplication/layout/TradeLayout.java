@@ -635,6 +635,10 @@ public class TradeLayout extends BaseLinearLayout {
                 TextView rideContent7 = (TextView) findViewById(R.id.rideContent7);
                 rideContent7.setText(String.valueOf((int) Math.min((( 8 + grandMasterValue ) * instanceMaxCount), Math.floor( ( 1900 + ( grandMasterValue * 100 ) ) / instanceItemCount ))));
 
+                ((TextView)findViewById(R.id.rideContent8)).setText(String.valueOf((int)Math.min((grandMasterValue + 4) * this.instanceMaxCount, Math.floor((400 + grandMasterValue * 100) / this.instanceItemCount))));
+                ((TextView)findViewById(R.id.rideContent9)).setText(String.valueOf((int)Math.min((grandMasterValue + 6) * this.instanceMaxCount, Math.floor((800 + grandMasterValue * 100) / this.instanceItemCount))));
+
+
                 // ***** 최대 수량 끝 *****
             }
         }

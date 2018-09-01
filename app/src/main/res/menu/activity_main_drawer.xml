@@ -2,9 +2,12 @@
 <menu
   xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
-        <item android:icon="@mipmap/ic_launcher_app" android:id="@+id/nav_notice" android:title="공지사항" />
-        <item android:icon="@mipmap/music_64" android:id="@+id/nav_title" android:title="타이틀도우미" />
+        <item android:icon="@mipmap/ic_launcher_app" android:id="@+id/nav_notice" android:title="홈" />
         <item android:icon="@mipmap/trade_logo_64" android:id="@+id/nav_trade" android:title="교역도우미" />
+        <item android:icon="@mipmap/ic_erg" android:id="@+id/nav_erg" android:title="에르그도우미" />
+        <!--
+        <item android:icon="@mipmap/music_64" android:id="@+id/nav_title" android:title="타이틀도우미" />
         <item android:icon="@mipmap/music_64" android:id="@+id/nav_music" android:title="악기도우미" />
+        -->
     </group>
 </menu>
