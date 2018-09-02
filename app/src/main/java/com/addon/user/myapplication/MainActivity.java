@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 import com.addon.user.myapplication.layout.ErgLayout;
 import com.addon.user.myapplication.layout.HomeLayout;
+import com.addon.user.myapplication.layout.MusicLayout;
 import com.addon.user.myapplication.view.NoticeItem;
 import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
@@ -203,6 +204,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             tradeLayout.tradeLayoutAdd();
 
             toolbarTitleView.setText("교역도우미");
+        }else if(id == R.id.nav_music) {
+            if(contentView != null) {
+                contentView.removeAllViews();
+            }
+            MusicLayout musicLayout = new MusicLayout(this);
+            contentView.addView(musicLayout);
+            musicLayout.initialization(null);
+            musicLayout.setData(tradeDb, null);
+
+            toolbarTitleView.setText("연주도우미");
         }
 
         /*

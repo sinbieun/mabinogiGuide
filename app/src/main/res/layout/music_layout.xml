@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <LinearLayout
+            android:id="@+id/tradeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_1"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/border"
+                android:orientation="vertical">
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    android:rowCount="7">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="30.0dip"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="@drawable/title_background"
+                        android:gravity="center"
+                        android:text="스킬 랭크"
+                        android:textColor="#ffffffff"
+                        android:textSize="17.0dip" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="0dp"
+                        android:gravity="left"
+                        android:text="악기 연주 랭크"
+                        android:textColor="#ff000000" />
+
+                    <Spinner
+                        android:id="@+id/instrumentRankSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="0dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="0dp"
+                        android:gravity="left"
+                        android:text="노래 랭크"
+                        android:textColor="#ff000000" />
+
+                    <Spinner
+                        android:id="@+id/songRankSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="0dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="0dp"
+                        android:gravity="left"
+                        android:text="전장의 서곡 랭크"
+                        android:textColor="#ff000000" />
+
+                    <Spinner
+                        android:id="@+id/DFRankSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="0dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="0dp"
+                        android:gravity="left"
+                        android:text="비바체 랭크"
+                        android:textColor="#ff000000" />
+
+                    <Spinner
+                        android:id="@+id/VVRankSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="0dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="0dp"
+                        android:gravity="left"
+                        android:text="풍년가 랭크"
+                        android:textColor="#ff000000" />
+
+                    <Spinner
+                        android:id="@+id/BVRankSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="0dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="0dp"
+                        android:gravity="left"
+                        android:text="행진곡 랭크"
+                        android:textColor="#ff000000" />
+
+                    <Spinner
+                        android:id="@+id/MCRankSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="0dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="0dp"
+                        android:gravity="left"
+                        android:text="인내의 노래 랭크"
+                        android:textColor="#ff000000" />
+
+                    <Spinner
+                        android:id="@+id/SPRankSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="0dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+                </GridLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/border"
+                android:orientation="vertical">
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    android:rowCount="7">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="30.0dip"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="@drawable/title_background"
+                        android:gravity="center"
+                        android:text="인챈트/아이템 효과"
+                        android:textColor="#ffffffff"
+                        android:textSize="17.0dip" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="0dp"
+                        android:gravity="left"
+                        android:text="악기 종류"
+                        android:textColor="#ff000000" />
+
+                    <Spinner
+                        android:id="@+id/instrumentSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="0dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="left"
+                        android:text="인챈트 증가 효과"
+                        android:textColor="#ff000000" />
+
+                    <EditText
+                        android:id="@+id/inchantPlusCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="left"
+                        android:text="타이틀 증가 효과"
+                        android:textColor="#ff000000" />
+
+                    <EditText
+                        android:id="@+id/titlePlusCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="left"
+                        android:text="전장의 서곡 증가 효과"
+                        android:textColor="#ff000000" />
+
+                    <EditText
+                        android:id="@+id/BFCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="left"
+                        android:text="비바체 증가 효과"
+                        android:textColor="#ff000000" />
+
+                    <EditText
+                        android:id="@+id/VVCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="left"
+                        android:text="풍년가 증가 효과"
+                        android:textColor="#ff000000" />
+
+                    <EditText
+                        android:id="@+id/BYCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="left"
+                        android:text="행진곡 증가 효과"
+                        android:textColor="#ff000000" />
+
+                    <EditText
+                        android:id="@+id/MCCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="left"
+                        android:text="인내의 노래 증가 효과"
+                        android:textColor="#ff000000" />
+
+                    <EditText
+                        android:id="@+id/SPCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+                </GridLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/border"
+                android:orientation="vertical">
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    android:rowCount="7">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="30dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="@drawable/title_background"
+                        android:gravity="center"
+                        android:text="세공 vs 에코스톤"
+                        android:textColor="#ffffffff"
+                        android:textSize="17dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="left"
+                        android:text="비바체 마시속"
+                        android:textColor="#ff000000" />
+
+                    <EditText
+                        android:id="@+id/VVMSCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="left"
+                        android:text="비바체 공격속도"
+                        android:textColor="#ff000000" />
+
+                    <EditText
+                        android:id="@+id/VVASCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="left"
+                        android:text="풍년가 채집속도"
+                        android:textColor="#ff000000" />
+
+                    <EditText
+                        android:id="@+id/BVGSCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="left"
+                        android:text="보통 연주 효과"
+                        android:textColor="#ff000000" />
+
+                    <EditText
+                        android:id="@+id/NMECount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="left"
+                        android:text="훌륭한 연주 효과"
+                        android:textColor="#ff000000" />
+
+                    <EditText
+                        android:id="@+id/GMECount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="left"
+                        android:text="신들린 연주 효과"
+                        android:textColor="#ff000000" />
+
+                    <EditText
+                        android:id="@+id/BMECount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#ff5853eb" />
+                </GridLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

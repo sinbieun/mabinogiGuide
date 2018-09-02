@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/mabinogiGuide.iml" filepath="$PROJECT_DIR$/.idea/mabinogiGuide.iml" />
       <module fileurl="file://$PROJECT_DIR$/mabinogiGuide.iml" filepath="$PROJECT_DIR$/mabinogiGuide.iml" />
     </modules>
   </component>
