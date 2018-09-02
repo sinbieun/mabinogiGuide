@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         thisActivity = this;
 
-        dbHelper = new DBHelper(getApplicationContext(), "tradeItem.db", null, 1);
+        dbHelper = new DBHelper(getApplicationContext(), "tradeItem.db", null, 2);
         tradeDb = dbHelper.getReadableDatabase();
 
 

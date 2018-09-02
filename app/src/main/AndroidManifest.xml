@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="REPLACE_WITH_YOUR_ADMOB_APP_ID"/>
+            android:value="@string/ad_unit_id"/>
 
         <activity android:label="@string/app_name" android:name="com.addon.user.myapplication.StartActivity" android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
