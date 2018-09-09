@@ -15,11 +15,14 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.addon.user.myapplication.MainActivity;
 import com.addon.user.myapplication.R;
 import com.addon.user.myapplication.view.NoticeAdapter;
 import com.addon.user.myapplication.view.NoticeItem;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -44,6 +47,30 @@ public class MusicLayout extends BaseLinearLayout {
     private ArrayAdapter<CharSequence> BVRDataArray;
     private ArrayAdapter<CharSequence> MCRDataArray;
     private ArrayAdapter<CharSequence> SPRDataArray;
+
+    // 스킬 랭크에 따른 기본 수치
+    // 악기 연주
+    private int baseIRSValue = 0;
+    // 노래
+    private int baseSongValue = 0;
+    // 전장의 서곡 ( 최뎀, 민뎀, 크리티컬 )
+    private int baseDFValue1 = 0;
+    private int baseDFValue2 = 0;
+    private int baseDFValue3 = 0;
+    // 비바체 ( 마시속, 공속, 연금속 )
+    private int baseVVValue1 = 0;
+    private int baseVVValue2 = 0;
+    private int baseVVValue3 = 0;
+    // 풍년가 ( 채집성공, 생산성공, 채집속도 )
+    private int baseBVValue1 = 0;
+    private int baseBVValue2 = 0;
+    private int baseBVValue3 = 0;
+    // 행진곡 ( 이동속도 )
+    private int baseMCValue1 = 0;
+    // 인내의 노래 ( 방어/마방, 보호/마보, 마나/스테 )
+    private int baseSPValue1 = 0;
+    private int baseSPValue2 = 0;
+    private int baseSPValue3 = 0;
 
     public MusicLayout(Context context) {
         super(context);
@@ -71,41 +98,658 @@ public class MusicLayout extends BaseLinearLayout {
         IRSDataArray = ArrayAdapter.createFromResource(context, R.array.masterySelected, R.layout.support_simple_spinner_dropdown_item);
         IRSDataArray.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         instrumentRankSpinner.setAdapter(IRSDataArray);
+        instrumentRankSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                setBaseValueFromRank("IRS", IRSDataArray.getItem(i).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         // 노래 랭크
         SONGDataArray = ArrayAdapter.createFromResource(context, R.array.masterySelected, R.layout.support_simple_spinner_dropdown_item);
         SONGDataArray.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         songRankSpinner.setAdapter(SONGDataArray);
+        songRankSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                setBaseValueFromRank("SONG", SONGDataArray.getItem(i).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         // 전장의 서곡 랭크
         DFRDataArray = ArrayAdapter.createFromResource(context, R.array.masterySelected, R.layout.support_simple_spinner_dropdown_item);
         DFRDataArray.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         DFRankSpinner.setAdapter(DFRDataArray);
+        DFRankSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                setBaseValueFromRank("DF", DFRDataArray.getItem(i).toString());
+
+                setFinishValue("DF");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         // 비바체 랭크
         VVRDataArray = ArrayAdapter.createFromResource(context, R.array.masterySelected, R.layout.support_simple_spinner_dropdown_item);
         VVRDataArray.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         VVRankSpinner.setAdapter(VVRDataArray);
+        VVRankSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                setBaseValueFromRank("VV", VVRDataArray.getItem(i).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         // 풍년가 랭크
         BVRDataArray = ArrayAdapter.createFromResource(context, R.array.masterySelected, R.layout.support_simple_spinner_dropdown_item);
         BVRDataArray.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         BVRankSpinner.setAdapter(BVRDataArray);
+        BVRankSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                setBaseValueFromRank("BV", BVRDataArray.getItem(i).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         // 행진곡 랭크
         MCRDataArray = ArrayAdapter.createFromResource(context, R.array.masterySelected, R.layout.support_simple_spinner_dropdown_item);
         MCRDataArray.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         MCRankSpinner.setAdapter(MCRDataArray);
+        MCRankSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                setBaseValueFromRank("MC", MCRDataArray.getItem(i).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         // 인내의 노래 랭크
         SPRDataArray = ArrayAdapter.createFromResource(context, R.array.masterySelected, R.layout.support_simple_spinner_dropdown_item);
         SPRDataArray.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         SPRankSpinner.setAdapter(SPRDataArray);
+        SPRankSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                setBaseValueFromRank("SP", SPRDataArray.getItem(i).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
     
     public void setData(SQLiteDatabase db, Object[] obj) {
     }
     
     public void setData(Object[] obj) {
+    }
+
+    private void setFinishValue(String gubun){
+        // 기본 : 스킬효과 * ( 1 + ( 세공vs에코스톤 ) / 100 ) * ( 100 + 악기연주효과 ) / 10000
+        // 풍채 제외
+        switch (gubun){
+            case "IRS" :
+                break;
+            case "SONG" :
+                break;
+            case "DF" :
+                int dfValue1_1 = baseDFValue1 * ( ( 1 + 0 ) / 100 ) * ( 100 + ( baseIRSValue + baseSongValue ) );
+
+                TextView dfValueTextView_1_1 = (TextView) findViewById(R.id.df_value_1_1);
+                dfValueTextView_1_1.setText(String.valueOf(dfValue1_1));
+
+                int dfValue2_1 = baseDFValue2 * ( ( 1 + 0 ) / 100 ) * ( 100 + ( baseIRSValue + baseSongValue ) );
+
+                TextView dfValueTextView_2_1 = (TextView) findViewById(R.id.df_value_2_1);
+                dfValueTextView_2_1.setText(String.valueOf(dfValue2_1));
+
+                int dfValue3_1 = baseDFValue2 * ( ( 1 + 0 ) / 100 ) * ( 100 + ( baseIRSValue + baseSongValue ) );
+
+                TextView dfValueTextView_3_1 = (TextView) findViewById(R.id.df_value_3_1);
+                dfValueTextView_3_1.setText(String.valueOf(dfValue3_1));
+
+                break;
+            case "VV" :
+                break;
+            case "BV" :
+                break;
+            case "MC" :
+                break;
+            case "SP" :
+                break;
+        }
+    }
+
+    /**
+     * 랭크와 구분값에 맞춰서 기본 데이터 세팅
+     * @param gubun
+     * @param rank
+     */
+    private void setBaseValueFromRank(String gubun, String rank){
+        switch (gubun){
+            case "IRS" :
+                switch (rank){
+                    case "1랭크" :
+                        baseIRSValue = 15;
+                        break;
+                    case "2랭크" :
+                        baseIRSValue = 14;
+                        break;
+                    case "3랭크" :
+                        baseIRSValue = 13;
+                        break;
+                    case "4랭크" :
+                        baseIRSValue = 12;
+                        break;
+                    case "5랭크" :
+                        baseIRSValue = 11;
+                        break;
+                    case "6랭크" :
+                        baseIRSValue = 10;
+                        break;
+                    case "7랭크" :
+                        baseIRSValue = 9;
+                        break;
+                    case "8랭크" :
+                        baseIRSValue = 8;
+                        break;
+                    case "9랭크" :
+                        baseIRSValue = 7;
+                        break;
+                    case "A랭크" :
+                        baseIRSValue = 6;
+                        break;
+                    case "B랭크" :
+                        baseIRSValue = 5;
+                        break;
+                    case "C랭크" :
+                        baseIRSValue = 4;
+                        break;
+                    case "D랭크" :
+                        baseIRSValue = 3;
+                        break;
+                    case "E랭크" :
+                        baseIRSValue = 2;
+                        break;
+                    case "F랭크" :
+                        baseIRSValue = 1;
+                        break;
+                    case "연습랭크" :
+                        baseIRSValue = 0;
+                        break;
+                }
+                break;
+            case "SONG" :
+                switch (rank){
+                    case "1랭크" :
+                        baseSongValue = 15;
+                        break;
+                    case "2랭크" :
+                        baseSongValue = 14;
+                        break;
+                    case "3랭크" :
+                        baseSongValue = 13;
+                        break;
+                    case "4랭크" :
+                        baseSongValue = 12;
+                        break;
+                    case "5랭크" :
+                        baseSongValue = 11;
+                        break;
+                    case "6랭크" :
+                        baseSongValue = 10;
+                        break;
+                    case "7랭크" :
+                        baseSongValue = 9;
+                        break;
+                    case "8랭크" :
+                        baseSongValue = 8;
+                        break;
+                    case "9랭크" :
+                        baseSongValue = 7;
+                        break;
+                    case "A랭크" :
+                        baseSongValue = 6;
+                        break;
+                    case "B랭크" :
+                        baseSongValue = 5;
+                        break;
+                    case "C랭크" :
+                        baseSongValue = 4;
+                        break;
+                    case "D랭크" :
+                        baseSongValue = 3;
+                        break;
+                    case "E랭크" :
+                        baseSongValue = 2;
+                        break;
+                    case "F랭크" :
+                        baseSongValue = 1;
+                        break;
+                    case "연습랭크" :
+                        baseSongValue = 0;
+                        break;
+                }
+                break;
+            case "DF" :
+                switch (rank){
+                    case "1랭크" :
+                        baseDFValue1 = 20;
+                        baseDFValue2 = 20;
+                        baseDFValue3 = 11;
+                        break;
+                    case "2랭크" :
+                        baseDFValue1 = 19;
+                        baseDFValue2 = 19;
+                        baseDFValue3 = 10;
+                        break;
+                    case "3랭크" :
+                        baseDFValue1 = 18;
+                        baseDFValue2 = 18;
+                        baseDFValue3 = 9;
+                        break;
+                    case "4랭크" :
+                        baseDFValue1 = 17;
+                        baseDFValue2 = 17;
+                        baseDFValue3 = 8;
+                        break;
+                    case "5랭크" :
+                        baseDFValue1 = 16;
+                        baseDFValue2 = 16;
+                        baseDFValue3 = 7;
+                        break;
+                    case "6랭크" :
+                        baseDFValue1 = 16;
+                        baseDFValue2 = 15;
+                        baseDFValue3 = 6;
+                        break;
+                    case "7랭크" :
+                        baseDFValue1 = 15;
+                        baseDFValue2 = 15;
+                        baseDFValue3 = 5;
+                        break;
+                    case "8랭크" :
+                        baseDFValue1 = 15;
+                        baseDFValue2 = 14;
+                        baseDFValue3 = 5;
+                        break;
+                    case "9랭크" :
+                        baseDFValue1 = 14;
+                        baseDFValue2 = 14;
+                        baseDFValue3 = 4;
+                        break;
+                    case "A랭크" :
+                        baseDFValue1 = 13;
+                        baseDFValue2 = 13;
+                        baseDFValue3 = 3;
+                        break;
+                    case "B랭크" :
+                        baseDFValue1 = 13;
+                        baseDFValue2 = 12;
+                        baseDFValue3 = 3;
+                        break;
+                    case "C랭크" :
+                        baseDFValue1 = 12;
+                        baseDFValue2 = 12;
+                        baseDFValue3 = 2;
+                        break;
+                    case "D랭크" :
+                        baseDFValue1 = 12;
+                        baseDFValue2 = 11;
+                        baseDFValue3 = 2;
+                        break;
+                    case "E랭크" :
+                        baseDFValue1 = 11;
+                        baseDFValue2 = 11;
+                        baseDFValue3 = 1;
+                        break;
+                    case "F랭크" :
+                        baseDFValue1 = 10;
+                        baseDFValue2 = 10;
+                        baseDFValue3 = 1;
+                        break;
+                    case "연습랭크" :
+                        baseDFValue1 = 10;
+                        baseDFValue2 = 10;
+                        baseDFValue3 = 0;
+                        break;
+                }
+                break;
+            case "VV" :
+                switch (rank){
+                    case "1랭크" :
+                        baseVVValue1 = 11;
+                        baseVVValue2 = 11;
+                        baseVVValue3 = 11;
+                        break;
+                    case "2랭크" :
+                        baseVVValue1 = 10;
+                        baseVVValue2 = 10;
+                        baseVVValue3 = 10;
+                        break;
+                    case "3랭크" :
+                        baseVVValue1 = 9;
+                        baseVVValue2 = 9;
+                        baseVVValue3 = 9;
+                        break;
+                    case "4랭크" :
+                        baseVVValue1 = 8;
+                        baseVVValue2 = 8;
+                        baseVVValue3 = 8;
+                        break;
+                    case "5랭크" :
+                        baseVVValue1 = 7;
+                        baseVVValue2 = 7;
+                        baseVVValue3 = 7;
+                        break;
+                    case "6랭크" :
+                        baseVVValue1 = 7;
+                        baseVVValue2 = 6;
+                        baseVVValue3 = 6;
+                        break;
+                    case "7랭크" :
+                        baseVVValue1 = 6;
+                        baseVVValue2 = 6;
+                        baseVVValue3 = 5;
+                        break;
+                    case "8랭크" :
+                        baseVVValue1 = 6;
+                        baseVVValue2 = 5;
+                        baseVVValue3 = 4;
+                        break;
+                    case "9랭크" :
+                        baseVVValue1 = 5;
+                        baseVVValue2 = 5;
+                        baseVVValue3 = 4;
+                        break;
+                    case "A랭크" :
+                        baseVVValue1 = 4;
+                        baseVVValue2 = 4;
+                        baseVVValue3 = 3;
+                        break;
+                    case "B랭크" :
+                        baseVVValue1 = 4;
+                        baseVVValue2 = 3;
+                        baseVVValue3 = 3;
+                        break;
+                    case "C랭크" :
+                        baseVVValue1 = 3;
+                        baseVVValue2 = 3;
+                        baseVVValue3 = 2;
+                        break;
+                    case "D랭크" :
+                        baseVVValue1 = 2;
+                        baseVVValue2 = 2;
+                        baseVVValue3 = 2;
+                        break;
+                    case "E랭크" :
+                        baseVVValue1 = 2;
+                        baseVVValue2 = 2;
+                        baseVVValue3 = 1;
+                        break;
+                    case "F랭크" :
+                        baseVVValue1 = 2;
+                        baseVVValue2 = 1;
+                        baseVVValue3 = 1;
+                        break;
+                    case "연습랭크" :
+                        baseVVValue1 = 1;
+                        baseVVValue2 = 1;
+                        baseVVValue3 = 1;
+                        break;
+                }
+                break;
+            case "BV" :
+                switch (rank){
+                    case "1랭크" :
+                        baseBVValue1 = 5;
+                        baseBVValue2 = 5;
+                        baseBVValue3 = 25;
+                        break;
+                    case "2랭크" :
+                        baseBVValue1 = 5;
+                        baseBVValue2 = 5;
+                        baseBVValue3 = 22;
+                        break;
+                    case "3랭크" :
+                        baseBVValue1 = 5;
+                        baseBVValue2 = 5;
+                        baseBVValue3 = 20;
+                        break;
+                    case "4랭크" :
+                        baseBVValue1 = 5;
+                        baseBVValue2 = 4;
+                        baseBVValue3 = 18;
+                        break;
+                    case "5랭크" :
+                        baseBVValue1 = 4;
+                        baseBVValue2 = 4;
+                        baseBVValue3 = 16;
+                        break;
+                    case "6랭크" :
+                        baseBVValue1 = 4;
+                        baseBVValue2 = 4;
+                        baseBVValue3 = 14;
+                        break;
+                    case "7랭크" :
+                        baseBVValue1 = 4;
+                        baseBVValue2 = 3;
+                        baseBVValue3 = 13;
+                        break;
+                    case "8랭크" :
+                        baseBVValue1 = 3;
+                        baseBVValue2 = 3;
+                        baseBVValue3 = 12;
+                        break;
+                    case "9랭크" :
+                        baseBVValue1 = 3;
+                        baseBVValue2 = 3;
+                        baseBVValue3 = 11;
+                        break;
+                    case "A랭크" :
+                        baseBVValue1 = 3;
+                        baseBVValue2 = 2;
+                        baseBVValue3 = 10;
+                        break;
+                    case "B랭크" :
+                        baseBVValue1 = 2;
+                        baseBVValue2 = 2;
+                        baseBVValue3 = 9;
+                        break;
+                    case "C랭크" :
+                        baseBVValue1 = 2;
+                        baseBVValue2 = 2;
+                        baseBVValue3 = 8;
+                        break;
+                    case "D랭크" :
+                        baseBVValue1 = 2;
+                        baseBVValue2 = 1;
+                        baseBVValue3 = 7;
+                        break;
+                    case "E랭크" :
+                        baseBVValue1 = 1;
+                        baseBVValue2 = 1;
+                        baseBVValue3 = 6;
+                        break;
+                    case "F랭크" :
+                        baseBVValue1 = 1;
+                        baseBVValue2 = 0;
+                        baseBVValue3 = 5;
+                        break;
+                    case "연습랭크" :
+                        baseBVValue1 = 1;
+                        baseBVValue2 = 0;
+                        baseBVValue3 = 0;
+                        break;
+                }
+                break;
+            case "MC" :
+                switch (rank){
+                    case "1랭크" :
+                        baseMCValue1 = 12;
+                        break;
+                    case "2랭크" :
+                        baseMCValue1 = 10;
+                        break;
+                    case "3랭크" :
+                        baseMCValue1 = 8;
+                        break;
+                    case "4랭크" :
+                        baseMCValue1 = 8;
+                        break;
+                    case "5랭크" :
+                        baseMCValue1 = 7;
+                        break;
+                    case "6랭크" :
+                        baseMCValue1 = 7;
+                        break;
+                    case "7랭크" :
+                        baseMCValue1 = 6;
+                        break;
+                    case "8랭크" :
+                        baseMCValue1 = 6;
+                        break;
+                    case "9랭크" :
+                        baseMCValue1 = 5;
+                        break;
+                    case "A랭크" :
+                        baseMCValue1 = 3;
+                        break;
+                    case "B랭크" :
+                        baseMCValue1 = 3;
+                        break;
+                    case "C랭크" :
+                        baseMCValue1 = 2;
+                        break;
+                    case "D랭크" :
+                        baseMCValue1 = 2;
+                        break;
+                    case "E랭크" :
+                        baseMCValue1 = 1;
+                        break;
+                    case "F랭크" :
+                        baseMCValue1 = 1;
+                        break;
+                    case "연습랭크" :
+                        baseMCValue1 = 1;
+                        break;
+                }
+                break;
+            case "SP" :
+                switch (rank){
+                    case "1랭크" :
+                        baseSPValue1 = 11;
+                        baseSPValue2 = 5;
+                        baseSPValue3 = 410;
+                        break;
+                    case "2랭크" :
+                        baseSPValue1 = 10;
+                        baseSPValue2 = 4;
+                        baseSPValue3 = 395;
+                        break;
+                    case "3랭크" :
+                        baseSPValue1 = 9;
+                        baseSPValue2 = 4;
+                        baseSPValue3 = 380;
+                        break;
+                    case "4랭크" :
+                        baseSPValue1 = 9;
+                        baseSPValue2 = 3;
+                        baseSPValue3 = 365;
+                        break;
+                    case "5랭크" :
+                        baseSPValue1 = 8;
+                        baseSPValue2 = 3;
+                        baseSPValue3 = 350;
+                        break;
+                    case "6랭크" :
+                        baseSPValue1 = 7;
+                        baseSPValue2 = 3;
+                        baseSPValue3 = 335;
+                        break;
+                    case "7랭크" :
+                        baseSPValue1 = 7;
+                        baseSPValue2 = 2;
+                        baseSPValue3 = 320;
+                        break;
+                    case "8랭크" :
+                        baseSPValue1 = 6;
+                        baseSPValue2 = 2;
+                        baseSPValue3 = 305;
+                        break;
+                    case "9랭크" :
+                        baseSPValue1 = 5;
+                        baseSPValue2 = 2;
+                        baseSPValue3 = 290;
+                        break;
+                    case "A랭크" :
+                        baseSPValue1 = 4;
+                        baseSPValue2 = 1;
+                        baseSPValue3 = 275;
+                        break;
+                    case "B랭크" :
+                        baseSPValue1 = 3;
+                        baseSPValue2 = 1;
+                        baseSPValue3 = 260;
+                        break;
+                    case "C랭크" :
+                        baseSPValue1 = 2;
+                        baseSPValue2 = 1;
+                        baseSPValue3 = 260;
+                        break;
+                    case "D랭크" :
+                        baseSPValue1 = 2;
+                        baseSPValue2 = 1;
+                        baseSPValue3 = 230;
+                        break;
+                    case "E랭크" :
+                        baseSPValue1 = 1;
+                        baseSPValue2 = 1;
+                        baseSPValue3 = 230;
+                        break;
+                    case "F랭크" :
+                        baseSPValue1 = 1;
+                        baseSPValue2 = 1;
+                        baseSPValue3 = 200;
+                        break;
+                    case "연습랭크" :
+                        baseSPValue1 = 1;
+                        baseSPValue2 = 1;
+                        baseSPValue3 = 100;
+                        break;
+                }
+                break;
+        }
     }
 }

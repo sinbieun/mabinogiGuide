@@ -8,18 +8,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
+
         <LinearLayout
             android:id="@+id/tradeLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/background_1"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@drawable/border"
                 android:orientation="vertical">
+
                 <GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -35,7 +38,7 @@
                         android:layout_columnSpan="2"
                         android:background="@drawable/title_background"
                         android:gravity="center"
-                        android:text="스킬 랭크"
+                        android:text="@string/music_label_title_1"
                         android:textColor="#ffffffff"
                         android:textSize="17.0dip" />
 
@@ -44,8 +47,7 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_marginTop="0dp"
-                        android:gravity="left"
-                        android:text="악기 연주 랭크"
+                        android:text="@string/music_label_content_1_1"
                         android:textColor="#ff000000" />
 
                     <Spinner
@@ -68,8 +70,7 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_marginTop="0dp"
-                        android:gravity="left"
-                        android:text="노래 랭크"
+                        android:text="@string/music_label_content_1_2"
                         android:textColor="#ff000000" />
 
                     <Spinner
@@ -92,8 +93,7 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_marginTop="0dp"
-                        android:gravity="left"
-                        android:text="전장의 서곡 랭크"
+                        android:text="@string/music_label_content_1_3"
                         android:textColor="#ff000000" />
 
                     <Spinner
@@ -116,8 +116,7 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_marginTop="0dp"
-                        android:gravity="left"
-                        android:text="비바체 랭크"
+                        android:text="@string/music_label_content_1_4"
                         android:textColor="#ff000000" />
 
                     <Spinner
@@ -140,8 +139,7 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_marginTop="0dp"
-                        android:gravity="left"
-                        android:text="풍년가 랭크"
+                        android:text="@string/music_label_content_1_5"
                         android:textColor="#ff000000" />
 
                     <Spinner
@@ -165,7 +163,7 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="0dp"
                         android:gravity="left"
-                        android:text="행진곡 랭크"
+                        android:text="@string/music_label_content_1_6"
                         android:textColor="#ff000000" />
 
                     <Spinner
@@ -189,7 +187,7 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="0dp"
                         android:gravity="left"
-                        android:text="인내의 노래 랭크"
+                        android:text="@string/music_label_content_1_7"
                         android:textColor="#ff000000" />
 
                     <Spinner
@@ -208,12 +206,14 @@
                         android:background="#ff5853eb" />
                 </GridLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@drawable/border"
                 android:orientation="vertical">
+
                 <GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -229,7 +229,7 @@
                         android:layout_columnSpan="2"
                         android:background="@drawable/title_background"
                         android:gravity="center"
-                        android:text="인챈트/아이템 효과"
+                        android:text="@string/music_label_title_2"
                         android:textColor="#ffffffff"
                         android:textSize="17.0dip" />
 
@@ -433,6 +433,7 @@
                 android:layout_margin="10dp"
                 android:background="@drawable/border"
                 android:orientation="vertical">
+
                 <GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -595,6 +596,705 @@
                         android:layout_centerInParent="true"
                         android:layout_columnSpan="2"
                         android:background="#ff5853eb" />
+                </GridLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/border"
+                android:orientation="vertical">
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:columnCount="4"
+                    android:orientation="horizontal"
+                    android:rowCount="7">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="30dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="4"
+                        android:background="@drawable/title_background"
+                        android:gravity="center"
+                        android:text="최종 결과(%)"
+                        android:textColor="#ffffffff"
+                        android:textSize="17dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="보통"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="훌륭한"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="신들린"
+                        android:textColor="#ff000000" />
+
+                    <!-- 전장의 서곡 타이틀 -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnSpan="4"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:background="#FF0000"
+                        android:gravity="center"
+                        android:text="전장의 서곡"
+                        android:textColor="#ffffff" />
+
+                    <!-- 전장의 서곡 ( 최대 데미지 ) -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="최대 데미지"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/df_value_1_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/df_value_1_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/df_value_1_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <!-- 전장의 서곡 ( 최소 데미지 ) -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="최소 데미지"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/df_value_2_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/df_value_2_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/df_value_2_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <!-- 전장의 서곡 ( 크리티컬 ) -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="크리티컬"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/df_value_3_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/df_value_3_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/df_value_3_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <!-- 비바체 타이틀 -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnSpan="4"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:background="#DAD9FF"
+                        android:gravity="center"
+                        android:text="비바체"
+                        android:textColor="#ffffff" />
+
+                    <!-- 비바체 ( 마시속 ) -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="마시속"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/vv_value_1_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/vv_value_1_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/vv_value_1_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <!-- 비바체 ( 공속 ) -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="공속"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/vv_value_2_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/vv_value_2_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/vv_value_2_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <!-- 비바체 ( 연금속 ) -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="연금속"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/vv_value_3_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/vv_value_3_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/vv_value_3_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <!-- 풍년가 타이틀 -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnSpan="4"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:background="#ABF200"
+                        android:gravity="center"
+                        android:text="풍년가"
+                        android:textColor="#ffffff" />
+
+                    <!-- 풍년가 ( 채집성공 ) -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="채집성공"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/bv_value_1_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/bv_value_1_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/bv_value_1_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <!-- 풍년가 ( 생산성공 ) -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="생산성공"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/bv_value_2_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/bv_value_2_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/bv_value_2_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <!-- 풍년가 ( 채집속도 ) -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="채집속도"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/bv_value_3_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/bv_value_3_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/bv_value_3_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <!-- 행진곡 타이틀 -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnSpan="4"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:background="#00D8FF"
+                        android:gravity="center"
+                        android:text="행진곡"
+                        android:textColor="#ffffff" />
+
+                    <!-- 행진곡 ( 이동속도 ) -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="이동속도"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/mc_value_1_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/mc_value_1_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/mc_value_1_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <!-- 인내의 노래 타이틀 -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnSpan="4"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:background="#8041D9"
+                        android:gravity="center"
+                        android:text="인내의 노래"
+                        android:textColor="#ffffff" />
+
+                    <!-- 인내의 노래 ( 방어/마방 ) -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="방어/마방"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/sp_value_1_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/sp_value_1_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/sp_value_1_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <!-- 인내의 노래 ( 보호/마보 ) -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="보호/마보"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/sp_value_2_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/sp_value_2_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/sp_value_2_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <!-- 인내의 노래 ( 마나/스테 ) -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="마나/스테"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/sp_value_3_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/sp_value_3_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:id="@+id/sp_value_3_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_columnWeight="1"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#ff000000" />
                 </GridLayout>
             </LinearLayout>
         </LinearLayout>
