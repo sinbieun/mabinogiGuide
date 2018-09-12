@@ -6,16 +6,21 @@
 package com.addon.user.myapplication.layout;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.addon.user.myapplication.MainActivity;
 import com.addon.user.myapplication.R;
@@ -24,6 +29,7 @@ import com.addon.user.myapplication.view.NoticeItem;
 
 import org.w3c.dom.Text;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class MusicLayout extends BaseLinearLayout {
@@ -33,16 +39,99 @@ public class MusicLayout extends BaseLinearLayout {
     // VIEW
     private Spinner instrumentRankSpinner;
     private Spinner songRankSpinner;
-    private Spinner DFRankSpinner;
+    private Spinner BFRankSpinner;
     private Spinner VVRankSpinner;
     private Spinner BVRankSpinner;
     private Spinner MCRankSpinner;
     private Spinner SPRankSpinner;
 
+    // TEXTVIEW
+    // 전장의 서곡
+    private TextView bfValueTextView_1_1;
+    private TextView bfValueTextView_2_1;
+    private TextView bfValueTextView_3_1;
+    private TextView bfValueTextView_1_2;
+    private TextView bfValueTextView_2_2;
+    private TextView bfValueTextView_3_2;
+    private TextView bfValueTextView_1_3;
+    private TextView bfValueTextView_2_3;
+    private TextView bfValueTextView_3_3;
+
+    // 비바체
+    private TextView vvValueTextView_1_1;
+    private TextView vvValueTextView_2_1;
+    private TextView vvValueTextView_3_1;
+    private TextView vvValueTextView_1_2;
+    private TextView vvValueTextView_2_2;
+    private TextView vvValueTextView_3_2;
+    private TextView vvValueTextView_1_3;
+    private TextView vvValueTextView_2_3;
+    private TextView vvValueTextView_3_3;
+
+    // 풍년가
+    private TextView bvValueTextView_1_1;
+    private TextView bvValueTextView_2_1;
+    private TextView bvValueTextView_3_1;
+    private TextView bvValueTextView_1_2;
+    private TextView bvValueTextView_2_2;
+    private TextView bvValueTextView_3_2;
+    private TextView bvValueTextView_1_3;
+    private TextView bvValueTextView_2_3;
+    private TextView bvValueTextView_3_3;
+
+    // 행진곡
+    private TextView mcValueTextView_1_1;
+    private TextView mcValueTextView_1_2;
+    private TextView mcValueTextView_1_3;
+
+    // 인내의 노래
+    private TextView spValueTextView_1_1;
+    private TextView spValueTextView_2_1;
+    private TextView spValueTextView_3_1;
+    private TextView spValueTextView_1_2;
+    private TextView spValueTextView_2_2;
+    private TextView spValueTextView_3_2;
+    private TextView spValueTextView_1_3;
+    private TextView spValueTextView_2_3;
+    private TextView spValueTextView_3_3;
+
+    // 플러스 요인 ( 인챈트/아이템 효과 )
+    // VIEW
+    private EditText musicPlusCountEditText;
+    private EditText BFCountEditText;
+    private EditText VVCountEditText;
+    private EditText BYCountEditText;
+    private EditText MCCountEditText;
+    private EditText SPCountEditText;
+
+    // 플러스 요인 ( 세공 vs 에코스톤 )
+    // VIEW
+    private EditText VVMSCountEditText;
+    private EditText VVASCountEditText;
+    private EditText BVGSCountEditText;
+    private EditText NMECountEditText;
+    private EditText GMECountEditText;
+    private EditText BMECountEditText;
+
+    // DATA
+    private int musicPlusCountInt = 0;
+    private int BFCountInt = 0;
+    private int VVCountInt = 0;
+    private int BYCountInt = 0;
+    private int MCCountInt = 0;
+    private int SPCountInt = 0;
+
+    private int VVMSCountInt = 0;
+    private int VVASCountInt = 0;
+    private int BVGSCountInt = 0;
+    private int NMECountInt = 0;
+    private int GMECountInt = 0;
+    private int BMECountInt = 0;
+
     // SPINNER DATA ARRAY
     private ArrayAdapter<CharSequence> IRSDataArray;
     private ArrayAdapter<CharSequence> SONGDataArray;
-    private ArrayAdapter<CharSequence> DFRDataArray;
+    private ArrayAdapter<CharSequence> BFRDataArray;
     private ArrayAdapter<CharSequence> VVRDataArray;
     private ArrayAdapter<CharSequence> BVRDataArray;
     private ArrayAdapter<CharSequence> MCRDataArray;
@@ -54,9 +143,9 @@ public class MusicLayout extends BaseLinearLayout {
     // 노래
     private int baseSongValue = 0;
     // 전장의 서곡 ( 최뎀, 민뎀, 크리티컬 )
-    private int baseDFValue1 = 0;
-    private int baseDFValue2 = 0;
-    private int baseDFValue3 = 0;
+    private int baseBFValue1 = 0;
+    private int baseBFValue2 = 0;
+    private int baseBFValue3 = 0;
     // 비바체 ( 마시속, 공속, 연금속 )
     private int baseVVValue1 = 0;
     private int baseVVValue2 = 0;
@@ -72,6 +161,13 @@ public class MusicLayout extends BaseLinearLayout {
     private int baseSPValue2 = 0;
     private int baseSPValue3 = 0;
 
+    // 처음 시작할때 악연이랑 노래는 실행안하기 위한 구분값
+    private boolean isFirstMusic = true;
+    private boolean isFirstSong = true;
+
+    // 처음 시작 및 저장 데이터를 주기 위해서 db 호출
+    private SQLiteDatabase localDb;
+
     public MusicLayout(Context context) {
         super(context);
     }
@@ -83,11 +179,71 @@ public class MusicLayout extends BaseLinearLayout {
         // SPINNER SETTING
         instrumentRankSpinner = layout.findViewById(R.id.instrumentRankSpinner);
         songRankSpinner = layout.findViewById(R.id.songRankSpinner);
-        DFRankSpinner = layout.findViewById(R.id.DFRankSpinner);
+        BFRankSpinner = layout.findViewById(R.id.BFRankSpinner);
         VVRankSpinner = layout.findViewById(R.id.VVRankSpinner);
         BVRankSpinner = layout.findViewById(R.id.BVRankSpinner);
         MCRankSpinner = layout.findViewById(R.id.MCRankSpinner);
         SPRankSpinner = layout.findViewById(R.id.SPRankSpinner);
+
+        // TEXTVIEW
+        bfValueTextView_1_1 = findViewById(R.id.bf_value_1_1);
+        bfValueTextView_2_1 = findViewById(R.id.bf_value_2_1);
+        bfValueTextView_3_1 = findViewById(R.id.bf_value_3_1);
+        bfValueTextView_1_2 = findViewById(R.id.bf_value_1_2);
+        bfValueTextView_2_2 = findViewById(R.id.bf_value_2_2);
+        bfValueTextView_3_2 = findViewById(R.id.bf_value_3_2);
+        bfValueTextView_1_3 = findViewById(R.id.bf_value_1_3);
+        bfValueTextView_2_3 = findViewById(R.id.bf_value_2_3);
+        bfValueTextView_3_3 = findViewById(R.id.bf_value_3_3);
+
+        vvValueTextView_1_1 = findViewById(R.id.vv_value_1_1);
+        vvValueTextView_2_1 = findViewById(R.id.vv_value_2_1);
+        vvValueTextView_3_1 = findViewById(R.id.vv_value_3_1);
+        vvValueTextView_1_2 = findViewById(R.id.vv_value_1_2);
+        vvValueTextView_2_2 = findViewById(R.id.vv_value_2_2);
+        vvValueTextView_3_2 = findViewById(R.id.vv_value_3_2);
+        vvValueTextView_1_3 = findViewById(R.id.vv_value_1_3);
+        vvValueTextView_2_3 = findViewById(R.id.vv_value_2_3);
+        vvValueTextView_3_3 = findViewById(R.id.vv_value_3_3);
+
+        bvValueTextView_1_1 = findViewById(R.id.bv_value_1_1);
+        bvValueTextView_2_1 = findViewById(R.id.bv_value_2_1);
+        bvValueTextView_3_1 = findViewById(R.id.bv_value_3_1);
+        bvValueTextView_1_2 = findViewById(R.id.bv_value_1_2);
+        bvValueTextView_2_2 = findViewById(R.id.bv_value_2_2);
+        bvValueTextView_3_2 = findViewById(R.id.bv_value_3_2);
+        bvValueTextView_1_3 = findViewById(R.id.bv_value_1_3);
+        bvValueTextView_2_3 = findViewById(R.id.bv_value_2_3);
+        bvValueTextView_3_3 = findViewById(R.id.bv_value_3_3);
+
+        mcValueTextView_1_1 = findViewById(R.id.mc_value_1_1);
+        mcValueTextView_1_2 = findViewById(R.id.mc_value_1_2);
+        mcValueTextView_1_3 = findViewById(R.id.mc_value_1_3);
+
+        spValueTextView_1_1 = findViewById(R.id.sp_value_1_1);
+        spValueTextView_2_1 = findViewById(R.id.sp_value_2_1);
+        spValueTextView_3_1 = findViewById(R.id.sp_value_3_1);
+        spValueTextView_1_2 = findViewById(R.id.sp_value_1_2);
+        spValueTextView_2_2 = findViewById(R.id.sp_value_2_2);
+        spValueTextView_3_2 = findViewById(R.id.sp_value_3_2);
+        spValueTextView_1_3 = findViewById(R.id.sp_value_1_3);
+        spValueTextView_2_3 = findViewById(R.id.sp_value_2_3);
+        spValueTextView_3_3 = findViewById(R.id.sp_value_3_3);
+
+        // PLUS TEXT VIEW
+        musicPlusCountEditText = findViewById(R.id.musicPlusCount);
+        BFCountEditText = findViewById(R.id.BFCount);
+        VVCountEditText = findViewById(R.id.VVCount);
+        BYCountEditText = findViewById(R.id.BYCount);
+        MCCountEditText = findViewById(R.id.MCCount);
+        SPCountEditText = findViewById(R.id.SPCount);
+
+        VVMSCountEditText = findViewById(R.id.VVMSCount);
+        VVASCountEditText = findViewById(R.id.VVASCount);
+        BVGSCountEditText = findViewById(R.id.BVGSCount);
+        NMECountEditText = findViewById(R.id.NMECount);
+        GMECountEditText = findViewById(R.id.GMECount);
+        BMECountEditText = findViewById(R.id.BMECount);
 
         this.setSpinnerData();
     }
@@ -102,6 +258,18 @@ public class MusicLayout extends BaseLinearLayout {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 setBaseValueFromRank("IRS", IRSDataArray.getItem(i).toString());
+
+                if(!isFirstMusic) {
+                    setFinishValue("BF");
+                    setFinishValue("VV");
+                    setFinishValue("BV");
+                    setFinishValue("MC");
+                    setFinishValue("SP");
+
+                    setUpdateData("instrumentRank", String.valueOf(i));
+                }else{
+                    isFirstMusic = false;
+                }
             }
 
             @Override
@@ -118,6 +286,18 @@ public class MusicLayout extends BaseLinearLayout {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 setBaseValueFromRank("SONG", SONGDataArray.getItem(i).toString());
+
+                if(!isFirstSong) {
+                    setFinishValue("BF");
+                    setFinishValue("VV");
+                    setFinishValue("BV");
+                    setFinishValue("MC");
+                    setFinishValue("SP");
+
+                    setUpdateData("songRank", String.valueOf(i));
+                }else{
+                    isFirstSong = false;
+                }
             }
 
             @Override
@@ -127,15 +307,17 @@ public class MusicLayout extends BaseLinearLayout {
         });
 
         // 전장의 서곡 랭크
-        DFRDataArray = ArrayAdapter.createFromResource(context, R.array.masterySelected, R.layout.support_simple_spinner_dropdown_item);
-        DFRDataArray.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        DFRankSpinner.setAdapter(DFRDataArray);
-        DFRankSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        BFRDataArray = ArrayAdapter.createFromResource(context, R.array.masterySelected, R.layout.support_simple_spinner_dropdown_item);
+        BFRDataArray.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        BFRankSpinner.setAdapter(BFRDataArray);
+        BFRankSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                setBaseValueFromRank("DF", DFRDataArray.getItem(i).toString());
+                setBaseValueFromRank("BF", BFRDataArray.getItem(i).toString());
 
-                setFinishValue("DF");
+                setFinishValue("BF");
+
+                setUpdateData("BFRank", String.valueOf(i));
             }
 
             @Override
@@ -152,6 +334,10 @@ public class MusicLayout extends BaseLinearLayout {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 setBaseValueFromRank("VV", VVRDataArray.getItem(i).toString());
+
+                setFinishValue("VV");
+
+                setUpdateData("VVRank", String.valueOf(i));
             }
 
             @Override
@@ -168,6 +354,10 @@ public class MusicLayout extends BaseLinearLayout {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 setBaseValueFromRank("BV", BVRDataArray.getItem(i).toString());
+
+                setFinishValue("BV");
+
+                setUpdateData("BVRank", String.valueOf(i));
             }
 
             @Override
@@ -184,6 +374,10 @@ public class MusicLayout extends BaseLinearLayout {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 setBaseValueFromRank("MC", MCRDataArray.getItem(i).toString());
+
+                setFinishValue("MC");
+
+                setUpdateData("MCRank", String.valueOf(i));
             }
 
             @Override
@@ -200,6 +394,10 @@ public class MusicLayout extends BaseLinearLayout {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 setBaseValueFromRank("SP", SPRDataArray.getItem(i).toString());
+
+                setFinishValue("SP");
+
+                setUpdateData("SPRank", String.valueOf(i));
             }
 
             @Override
@@ -207,46 +405,625 @@ public class MusicLayout extends BaseLinearLayout {
 
             }
         });
+
+        //************************ 플러스 요인 ************************/
+        // 악기 연주 효과
+        musicPlusCountEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if("".equals(charSequence.toString())){
+                    musicPlusCountInt = 0;
+                }else{
+                    musicPlusCountInt = Integer.parseInt(charSequence.toString());
+                }
+                setFinishValue("BF");
+                setFinishValue("VV");
+                setFinishValue("BV");
+                setFinishValue("MC");
+                setFinishValue("SP");
+
+                setUpdateData("musicPlusCountEditText", String.valueOf(musicPlusCountInt));
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        // 전장의 서곡 효과
+        BFCountEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if("".equals(charSequence.toString())){
+                    BFCountInt = 0;
+                }else{
+                    BFCountInt = Integer.parseInt(charSequence.toString());
+                }
+                setFinishValue("BF");
+
+                setUpdateData("BFCountEditText", String.valueOf(BFCountInt));
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        // 비바체 효과
+        VVCountEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if("".equals(charSequence.toString())){
+                    VVCountInt = 0;
+                }else{
+                    VVCountInt = Integer.parseInt(charSequence.toString());
+                }
+                setFinishValue("VV");
+
+                setUpdateData("VVCountEditText", String.valueOf(VVCountInt));
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        // 풍년가 효과
+        BYCountEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if("".equals(charSequence.toString())){
+                    BYCountInt = 0;
+                }else{
+                    BYCountInt = Integer.parseInt(charSequence.toString());
+                }
+                setFinishValue("BV");
+
+                setUpdateData("BYCountEditText", String.valueOf(BYCountInt));
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        // 행진곡 효과
+        MCCountEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if("".equals(charSequence.toString())){
+                    MCCountInt = 0;
+                }else{
+                    MCCountInt = Integer.parseInt(charSequence.toString());
+                }
+                setFinishValue("MC");
+
+                setUpdateData("MCCountEditText", String.valueOf(MCCountInt));
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        // 인내의 노래
+        SPCountEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if("".equals(charSequence.toString())){
+                    SPCountInt = 0;
+                }else{
+                    SPCountInt = Integer.parseInt(charSequence.toString());
+                }
+                setFinishValue("SP");
+
+                setUpdateData("SPCountEditText", String.valueOf(SPCountInt));
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        // 비바체 마시속
+        VVMSCountEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if("".equals(charSequence.toString())){
+                    VVMSCountInt = 0;
+                }else{
+                    VVMSCountInt = Integer.parseInt(charSequence.toString());
+                }
+                setFinishValue("VV");
+
+                setUpdateData("VVMSCountEditText", String.valueOf(VVMSCountInt));
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        // 비바체 공격속도
+        VVASCountEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if("".equals(charSequence.toString())){
+                    VVASCountInt = 0;
+                }else{
+                    VVASCountInt = Integer.parseInt(charSequence.toString());
+                }
+                setFinishValue("VV");
+
+                setUpdateData("VVASCountEditText", String.valueOf(VVASCountInt));
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        // 풍년가 채집속도
+        BVGSCountEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if("".equals(charSequence.toString())){
+                    BVGSCountInt = 0;
+                }else{
+                    BVGSCountInt = Integer.parseInt(charSequence.toString());
+                }
+                setFinishValue("BV");
+
+                setUpdateData("BVGSCountEditText", String.valueOf(BVGSCountInt));
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        // 보통 연주 효과
+        NMECountEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if("".equals(charSequence.toString())){
+                    NMECountInt = 0;
+                }else{
+                    NMECountInt = Integer.parseInt(charSequence.toString());
+                }
+                setFinishValue("BF");
+                setFinishValue("VV");
+                setFinishValue("BV");
+                setFinishValue("MC");
+                setFinishValue("SP");
+
+                setUpdateData("NMECountEditText", String.valueOf(NMECountInt));
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        // 훌륭한 연주 효과
+        GMECountEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if("".equals(charSequence.toString())){
+                    GMECountInt = 0;
+                }else{
+                    GMECountInt = Integer.parseInt(charSequence.toString());
+                }
+                setFinishValue("BF");
+                setFinishValue("VV");
+                setFinishValue("BV");
+                setFinishValue("MC");
+                setFinishValue("SP");
+
+                setUpdateData("GMECountEditText", String.valueOf(GMECountInt));
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        // 신들린 연주 효과
+        BMECountEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if("".equals(charSequence.toString())){
+                    BMECountInt = 0;
+                }else{
+                    BMECountInt = Integer.parseInt(charSequence.toString());
+                }
+                setFinishValue("BF");
+                setFinishValue("VV");
+                setFinishValue("BV");
+                setFinishValue("MC");
+                setFinishValue("SP");
+
+                setUpdateData("BMECountEditText", String.valueOf(BMECountInt));
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
-    
+
+    /**
+     * 입력되어 있는 데이터 가져오기
+     * @param db
+     * @param obj
+     */
     public void setData(SQLiteDatabase db, Object[] obj) {
+        localDb = db;
+
+        // DB SELECT
+        String sql = "SELECT keyName, keyContent FROM LOCALDATATABLE WHERE useLayout = 'MUSIC'";
+        Cursor cursor = localDb.rawQuery(sql, null);
+
+        while(cursor.moveToNext()) {
+            String keyName = cursor.getString(0);
+            String keyContent = cursor.getString(1);
+
+            setDataFromKey(keyName, keyContent);
+        }
+    }
+
+    /**
+     * Key 정보를 받아서 레이아웃 세팅
+     * @param keyName
+     * @param keyContent
+     */
+    private void setDataFromKey(String keyName, String keyContent){
+        switch (keyName){
+            case "instrumentRank" :
+                instrumentRankSpinner.setSelection(Integer.parseInt(keyContent));
+            break;
+            case "songRank" :
+                songRankSpinner.setSelection(Integer.parseInt(keyContent));
+            break;
+            case "BFRank" :
+                BFRankSpinner.setSelection(Integer.parseInt(keyContent));
+            break;
+            case "VVRank" :
+                VVRankSpinner.setSelection(Integer.parseInt(keyContent));
+            break;
+            case "BVRank" :
+                BVRankSpinner.setSelection(Integer.parseInt(keyContent));
+            break;
+            case "MCRank" :
+                MCRankSpinner.setSelection(Integer.parseInt(keyContent));
+            break;
+            case "SPRank" :
+                SPRankSpinner.setSelection(Integer.parseInt(keyContent));
+            break;
+            case "musicPlusCountEditText" :
+                musicPlusCountEditText.setText(keyContent);
+            break;
+            case "BFCountEditText" :
+                BFCountEditText.setText(keyContent);
+            break;
+            case "VVCountEditText" :
+                VVCountEditText.setText(keyContent);
+            break;
+            case "BYCountEditText" :
+                BYCountEditText.setText(keyContent);
+            break;
+            case "MCCountEditText" :
+                MCCountEditText.setText(keyContent);
+            break;
+            case "SPCountEditText" :
+                SPCountEditText.setText(keyContent);
+            break;
+            case "VVMSCountEditText" :
+                VVMSCountEditText.setText(keyContent);
+            break;
+            case "VVASCountEditText" :
+                VVASCountEditText.setText(keyContent);
+            break;
+            case "BVGSCountEditText" :
+                BVGSCountEditText.setText(keyContent);
+            break;
+            case "NMECountEditText" :
+                NMECountEditText.setText(keyContent);
+            break;
+            case "GMECountEditText" :
+                GMECountEditText.setText(keyContent);
+            break;
+            case "BMECountEditText" :
+                BMECountEditText.setText(keyContent);
+            break;
+        }
+    }
+
+    /**
+     * 로컬 데이터 변경해주기
+     * @param keyName
+     * @param keyContent
+     */
+    private void setUpdateData(String keyName, String keyContent){
+        localDb.execSQL("UPDATE LOCALDATATABLE SET keyContent = '" + keyContent + "' WHERE useLayout = 'MUSIC' AND keyName = '" + keyName + "';");
     }
     
     public void setData(Object[] obj) {
     }
 
     private void setFinishValue(String gubun){
-        // 기본 : 스킬효과 * ( 1 + ( 세공vs에코스톤 ) / 100 ) * ( 100 + 악기연주효과 ) / 10000
+        // 기본 : 스킬효과 * ( 1 + ( 세공vs에코스톤(연주) ) / 100 ) * ( 100 + 악기연주효과 ) / 10000
+        // 보연은 기본 + 0
+        // 훌연은 기본 + 10
+        // 신들은 기본 + 30
+
+        // 보통 연주
+        int normalMusicInt = NMECountInt;
+
+        // 훌륭한 연주
+        int greatMusicInt = GMECountInt + 10;
+
+        // 신들린 연주
+        int bestMusicInt = BMECountInt + 30;
+
+        // 악기 연주 랭크 + 노래 랭크 + 악기 연주 효과
+        int musicEffectFromRankInt = baseIRSValue + baseSongValue + musicPlusCountInt;
+
+        // (악기 연주 랭크 + 노래 랭크 + 악기 연주 효과) + 전장의 서곡 효과
+        int musicEffectForBFInt = musicEffectFromRankInt + BFCountInt;
+
+        // (악기 연주 랭크 + 노래 랭크 + 악기 연주 효과) + 비바체 효과
+        int musicEffectForVVInt = musicEffectFromRankInt + VVCountInt;
+        int musicEffectForVVMSInt = musicEffectForVVInt + VVMSCountInt;
+        int musicEffectForVVASInt = musicEffectForVVInt + VVASCountInt;
+
+        // (악기 연주 랭크 + 노래 랭크 + 악기 연주 효과) + 풍년가 효과
+        int musicEffectForBVInt = musicEffectFromRankInt + BYCountInt;
+
+        // (악기 연주 랭크 + 노래 랭크 + 악기 연주 효과) + 행진곡 효과
+        int musicEffectForMCInt = musicEffectFromRankInt + MCCountInt;
+
+        // (악기 연주 랭크 + 노래 랭크 + 악기 연주 효과) + 인내의 노래 효과
+        int musicEffectForSPInt = musicEffectFromRankInt + SPCountInt;
+
         // 풍채 제외
         switch (gubun){
             case "IRS" :
                 break;
             case "SONG" :
                 break;
-            case "DF" :
-                int dfValue1_1 = baseDFValue1 * ( ( 1 + 0 ) / 100 ) * ( 100 + ( baseIRSValue + baseSongValue ) );
+            case "BF" :
+                //****************** 전장의 서곡 보통 연주 START ******************/
+                float bfValue1_1 = baseBFValue1 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
+                bfValueTextView_1_1.setText(String.format("%.2f", bfValue1_1));
 
-                TextView dfValueTextView_1_1 = (TextView) findViewById(R.id.df_value_1_1);
-                dfValueTextView_1_1.setText(String.valueOf(dfValue1_1));
+                float bfValue2_1 = baseBFValue2 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
+                bfValueTextView_2_1.setText(String.format("%.2f", bfValue2_1));
 
-                int dfValue2_1 = baseDFValue2 * ( ( 1 + 0 ) / 100 ) * ( 100 + ( baseIRSValue + baseSongValue ) );
+                float bfValue3_1 = baseBFValue3 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
+                bfValueTextView_3_1.setText(String.format("%.2f", bfValue3_1));
+                //****************** 전장의 서곡 보통 연주 END ******************/
 
-                TextView dfValueTextView_2_1 = (TextView) findViewById(R.id.df_value_2_1);
-                dfValueTextView_2_1.setText(String.valueOf(dfValue2_1));
+                //****************** 전장의 서곡 훌륭한 연주 START ******************/
+                float bfValue1_2 = baseBFValue1 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
+                bfValueTextView_1_2.setText(String.format("%.2f", bfValue1_2));
 
-                int dfValue3_1 = baseDFValue2 * ( ( 1 + 0 ) / 100 ) * ( 100 + ( baseIRSValue + baseSongValue ) );
+                float bfValue2_2 = baseBFValue2 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
+                bfValueTextView_2_2.setText(String.format("%.2f", bfValue2_2));
 
-                TextView dfValueTextView_3_1 = (TextView) findViewById(R.id.df_value_3_1);
-                dfValueTextView_3_1.setText(String.valueOf(dfValue3_1));
+                float bfValue3_2 = baseBFValue3 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
+                bfValueTextView_3_2.setText(String.format("%.2f", bfValue3_2));
+                //****************** 전장의 서곡 훌륭한 연주 END ******************/
+
+                //****************** 전장의 서곡 신들린 연주 START ******************/
+                float bfValue1_3 = baseBFValue1 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
+                bfValueTextView_1_3.setText(String.format("%.2f", bfValue1_3));
+
+                float bfValue2_3 = baseBFValue2 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
+                bfValueTextView_2_3.setText(String.format("%.2f", bfValue2_3));
+
+                float bfValue3_3 = baseBFValue3 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
+                bfValueTextView_3_3.setText(String.format("%.2f", bfValue3_3));
+                //****************** 전장의 서곡 신들린 연주 END ******************/
 
                 break;
             case "VV" :
+
+                //****************** 비바체 보통 연주 START ******************/
+                float vvValue1_1 = baseVVValue1 * ( 100 + musicEffectForVVMSInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
+                vvValueTextView_1_1.setText(String.format("%.2f", vvValue1_1));
+
+                float vvValue2_1 = baseVVValue2 * ( 100 + musicEffectForVVASInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
+                vvValueTextView_2_1.setText(String.format("%.2f", vvValue2_1));
+
+                float vvValue3_1 = baseVVValue3 * ( 100 + musicEffectForVVInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
+                vvValueTextView_3_1.setText(String.format("%.2f", vvValue3_1));
+                //****************** 비바체 보통 연주 END ******************/
+
+                //****************** 비바체 훌륭한 연주 START ******************/
+                float vvValue1_2 = baseVVValue1 * ( 100 + musicEffectForVVMSInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
+                vvValueTextView_1_2.setText(String.format("%.2f", vvValue1_2));
+
+                float vvValue2_2 = baseVVValue2 * ( 100 + musicEffectForVVASInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
+                vvValueTextView_2_2.setText(String.format("%.2f", vvValue2_2));
+
+                float vvValue3_2 = baseVVValue3 * ( 100 + musicEffectForVVInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
+                vvValueTextView_3_2.setText(String.format("%.2f", vvValue3_2));
+                //****************** 비바체 훌륭한 연주 END ******************/
+
+                //****************** 비바체 신들린 연주 START ******************/
+                float vvValue1_3 = baseVVValue1 * ( 100 + musicEffectForVVMSInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
+                vvValueTextView_1_3.setText(String.format("%.2f", vvValue1_3));
+
+                float vvValue2_3 = baseVVValue2 * ( 100 + musicEffectForVVASInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
+                vvValueTextView_2_3.setText(String.format("%.2f", vvValue2_3));
+
+                float vvValue3_3 = baseVVValue3 * ( 100 + musicEffectForVVInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
+                vvValueTextView_3_3.setText(String.format("%.2f", vvValue3_3));
+                //****************** 비바체 신들린 연주 END ******************/
+
                 break;
             case "BV" :
+
+                //****************** 풍년가 보통 연주 START ******************/
+                float bvValue1_1 = baseBVValue1;
+                bvValueTextView_1_1.setText(String.format("%.2f", bvValue1_1));
+
+                float bvValue2_1 = baseBVValue2;
+                bvValueTextView_2_1.setText(String.format("%.2f", bvValue2_1));
+
+                float bvValue3_1 = baseBVValue3 * ( 100 + musicEffectForBVInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
+                bvValueTextView_3_1.setText(String.format("%.2f", bvValue3_1));
+                //****************** 풍년가 보통 연주 END ******************/
+
+                //****************** 풍년가 훌륭한 연주 START ******************/
+                float bvValue1_2 = baseBVValue1;
+                bvValueTextView_1_2.setText(String.format("%.2f", bvValue1_2));
+
+                float bvValue2_2 = baseBVValue2;
+                bvValueTextView_2_2.setText(String.format("%.2f", bvValue2_2));
+
+                float bvValue3_2 = baseBVValue3 * ( 100 + musicEffectForBVInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
+                bvValueTextView_3_2.setText(String.format("%.2f", bvValue3_2));
+                //****************** 풍년가 훌륭한 연주 END ******************/
+
+                //****************** 풍년가 신들린 연주 START ******************/
+                float bvValue1_3 = baseBVValue1;
+                bvValueTextView_1_3.setText(String.format("%.2f", bvValue1_3));
+
+                float bvValue2_3 = baseBVValue2;
+                bvValueTextView_2_3.setText(String.format("%.2f", bvValue2_3));
+
+                float bvValue3_3 = baseBVValue3 * ( 100 + musicEffectForBVInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
+                bvValueTextView_3_3.setText(String.format("%.2f", bvValue3_3));
+                //****************** 풍년가 신들린 연주 END ******************/
+                
                 break;
             case "MC" :
+
+                //****************** 행진곡 보통 연주 START ******************/
+                float mcValue1_1 = baseMCValue1 * ( 100 + musicEffectForMCInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
+                mcValueTextView_1_1.setText(String.format("%.2f", mcValue1_1));
+                //****************** 행진곡 보통 연주 END ******************/
+
+                //****************** 행진곡 훌륭한 연주 START ******************/
+                float mcValue1_2 = baseMCValue1 * ( 100 + musicEffectForMCInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
+                mcValueTextView_1_2.setText(String.format("%.2f", mcValue1_2));
+                //****************** 행진곡 훌륭한 연주 END ******************/
+
+                //****************** 행진곡 신들린 연주 START ******************/
+                float mcValue1_3 = baseMCValue1 * ( 100 + musicEffectForMCInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
+                mcValueTextView_1_3.setText(String.format("%.2f", mcValue1_3));
+                //****************** 행진곡 신들린 연주 END ******************/
+                
                 break;
             case "SP" :
+
+                //****************** 인내의 노래 보통 연주 START ******************/
+                float spValue1_1 = baseSPValue1 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
+                spValueTextView_1_1.setText(String.format("%.2f", spValue1_1));
+
+                float spValue2_1 = baseSPValue2 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
+                spValueTextView_2_1.setText(String.format("%.2f", spValue2_1));
+
+                float spValue3_1 = baseSPValue3 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
+                spValueTextView_3_1.setText(String.format("%.2f", spValue3_1));
+                //****************** 인내의 노래 보통 연주 END ******************/
+
+                //****************** 인내의 노래 훌륭한 연주 START ******************/
+                float spValue1_2 = baseSPValue1 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
+                spValueTextView_1_2.setText(String.format("%.2f", spValue1_2));
+
+                float spValue2_2 = baseSPValue2 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
+                spValueTextView_2_2.setText(String.format("%.2f", spValue2_2));
+
+                float spValue3_2 = baseSPValue3 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
+                spValueTextView_3_2.setText(String.format("%.2f", spValue3_2));
+                //****************** 인내의 노래 훌륭한 연주 END ******************/
+
+                //****************** 인내의 노래 신들린 연주 START ******************/
+                float spValue1_3 = baseSPValue1 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
+                spValueTextView_1_3.setText(String.format("%.2f", spValue1_3));
+
+                float spValue2_3 = baseSPValue2 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
+                spValueTextView_2_3.setText(String.format("%.2f", spValue2_3));
+
+                float spValue3_3 = baseSPValue3 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
+                spValueTextView_3_3.setText(String.format("%.2f", spValue3_3));
+                //****************** 인내의 노래 신들린 연주 END ******************/
+                
                 break;
         }
     }
@@ -362,87 +1139,87 @@ public class MusicLayout extends BaseLinearLayout {
                         break;
                 }
                 break;
-            case "DF" :
+            case "BF" :
                 switch (rank){
                     case "1랭크" :
-                        baseDFValue1 = 20;
-                        baseDFValue2 = 20;
-                        baseDFValue3 = 11;
+                        baseBFValue1 = 20;
+                        baseBFValue2 = 20;
+                        baseBFValue3 = 11;
                         break;
                     case "2랭크" :
-                        baseDFValue1 = 19;
-                        baseDFValue2 = 19;
-                        baseDFValue3 = 10;
+                        baseBFValue1 = 19;
+                        baseBFValue2 = 19;
+                        baseBFValue3 = 10;
                         break;
                     case "3랭크" :
-                        baseDFValue1 = 18;
-                        baseDFValue2 = 18;
-                        baseDFValue3 = 9;
+                        baseBFValue1 = 18;
+                        baseBFValue2 = 18;
+                        baseBFValue3 = 9;
                         break;
                     case "4랭크" :
-                        baseDFValue1 = 17;
-                        baseDFValue2 = 17;
-                        baseDFValue3 = 8;
+                        baseBFValue1 = 17;
+                        baseBFValue2 = 17;
+                        baseBFValue3 = 8;
                         break;
                     case "5랭크" :
-                        baseDFValue1 = 16;
-                        baseDFValue2 = 16;
-                        baseDFValue3 = 7;
+                        baseBFValue1 = 16;
+                        baseBFValue2 = 16;
+                        baseBFValue3 = 7;
                         break;
                     case "6랭크" :
-                        baseDFValue1 = 16;
-                        baseDFValue2 = 15;
-                        baseDFValue3 = 6;
+                        baseBFValue1 = 16;
+                        baseBFValue2 = 15;
+                        baseBFValue3 = 6;
                         break;
                     case "7랭크" :
-                        baseDFValue1 = 15;
-                        baseDFValue2 = 15;
-                        baseDFValue3 = 5;
+                        baseBFValue1 = 15;
+                        baseBFValue2 = 15;
+                        baseBFValue3 = 5;
                         break;
                     case "8랭크" :
-                        baseDFValue1 = 15;
-                        baseDFValue2 = 14;
-                        baseDFValue3 = 5;
+                        baseBFValue1 = 15;
+                        baseBFValue2 = 14;
+                        baseBFValue3 = 5;
                         break;
                     case "9랭크" :
-                        baseDFValue1 = 14;
-                        baseDFValue2 = 14;
-                        baseDFValue3 = 4;
+                        baseBFValue1 = 14;
+                        baseBFValue2 = 14;
+                        baseBFValue3 = 4;
                         break;
                     case "A랭크" :
-                        baseDFValue1 = 13;
-                        baseDFValue2 = 13;
-                        baseDFValue3 = 3;
+                        baseBFValue1 = 13;
+                        baseBFValue2 = 13;
+                        baseBFValue3 = 3;
                         break;
                     case "B랭크" :
-                        baseDFValue1 = 13;
-                        baseDFValue2 = 12;
-                        baseDFValue3 = 3;
+                        baseBFValue1 = 13;
+                        baseBFValue2 = 12;
+                        baseBFValue3 = 3;
                         break;
                     case "C랭크" :
-                        baseDFValue1 = 12;
-                        baseDFValue2 = 12;
-                        baseDFValue3 = 2;
+                        baseBFValue1 = 12;
+                        baseBFValue2 = 12;
+                        baseBFValue3 = 2;
                         break;
                     case "D랭크" :
-                        baseDFValue1 = 12;
-                        baseDFValue2 = 11;
-                        baseDFValue3 = 2;
+                        baseBFValue1 = 12;
+                        baseBFValue2 = 11;
+                        baseBFValue3 = 2;
                         break;
                     case "E랭크" :
-                        baseDFValue1 = 11;
-                        baseDFValue2 = 11;
-                        baseDFValue3 = 1;
+                        baseBFValue1 = 11;
+                        baseBFValue2 = 11;
+                        baseBFValue3 = 1;
                         break;
                     case "F랭크" :
-                        baseDFValue1 = 10;
-                        baseDFValue2 = 10;
-                        baseDFValue3 = 1;
+                        baseBFValue1 = 10;
+                        baseBFValue2 = 10;
+                        baseBFValue3 = 1;
                         break;
                     case "연습랭크" :
-                        baseDFValue1 = 10;
-                        baseDFValue2 = 10;
-                        baseDFValue3 = 0;
+                        baseBFValue1 = 10;
+                        baseBFValue2 = 10;
+                        baseBFValue3 = 0;
                         break;
                 }
                 break;

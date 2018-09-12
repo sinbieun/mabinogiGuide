@@ -37,6 +37,9 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE ERGEXP(_id INTEGER PRIMARY KEY AUTOINCREMENT, ergLevel INT, exp INT, totalExp INT);)");
         db.execSQL("CREATE TABLE ERGEFFECT(_id INTEGER PRIMARY KEY AUTOINCREMENT, weaponName VARCHAR(20), ergLevel INT, effect1 VARCHAR(5), effect2 VARCHAR(5), effect3 VARCHAR(5), effect4 VARCHAR(5));)");
 
+        // 저장 데이터 공간
+        db.execSQL("CREATE TABLE LOCALDATATABLE(_id INTEGER PRIMARY KEY AUTOINCREMENT, useLayout VARCHAR(50), keyName VARCHAR(40), keyContent VARCHAR(20))");
+
         insert(db);
     }
 

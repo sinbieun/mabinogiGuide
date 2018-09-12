@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public int deviceWidth;
     public static MainActivity thisActivity;
     private Toast toast;
-    SQLiteDatabase tradeDb;
+    public SQLiteDatabase tradeDb;
 
     private TextView toolbarTitleView;
     
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         thisActivity = this;
 
-        dbHelper = new DBHelper(getApplicationContext(), "tradeItem.db", null, 2);
+        dbHelper = new DBHelper(getApplicationContext(), "tradeItem.db", null, 3);
         tradeDb = dbHelper.getReadableDatabase();
 
 
