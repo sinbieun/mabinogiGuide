@@ -63,7 +63,7 @@
                         android:layout_height="2dp"
                         android:layout_centerInParent="true"
                         android:layout_columnSpan="2"
-                        android:background="#ff5853eb" />
+                        android:background="#FF7E7E" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -86,7 +86,7 @@
                         android:layout_height="2dp"
                         android:layout_centerInParent="true"
                         android:layout_columnSpan="2"
-                        android:background="#ff5853eb" />
+                        android:background="#FF7E7E" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -109,7 +109,7 @@
                         android:layout_height="2dp"
                         android:layout_centerInParent="true"
                         android:layout_columnSpan="2"
-                        android:background="#ff5853eb" />
+                        android:background="#FF7E7E" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -132,7 +132,7 @@
                         android:layout_height="2dp"
                         android:layout_centerInParent="true"
                         android:layout_columnSpan="2"
-                        android:background="#ff5853eb" />
+                        android:background="#FF7E7E" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -155,7 +155,7 @@
                         android:layout_height="2dp"
                         android:layout_centerInParent="true"
                         android:layout_columnSpan="2"
-                        android:background="#ff5853eb" />
+                        android:background="#FF7E7E" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -179,7 +179,7 @@
                         android:layout_height="2dp"
                         android:layout_centerInParent="true"
                         android:layout_columnSpan="2"
-                        android:background="#ff5853eb" />
+                        android:background="#FF7E7E" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -203,7 +203,7 @@
                         android:layout_height="2dp"
                         android:layout_centerInParent="true"
                         android:layout_columnSpan="2"
-                        android:background="#ff5853eb" />
+                        android:background="#FF7E7E" />
                 </GridLayout>
             </LinearLayout>
 
@@ -258,7 +258,7 @@
                         android:layout_height="2dp"
                         android:layout_centerInParent="true"
                         android:layout_columnSpan="2"
-                        android:background="#ff5853eb" />
+                        android:background="#FF7E7E" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -285,7 +285,7 @@
                         android:layout_height="2dp"
                         android:layout_centerInParent="true"
                         android:layout_columnSpan="2"
-                        android:background="#ff5853eb" />
+                        android:background="#FF7E7E" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -312,7 +312,7 @@
                         android:layout_height="2dp"
                         android:layout_centerInParent="true"
                         android:layout_columnSpan="2"
-                        android:background="#ff5853eb" />
+                        android:background="#FF7E7E" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -339,7 +339,7 @@
                         android:layout_height="2dp"
                         android:layout_centerInParent="true"
                         android:layout_columnSpan="2"
-                        android:background="#ff5853eb" />
+                        android:background="#FF7E7E" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -366,7 +366,7 @@
                         android:layout_height="2dp"
                         android:layout_centerInParent="true"
                         android:layout_columnSpan="2"
-                        android:background="#ff5853eb" />
+                        android:background="#FF7E7E" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -393,7 +393,7 @@
                         android:layout_height="2dp"
                         android:layout_centerInParent="true"
                         android:layout_columnSpan="2"
-                        android:background="#ff5853eb" />
+                        android:background="#FF7E7E" />
                 </GridLayout>
             </LinearLayout>
 
@@ -448,7 +448,7 @@
                         android:layout_height="2dp"
                         android:layout_centerInParent="true"
                         android:layout_columnSpan="2"
-                        android:background="#ff5853eb" />
+                        android:background="#FF7E7E" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -475,7 +475,7 @@
                         android:layout_height="2dp"
                         android:layout_centerInParent="true"
                         android:layout_columnSpan="2"
-                        android:background="#ff5853eb" />
+                        android:background="#FF7E7E" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -502,7 +502,7 @@
                         android:layout_height="2dp"
                         android:layout_centerInParent="true"
                         android:layout_columnSpan="2"
-                        android:background="#ff5853eb" />
+                        android:background="#FF7E7E" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -529,7 +529,7 @@
                         android:layout_height="2dp"
                         android:layout_centerInParent="true"
                         android:layout_columnSpan="2"
-                        android:background="#ff5853eb" />
+                        android:background="#FF7E7E" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -556,7 +556,7 @@
                         android:layout_height="2dp"
                         android:layout_centerInParent="true"
                         android:layout_columnSpan="2"
-                        android:background="#ff5853eb" />
+                        android:background="#FF7E7E" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -583,7 +583,7 @@
                         android:layout_height="2dp"
                         android:layout_centerInParent="true"
                         android:layout_columnSpan="2"
-                        android:background="#ff5853eb" />
+                        android:background="#FF7E7E" />
                 </GridLayout>
             </LinearLayout>
 

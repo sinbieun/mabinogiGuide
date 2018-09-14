@@ -4,8 +4,14 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string name="action_history">History</string>
     <string name="action_settings">Settings</string>
+
+    <!--Admob -->
     <string name="ad_unit_id">ca-app-pub-7324612099493652~6299216980</string>
+    <string name="firebase_project_name">mabinogiGuide</string>
+    <string name="firebase_project_id">mabinogiguide-63df8</string>
+
     <string name="banner_ad_unit_id">ca-app-pub-7324612099493652/7205669195</string>
 
     <!-- TEST -->

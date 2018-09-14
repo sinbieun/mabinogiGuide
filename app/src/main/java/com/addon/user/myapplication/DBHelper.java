@@ -12,6 +12,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.addon.user.myapplication.db.ErgEffect;
 import com.addon.user.myapplication.db.ErgExp;
 import com.addon.user.myapplication.db.ErgMaterial;
+import com.addon.user.myapplication.db.Local;
 import com.addon.user.myapplication.db.TradeItem;
 import com.addon.user.myapplication.db.TradeContent;
 import com.addon.user.myapplication.db.TitleFirst;
@@ -112,5 +113,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
         ErgEffect ergEffect = new ErgEffect();
         ergEffect.insert(db);
+
+        // 로컬 저장 정보
+        Local local = new Local();
+        local.insert(db);
     }
 }

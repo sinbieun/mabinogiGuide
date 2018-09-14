@@ -9,7 +9,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.design.widget.NavigationView;
 import android.view.Gravity;
-import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,27 +17,25 @@ import android.view.View;
 import java.util.ArrayList;
 
 import com.addon.user.myapplication.layout.ErgLayout;
+import com.addon.user.myapplication.layout.HistoryLayout;
 import com.addon.user.myapplication.layout.HomeLayout;
 import com.addon.user.myapplication.layout.MusicLayout;
 import com.addon.user.myapplication.view.NoticeItem;
 import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
-import android.content.Context;
 import android.util.DisplayMetrics;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.widget.ScrollView;
-import com.addon.user.myapplication.layout.NoticeLayout;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.addon.user.myapplication.layout.TitleLayout;
+
 import com.addon.user.myapplication.layout.TradeLayout;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private long backKeyPressedTime;
@@ -50,7 +47,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public SQLiteDatabase tradeDb;
 
     private TextView toolbarTitleView;
-    
+
+    private FirebaseAnalytics mFirebaseAnalytics;
+
+    // VIEW
+    private RelativeLayout contentView;
+    public NavigationView navigationView;
+    private AdView mAdView;
+
     public MainActivity() {
         backKeyPressedTime = 0;
         deviceWidth = 0;
@@ -66,6 +70,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dbHelper = new DBHelper(getApplicationContext(), "tradeItem.db", null, 3);
         tradeDb = dbHelper.getReadableDatabase();
 
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, getString(R.string.firebase_project_id));
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, getString(R.string.firebase_project_name));
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -81,26 +91,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
+        navigationView = (NavigationView)findViewById(R.id.nav_view);
         navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(this);
 
-        RelativeLayout contentView = (RelativeLayout) findViewById(R.id.contentView);
-        if(contentView != null) {
-            contentView.removeAllViews();
-        }
-
-        HomeLayout homeLayout = new HomeLayout(this);
-        contentView.addView(homeLayout);
-        homeLayout.initialization(null);
-        homeLayout.setData(null);
-
-        toolbarTitleView.setText("마비노기 유틸도우미");
+        contentView = (RelativeLayout) findViewById(R.id.contentView);
+        firstScreen();
 
         // 광고
         MobileAds.initialize(this, getString(R.string.ad_unit_id));
 
-        AdView mAdView = findViewById(R.id.adView);
+        mAdView = findViewById(R.id.adView);
+        // .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
         mAdView.setAdListener(new AdListener() {
@@ -129,8 +131,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onAdClosed() {
                 // Code to be executed when when the user is about to return
                 // to the app after tapping on an ad.
+                mAdView.setVisibility(View.GONE);
+                mAdView.pause();
             }
         });
+    }
+
+    /**
+     * 맨 처음 화면 지정해주기
+     */
+    public void firstScreen(){
+        if(contentView != null) {
+            contentView.removeAllViews();
+        }
+        HomeLayout homeLayout = new HomeLayout(this);
+        contentView.addView(homeLayout);
+        homeLayout.mainActivity = this;
+        homeLayout.initialization(null);
+        homeLayout.setData(null);
+
+        toolbarTitleView.setText("마비노기 유틸도우미");
     }
     
     public void onBackPressed() {
@@ -162,15 +182,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.action_settings) {
+
+        boolean isScreenTrans = false;
+        if(id == R.id.action_history) {
+            isScreenTrans = true;
+            if(contentView != null) {
+                contentView.removeAllViews();
+            }
+            HistoryLayout historyLayout = new HistoryLayout(this);
+            contentView.addView(historyLayout);
+            historyLayout.initialization(null);
+            historyLayout.setData(null);
+
+            toolbarTitleView.setText("히스토리");
+        }/*else if(id == R.id.action_settings){
+            isScreenTrans = true;
             return true;
+        }*/
+
+        // 화면 전환이 됬을 경우 네비게이션 셀렉트 제거
+        if(isScreenTrans) {
+            for(int menuIndex = 0 ; menuIndex < navigationView.getMenu().size() ; menuIndex++){
+                navigationView.getMenu().getItem(menuIndex).setChecked(false);
+            }
         }
+
         return super.onOptionsItemSelected(item);
     }
     
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
-        RelativeLayout contentView = (RelativeLayout) findViewById(R.id.contentView);
 
         if(id == R.id.nav_notice) {
             if(contentView != null) {
@@ -180,6 +221,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             contentView.addView(homeLayout);
             homeLayout.initialization(null);
             homeLayout.setData(null);
+            homeLayout.mainActivity = this;
 
             toolbarTitleView.setText("마비노기 유틸도우미");
         }else if(id == R.id.nav_erg) {
@@ -190,6 +232,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             contentView.addView(ergLayout);
             ergLayout.setData(tradeDb, null);
             ergLayout.initialization(null);
+            ergLayout.mainActivity = this;
 
             toolbarTitleView.setText("에르그도우미");
         }else if(id == R.id.nav_trade) {
@@ -211,6 +254,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             contentView.addView(musicLayout);
             musicLayout.initialization(null);
             musicLayout.setData(tradeDb, null);
+            musicLayout.mainActivity = this;
 
             toolbarTitleView.setText("연주도우미");
         }
@@ -236,5 +280,54 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra("noticeItem", noticeItem);
         startActivity(intent);
+    }
+
+    /**
+     * 타 레이아웃에서 다른 레이아웃으로 이동
+     * @param gubun
+     */
+    public void moveMenuForLayout(String gubun){
+        if(gubun.equals("home")) {
+            if(contentView != null) {
+                contentView.removeAllViews();
+            }
+            HomeLayout homeLayout = new HomeLayout(this);
+            contentView.addView(homeLayout);
+            homeLayout.initialization(null);
+            homeLayout.setData(null);
+
+            toolbarTitleView.setText("마비노기 유틸도우미");
+        }else if(gubun.equals("erg")) {
+            if(contentView != null) {
+                contentView.removeAllViews();
+            }
+            ErgLayout ergLayout = new ErgLayout(this);
+            contentView.addView(ergLayout);
+            ergLayout.setData(tradeDb, null);
+            ergLayout.initialization(null);
+
+            toolbarTitleView.setText("에르그도우미");
+        }else if(gubun.equals("trade")) {
+            if(contentView != null) {
+                contentView.removeAllViews();
+            }
+            TradeLayout tradeLayout = new TradeLayout(this);
+            contentView.addView(tradeLayout);
+            tradeLayout.initialization(null);
+            tradeLayout.setData(tradeDb, null);
+            tradeLayout.tradeLayoutAdd();
+
+            toolbarTitleView.setText("교역도우미");
+        }else if(gubun.equals("music")) {
+            if(contentView != null) {
+                contentView.removeAllViews();
+            }
+            MusicLayout musicLayout = new MusicLayout(this);
+            contentView.addView(musicLayout);
+            musicLayout.initialization(null);
+            musicLayout.setData(tradeDb, null);
+
+            toolbarTitleView.setText("연주도우미");
+        }
     }
 }

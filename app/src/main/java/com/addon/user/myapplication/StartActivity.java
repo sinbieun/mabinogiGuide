@@ -5,6 +5,7 @@
 
 package com.addon.user.myapplication;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,8 +16,15 @@ import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.DrawableTypeRequest;
 import com.bumptech.glide.request.target.Target;
 import android.content.Intent;
+import android.widget.Toast;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class StartActivity extends AppCompatActivity {
+
+    private Timer timer;
+    private TimerTask task;
     
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,8 +35,21 @@ public class StartActivity extends AppCompatActivity {
         backgroundImage.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 startMainActivity();
+                timer.cancel();
             }
         });
+
+        Toast loadingMsg = Toast.makeText(this, "Loading...", Toast.LENGTH_SHORT);
+        loadingMsg.show();
+
+        timer = new Timer();
+        task = new TimerTask() {
+            @Override
+            public void run() {
+                startMainActivity();
+            }
+        };
+        timer.schedule(task, 2500);
     }
     
     public void startMainActivity() {

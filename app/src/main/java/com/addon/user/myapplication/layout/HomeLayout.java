@@ -12,26 +12,28 @@ import android.graphics.Typeface;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.addon.user.myapplication.MainActivity;
 import com.addon.user.myapplication.R;
-import com.addon.user.myapplication.view.NoticeAdapter;
-import com.addon.user.myapplication.view.NoticeItem;
 
-import java.util.ArrayList;
+import org.w3c.dom.Text;
+
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class HomeLayout extends BaseLinearLayout {
     public RelativeLayout layout;
     public MainActivity mainActivity;
 
     // VIEW
-    private LinearLayout homeContentLayout;
+    private TextView errinTimeTextView;
+    private TextView mainMenu1;
+    private TextView mainMenu2;
+    private TextView mainMenu3;
 
     public HomeLayout(Context context) {
         super(context);
@@ -42,50 +44,118 @@ public class HomeLayout extends BaseLinearLayout {
         layout = (RelativeLayout)getView(R.layout.home_layout);
         addView(layout);
 
-        homeContentLayout = (LinearLayout) findViewById(R.id.homeContentLayout);
+        // VIEW SETTING
+        setView();
 
-        setContentLayout("T", "＊ 2018-09-01");
-        setContentLayout("C", "     ◎ 업데이트 시, 비정상 종료 오류 수정");
+        // EVENT SETTING
+        setEvent();
 
-        setContentLayout("T", "＊ 2018-08-31");
-        setContentLayout("C", "     ◎ 폰트 변경");
-        setContentLayout("C", "     ◎ 에르그 조회 서비스 추가");
-
-        setContentLayout("T", "＊ 2018-08-01");
-        setContentLayout("C", "     ◎ 소스 복원");
-
-        setContentLayout("T", "＊ 2017-10-15");
-        setContentLayout("C", "     ◎ 포맷하다가 소스 날림");
-
-        setContentLayout("T", "＊ 2017-09-26");
-        setContentLayout("C", "     ◎ 어플리케이션 오픈");
-        setContentLayout("C", "     ◎ 교역도우미 서비스 추가");
+        // 1초 마다 실행하는 타이머 세팅
+        Timer m_timer = new Timer(true);
+        TimerTask m_task = new TimerTask() {
+            @Override
+            public void run() {
+                errinTimeUpdate();
+            }
+        };
+        m_timer.schedule(m_task, 0, 1000);
     }
 
-    private void setContentLayout(String gubun, String content){
-        TextView contentTextView = new TextView(context);
-        ViewGroup.LayoutParams contentTextViewLayoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        if(gubun.equals("T")){
-            // 제목
-            contentTextView.setLayoutParams(contentTextViewLayoutParams);
-            contentTextView.setTextColor(Color.parseColor("#9F9F9F"));
-            contentTextView.setTypeface(contentTextView.getTypeface(), Typeface.BOLD_ITALIC);
-            contentTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
-            contentTextView.setPadding(0,30,0,0);
-        }else if(gubun.equals("C")){
-            // 내용
-            contentTextView.setLayoutParams(contentTextViewLayoutParams);
-            contentTextView.setTextColor(Color.parseColor("#9F9F9F"));
-            contentTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
-            contentTextView.setPadding(0,15,0,0);
-        }
-        contentTextView.setText(content);
-        homeContentLayout.addView(contentTextView);
+    /**
+     * 뷰 세팅
+     */
+    private void setView(){
+        errinTimeTextView = findViewById(R.id.errinTime);
+        mainMenu1 = findViewById(R.id.main_menu_1);
+        mainMenu2 = findViewById(R.id.main_menu_2);
+        mainMenu3 = findViewById(R.id.main_menu_3);
+    }
+
+    /**
+     * 이벤트 세팅
+     */
+    private void setEvent(){
+        mainMenu1.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity.navigationView.getMenu().getItem(1).setChecked(true);
+                mainActivity.moveMenuForLayout("trade");
+            }
+        });
+
+        mainMenu2.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity.navigationView.getMenu().getItem(2).setChecked(true);
+                mainActivity.moveMenuForLayout("erg");
+            }
+        });
+
+        mainMenu3.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity.navigationView.getMenu().getItem(3).setChecked(true);
+                mainActivity.moveMenuForLayout("music");
+            }
+        });
     }
     
     public void setData(SQLiteDatabase db, Object[] obj) {
     }
     
     public void setData(Object[] obj) {
+    }
+
+    /**
+     * 에린 시간 업데이트
+     */
+    private void errinTimeUpdate(){
+        // 현재 시간 가져오기
+        long now = System.currentTimeMillis();
+        Date currentTime = new Date(now);
+
+        int year = currentTime.getYear();
+        int month = currentTime.getMonth();
+        int day = currentTime.getDay();
+        int hrs = currentTime.getHours();
+        int min = currentTime.getMinutes();
+        int sec = currentTime.getSeconds();
+
+        // 현재 시간 글자 세팅
+        String hrsStr = "0";
+        String minStr = "0";
+        String secStr = "0";
+
+        // 현재 시간이 2글자가 아니면 다시 설정
+        if (hrs < 10) hrsStr = "0" + String.valueOf(hrs);
+        if (min < 10) minStr = "0" + String.valueOf(min);
+        if (sec < 10) secStr = "0" + String.valueOf(sec);
+
+        // 자정 시간 가져오기
+        Date midnightDate = new Date(year, month, day, 0, 0, 0);
+        long midnightTime = midnightDate.getTime();
+
+        // 에린시각 표시갱신 (에린의 하루는 현실시각으로 36분, 2160초)
+        int erinnTime = Math.round((now - midnightTime) / 1000) % 2160;
+        errinTimeTextView.setText(sec2minsec(Math.round(erinnTime * 2 / 3)));
+    }
+
+    /**
+     * 에린 시간 계산
+     * @param secs
+     * @return
+     */
+    private String sec2minsec(int secs){
+
+        double hrsDouble = Math.floor(secs / 60);
+        double minDouble = secs % 60;
+
+        String hrsStr = String.valueOf(hrsDouble).replace(".0","");
+        String minStr = String.valueOf(minDouble).replace(".0","");
+
+        if (hrsDouble < 10) hrsStr = "0" + hrsStr;
+        if (minDouble < 10) minStr = "0" + minStr;
+
+        return hrsStr + ":" + minStr;
     }
 }

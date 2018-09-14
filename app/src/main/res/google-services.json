@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "378224787515",
+    "firebase_url": "https://mabinogiguide-63df8.firebaseio.com",
+    "project_id": "mabinogiguide-63df8",
+    "storage_bucket": "mabinogiguide-63df8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378224787515:android:89d5b2504d3c8335",
+        "android_client_info": {
+          "package_name": "com.addon.user.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "378224787515-qb3q3h2qqta0ier7l9qcaab1vqk8qjt0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.addon.user.myapplication",
+            "certificate_hash": "7537eef32b3204a904cb599ceaa239e0a2a4be1c"
+          }
+        },
+        {
+          "client_id": "378224787515-nl3nfnqsliqhunk0anr91u7gk3uanfc8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0gSoiOJtudWVaOC76hDt1uP4vqbJ0zUA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "378224787515-nl3nfnqsliqhunk0anr91u7gk3uanfc8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      },
+      "admob_app_id": "ca-app-pub-7324612099493652~6299216980"
+    }
+  ],
+  "configuration_version": "1"
+}
