@@ -37,6 +37,10 @@ public class HistoryLayout extends BaseLinearLayout {
         homeContentLayout = (LinearLayout) findViewById(R.id.homeContentLayout);
 
         setContentLayout("T", "＊ 2018-09-15");
+        setContentLayout("C", "     ◎ 메인 화면 요일 및 효과 추가");
+        setContentLayout("C", "     ◎ 에르그 효과 디자인 변경");
+
+        setContentLayout("T", "＊ 2018-09-14");
         setContentLayout("C", "     ◎ 광고 오류 수정");
         setContentLayout("C", "     ◎ 메인 화면 변경");
 

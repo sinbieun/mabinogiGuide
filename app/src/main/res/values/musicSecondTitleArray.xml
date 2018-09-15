@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="musicSecondTitleArray">
+        <item>없음</item>
+        <item>포르티시모</item>
+        <item>포르테</item>
+        <item>디바</item>
+        <item>이보나</item>
+        <item>피아니시모</item>
+        <item>붉은빛오로라</item>
+        <item>푸른빛오로라</item>
+        <item>만렙</item>
+        <item>카가미네 린</item>
+        <item>카가미네 렌</item>
+        <item>카이토</item>
+        <item>하츠네 미쿠</item>
+        <item>무지개빛 오로라</item>
+        <item>11주년 판파</item>
+        <item>에피</item>
+        <item>일라</item>
+        <item>하멜른</item>
+    </string-array>
+</resources>

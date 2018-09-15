@@ -12,17 +12,12 @@
         android:orientation="vertical"
         android:background="#FFFFFF"
         android:layout_margin="20dp">
-        <ScrollView
-            android:layout_weight="9"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
             <LinearLayout
-                android:id="@+id/homeContentLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:layout_margin="10dp">
+                android:layout_margin="10dp"
+                android:layout_weight="9">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -32,8 +27,19 @@
                     android:text="HISTORY"
                     android:textColor="#FFFFFF"
                     android:textSize="20dp" />
+                <ScrollView
+                    android:layout_weight="9"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true">
+                    <LinearLayout
+                        android:id="@+id/homeContentLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                    </LinearLayout>
+                </ScrollView>
             </LinearLayout>
-        </ScrollView>
         <TextView
             android:layout_weight="1"
             android:layout_width="match_parent"

@@ -12,10 +12,10 @@
     <string name="firebase_project_name">mabinogiGuide</string>
     <string name="firebase_project_id">mabinogiguide-63df8</string>
 
-    <string name="banner_ad_unit_id">ca-app-pub-7324612099493652/7205669195</string>
+    <!--<string name="banner_ad_unit_id">ca-app-pub-7324612099493652/7205669195</string>-->
 
     <!-- TEST -->
-    <!--<string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>-->
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 
     <string name="music_label_title_1">스킬 랭크</string>
     <string name="music_label_content_1_1">악기 연주 랭크</string>
@@ -26,4 +26,5 @@
     <string name="music_label_content_1_6">행진곡 랭크</string>
     <string name="music_label_content_1_7">인내의 노래 랭크</string>
     <string name="music_label_title_2">인챈트/아이템 효과</string>
+    <string name="music_label_title_3">타이틀</string>
 </resources>

@@ -5,16 +5,24 @@
 
 package com.addon.user.myapplication;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.design.widget.NavigationView;
+import android.util.TypedValue;
 import android.view.Gravity;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.View;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import com.addon.user.myapplication.layout.ErgLayout;
 import com.addon.user.myapplication.layout.HistoryLayout;
@@ -52,8 +60,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     // VIEW
     private RelativeLayout contentView;
+    private LinearLayout contentLayout;
     public NavigationView navigationView;
     private AdView mAdView;
+
+    // layout parameter
+    private String whereCurrentLayout = "";
+    private Handler handler;
 
     public MainActivity() {
         backKeyPressedTime = 0;
@@ -61,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         deviceHeight = 0;
     }
     
+    @SuppressLint("HandlerLeak")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -79,8 +93,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        deviceWidth = displayMetrics.widthPixels;
-        deviceHeight = displayMetrics.heightPixels;
+        deviceWidth = getPixelToDp(this, displayMetrics.widthPixels);
+        deviceHeight = getPixelToDp(this, displayMetrics.heightPixels);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbarTitleView = (TextView) findViewById(R.id.toolbar_title);
         setSupportActionBar(toolbar);
@@ -96,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         contentView = (RelativeLayout) findViewById(R.id.contentView);
-        firstScreen();
+        contentLayout = findViewById(R.id.contentLayout);
 
         // 광고
         MobileAds.initialize(this, getString(R.string.ad_unit_id));
@@ -135,6 +149,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 mAdView.pause();
             }
         });
+
+        Timer m_timer = new Timer(true);
+        TimerTask m_task = new TimerTask() {
+            @Override
+            public void run() {
+                mAdView.getLayoutParams().height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, deviceHeight - getPixelToDp(thisActivity, contentView.getHeight()), getResources().getDisplayMetrics());
+            }
+        };
+        m_timer.schedule(m_task, 1000);
+
+        firstScreen();
     }
 
     /**
@@ -151,22 +176,39 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         homeLayout.setData(null);
 
         toolbarTitleView.setText("마비노기 유틸도우미");
+        whereCurrentLayout = "home";
     }
     
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if(drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(Gravity.START);
-            return;
-        }
-        if(System.currentTimeMillis() > (backKeyPressedTime + 2000)) {
-            backKeyPressedTime = System.currentTimeMillis();
-            showGuide();
-            return;
-        }
-        if(System.currentTimeMillis() <= (backKeyPressedTime + 2000)) {
-            finish();
-            toast.cancel();
+
+        if("home".equals(whereCurrentLayout)) {
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(Gravity.START);
+                return;
+            }
+            if (System.currentTimeMillis() > (backKeyPressedTime + 2000)) {
+                backKeyPressedTime = System.currentTimeMillis();
+                showGuide();
+                return;
+            }
+            if (System.currentTimeMillis() <= (backKeyPressedTime + 2000)) {
+                finish();
+                toast.cancel();
+            }
+        }else{
+            if(contentView != null) {
+                contentView.removeAllViews();
+            }
+            HomeLayout homeLayout = new HomeLayout(this);
+            contentView.addView(homeLayout);
+            homeLayout.initialization(null);
+            homeLayout.setData(null);
+            homeLayout.mainActivity = this;
+
+            toolbarTitleView.setText("마비노기 유틸도우미");
+            navigationView.getMenu().getItem(0).setChecked(true);
+            whereCurrentLayout = "home";
         }
     }
     
@@ -195,6 +237,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             historyLayout.setData(null);
 
             toolbarTitleView.setText("히스토리");
+            whereCurrentLayout = "history";
         }/*else if(id == R.id.action_settings){
             isScreenTrans = true;
             return true;
@@ -224,17 +267,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             homeLayout.mainActivity = this;
 
             toolbarTitleView.setText("마비노기 유틸도우미");
+            whereCurrentLayout = "home";
         }else if(id == R.id.nav_erg) {
             if(contentView != null) {
                 contentView.removeAllViews();
             }
             ErgLayout ergLayout = new ErgLayout(this);
             contentView.addView(ergLayout);
+            ergLayout.mainActivity = this;
             ergLayout.setData(tradeDb, null);
             ergLayout.initialization(null);
-            ergLayout.mainActivity = this;
 
             toolbarTitleView.setText("에르그도우미");
+            whereCurrentLayout = "erg";
         }else if(id == R.id.nav_trade) {
             if(contentView != null) {
                 contentView.removeAllViews();
@@ -246,6 +291,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             tradeLayout.tradeLayoutAdd();
 
             toolbarTitleView.setText("교역도우미");
+            whereCurrentLayout = "trade";
         }else if(id == R.id.nav_music) {
             if(contentView != null) {
                 contentView.removeAllViews();
@@ -257,6 +303,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             musicLayout.mainActivity = this;
 
             toolbarTitleView.setText("연주도우미");
+            whereCurrentLayout = "music";
         }
 
         /*
@@ -293,20 +340,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
             HomeLayout homeLayout = new HomeLayout(this);
             contentView.addView(homeLayout);
+            homeLayout.mainActivity = this;
             homeLayout.initialization(null);
             homeLayout.setData(null);
 
             toolbarTitleView.setText("마비노기 유틸도우미");
+            whereCurrentLayout = "home";
         }else if(gubun.equals("erg")) {
             if(contentView != null) {
                 contentView.removeAllViews();
             }
             ErgLayout ergLayout = new ErgLayout(this);
             contentView.addView(ergLayout);
+            ergLayout.mainActivity = this;
             ergLayout.setData(tradeDb, null);
             ergLayout.initialization(null);
 
             toolbarTitleView.setText("에르그도우미");
+            whereCurrentLayout = "erg";
         }else if(gubun.equals("trade")) {
             if(contentView != null) {
                 contentView.removeAllViews();
@@ -318,16 +369,53 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             tradeLayout.tradeLayoutAdd();
 
             toolbarTitleView.setText("교역도우미");
+            whereCurrentLayout = "trade";
         }else if(gubun.equals("music")) {
             if(contentView != null) {
                 contentView.removeAllViews();
             }
             MusicLayout musicLayout = new MusicLayout(this);
             contentView.addView(musicLayout);
+            musicLayout.mainActivity = this;
             musicLayout.initialization(null);
             musicLayout.setData(tradeDb, null);
 
             toolbarTitleView.setText("연주도우미");
+            whereCurrentLayout = "music";
         }
+    }
+
+    /**
+     * DP -> PX
+     * @param context
+     * @param DP
+     * @return
+     */
+    /*public int getDpToPixel(Context context, int DP) {
+        float px = 0;
+        try {
+            px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, DP, context.getResources().getDisplayMetrics());
+        } catch (Exception e) {
+
+        }
+
+        return (int) px;
+    }*/
+
+    /**
+     * PX -> DP
+     * @param context
+     * @param pixel
+     * @return
+     */
+    public int getPixelToDp(Context context, int pixel) {
+        float dp = 0;
+        try {
+            DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+            dp = pixel / (metrics.densityDpi / 160f);
+        } catch (Exception e) {
+
+        }
+        return (int) dp;
     }
 }

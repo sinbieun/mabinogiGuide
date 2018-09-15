@@ -229,6 +229,82 @@
                         android:layout_columnSpan="2"
                         android:background="@drawable/title_background_music"
                         android:gravity="center"
+                        android:text="@string/music_label_title_3"
+                        android:textColor="#ffffffff"
+                        android:textSize="17.0dip" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="left"
+                        android:text="1차 타이틀"
+                        android:textColor="#ff000000" />
+
+                    <Spinner
+                        android:id="@+id/firstTitleSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="0dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#FF7E7E" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:gravity="left"
+                        android:text="2차 타이틀"
+                        android:textColor="#ff000000" />
+
+                    <Spinner
+                        android:id="@+id/secondTitleSpinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="fill_horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="0dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="#FF7E7E" />
+                </GridLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/border"
+                android:orientation="vertical">
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:columnCount="2"
+                    android:orientation="horizontal"
+                    android:rowCount="7">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_centerInParent="true"
+                        android:layout_columnSpan="2"
+                        android:background="@drawable/title_background_music"
+                        android:gravity="center"
                         android:text="@string/music_label_title_2"
                         android:textColor="#ffffffff"
                         android:textSize="17.0dip" />

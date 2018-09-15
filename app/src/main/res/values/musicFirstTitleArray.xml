@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="musicFirstTitleArray">
+        <item>없음</item>
+        <item>전장의 서곡 마스터</item>
+        <item>비바체 마스터</item>
+        <item>풍년가 마스터</item>
+        <item>행진곡 마스터</item>
+        <item>인내의 노래 마스터</item>
+        <item>마에스트로</item>
+    </string-array>
+</resources>

@@ -45,6 +45,9 @@ public class MusicLayout extends BaseLinearLayout {
     private Spinner MCRankSpinner;
     private Spinner SPRankSpinner;
 
+    private Spinner firstTitleSpinner;
+    private Spinner secondTitleSpinner;
+
     // TEXTVIEW
     // 전장의 서곡
     private TextView bfValueTextView_1_1;
@@ -137,6 +140,9 @@ public class MusicLayout extends BaseLinearLayout {
     private ArrayAdapter<CharSequence> MCRDataArray;
     private ArrayAdapter<CharSequence> SPRDataArray;
 
+    private ArrayAdapter<CharSequence> firstTitleDataArray;
+    private ArrayAdapter<CharSequence> secondTitleDataArray;
+
     // 스킬 랭크에 따른 기본 수치
     // 악기 연주
     private int baseIRSValue = 0;
@@ -184,6 +190,9 @@ public class MusicLayout extends BaseLinearLayout {
         BVRankSpinner = layout.findViewById(R.id.BVRankSpinner);
         MCRankSpinner = layout.findViewById(R.id.MCRankSpinner);
         SPRankSpinner = layout.findViewById(R.id.SPRankSpinner);
+
+        firstTitleSpinner = layout.findViewById(R.id.firstTitleSpinner);
+        secondTitleSpinner = layout.findViewById(R.id.secondTitleSpinner);
 
         // TEXTVIEW
         bfValueTextView_1_1 = findViewById(R.id.bf_value_1_1);
@@ -405,6 +414,46 @@ public class MusicLayout extends BaseLinearLayout {
 
             }
         });
+
+        //************************ 타이틀 시작 ************************/
+        firstTitleDataArray = ArrayAdapter.createFromResource(context, R.array.musicFirstTitleArray, R.layout.support_simple_spinner_dropdown_item);
+        firstTitleDataArray.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        firstTitleSpinner.setAdapter(firstTitleDataArray);
+        firstTitleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                /*setBaseValueFromRank("SP", SPRDataArray.getItem(i).toString());
+
+                setFinishValue("SP");
+
+                setUpdateData("SPRank", String.valueOf(i));*/
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        secondTitleDataArray = ArrayAdapter.createFromResource(context, R.array.musicSecondTitleArray, R.layout.support_simple_spinner_dropdown_item);
+        secondTitleDataArray.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        secondTitleSpinner.setAdapter(secondTitleDataArray);
+        secondTitleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                /*setBaseValueFromRank("SP", SPRDataArray.getItem(i).toString());
+
+                setFinishValue("SP");
+
+                setUpdateData("SPRank", String.valueOf(i));*/
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        //************************ 타이틀 종료 ************************/
 
         //************************ 플러스 요인 ************************/
         // 악기 연주 효과

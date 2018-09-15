@@ -26,6 +26,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.addon.user.myapplication.MainActivity;
 import com.addon.user.myapplication.R;
@@ -173,6 +174,8 @@ public class ErgLayout extends BaseLinearLayout {
         String sql;
         Cursor cursor;
 
+        int allSizeWidthWithMargin = mainActivity.deviceWidth - 20;
+
         switch (selectedMenu){
             case "재료" :
                 ergGridLayout.setColumnCount(7);
@@ -219,251 +222,561 @@ public class ErgLayout extends BaseLinearLayout {
 
                 cursor = ergDb.rawQuery(sql, null);
 
+                int levelColumnWidth = (int) ((float)( allSizeWidthWithMargin ) / 7 );
+                int otherColumnWidth = allSizeWidthWithMargin - levelColumnWidth;
+
                 switch (selectedWeaponName){
                     case "듀얼건" :
-                        ergGridLayout.setColumnCount(5);
+                        ergGridLayout.setColumnCount(3);
 
-                        drawGridLayoutData("레벨",50,65,18, "M");
-                        drawGridLayoutData("무기 공격력 증가",150,65,18, "M");
-                        drawGridLayoutData("일반 공격 시 \n일정 확률로 추가 공격",200,65,18, "M");
-                        drawGridLayoutData("슈팅 러쉬 \n데미지 증가",150,65,18, "M");
-                        drawGridLayoutData("듀얼건 재능 스킬 \n쿨타임 감소",150,65,18, "M");
+                        drawGridLayoutData("레벨", levelColumnWidth,65,18, "M");
+                        drawGridLayoutData("효과", otherColumnWidth,65,18, "M");
 
                         while (cursor.moveToNext()) {
-                            drawGridLayoutData(cursor.getString(0), 50, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(1), 150, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(2), 200, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(3), 150, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(4), 150, 30, 15, "C");
+                            String contentStr1 = "";
+                            String contentStr2 = "";
+                            int columnHeight = 0;
+
+                            if(!"".equals(cursor.getString(1))){
+                                contentStr1 += "무기 공격력 증가";
+                                contentStr2 += cursor.getString(1);
+                                columnHeight = columnHeight + 30;
+                            }
+
+                            if(!"".equals(cursor.getString(2))){
+                                contentStr1 += "\n일반 공격 시 일정 확률로 추가 공격";
+                                contentStr2 += "\n" + cursor.getString(2);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            if(!"".equals(cursor.getString(3))){
+                                contentStr1 += "\n슈팅 러쉬 데미지 증가";
+                                contentStr2 += "\n" + cursor.getString(3);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            if(!"".equals(cursor.getString(4))){
+                                contentStr1 += "\n듀얼건 재능 스킬 쿨타임 감소";
+                                contentStr2 += "\n" + cursor.getString(4);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            drawGridLayoutData(cursor.getString(0), levelColumnWidth, columnHeight, 15, "NCL");
+                            drawGridLayoutData(contentStr1, otherColumnWidth - 50, columnHeight, 15, "NC");
+                            drawGridLayoutData(contentStr2, 50, columnHeight, 15, "NC");
                         }
                         break;
                     case "인술" :
-                        ergGridLayout.setColumnCount(5);
+                        ergGridLayout.setColumnCount(3);
 
-                        drawGridLayoutData("레벨",50,65,18, "M");
-                        drawGridLayoutData("무기 공격력 증가",150,65,18, "M");
-                        drawGridLayoutData("일반 공격 시 \n일정 확률로 추가 공격",200,65,18, "M");
-                        drawGridLayoutData("수리검 폭풍 \n데미지 증가",150,65,18, "M");
-                        drawGridLayoutData("인술 재능 스킬 \n쿨타임 감소",150,65,18, "M");
+                        drawGridLayoutData("레벨", levelColumnWidth,65,18, "M");
+                        drawGridLayoutData("효과", otherColumnWidth,65,18, "M");
 
                         while (cursor.moveToNext()) {
-                            drawGridLayoutData(cursor.getString(0), 50, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(1), 150, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(2), 200, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(3), 150, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(4), 150, 30, 15, "C");
+                            String contentStr1 = "";
+                            String contentStr2 = "";
+                            int columnHeight = 0;
+
+                            if(!"".equals(cursor.getString(1))){
+                                contentStr1 += "무기 공격력 증가";
+                                contentStr2 += cursor.getString(1);
+                                columnHeight = columnHeight + 30;
+                            }
+
+                            if(!"".equals(cursor.getString(2))){
+                                contentStr1 += "\n일반 공격 시 일정 확률로 추가 공격";
+                                contentStr2 += "\n" + cursor.getString(2);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            if(!"".equals(cursor.getString(3))){
+                                contentStr1 += "\n수리검 폭풍 데미지 증가";
+                                contentStr2 += "\n" + cursor.getString(3);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            if(!"".equals(cursor.getString(4))){
+                                contentStr1 += "\n인술 재능 스킬 쿨타임 감소";
+                                contentStr2 += "\n" + cursor.getString(4);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            drawGridLayoutData(cursor.getString(0), levelColumnWidth, columnHeight, 15, "NCL");
+                            drawGridLayoutData(contentStr1, otherColumnWidth - 50, columnHeight, 15, "NC");
+                            drawGridLayoutData(contentStr2, 50, columnHeight, 15, "NC");
                         }
                         break;
                     case "체인 블레이드" :
-                        ergGridLayout.setColumnCount(4);
+                        ergGridLayout.setColumnCount(3);
 
-                        drawGridLayoutData("레벨",50,65,18, "M");
-                        drawGridLayoutData("무기 공격력 증가",100,65,18, "M");
-                        drawGridLayoutData("일반 공격 시 \n일정 확률로 추가 공격",200,65,18, "M");
-                        drawGridLayoutData("도르카 스내치 \n도르카 획득량 증가",170,65,18, "M");
+                        drawGridLayoutData("레벨", levelColumnWidth,65,18, "M");
+                        drawGridLayoutData("효과", otherColumnWidth,65,18, "M");
 
                         while (cursor.moveToNext()) {
-                            drawGridLayoutData(cursor.getString(0), 50, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(1), 100, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(2), 200, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(3), 170, 30, 15, "C");
+                            String contentStr1 = "";
+                            String contentStr2 = "";
+                            int columnHeight = 0;
+
+                            if(!"".equals(cursor.getString(1))){
+                                contentStr1 += "무기 공격력 증가";
+                                contentStr2 += cursor.getString(1);
+                                columnHeight = columnHeight + 30;
+                            }
+
+                            if(!"".equals(cursor.getString(2))){
+                                contentStr1 += "\n일반 공격 시 일정 확률로 추가 공격";
+                                contentStr2 += "\n" + cursor.getString(2);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            if(!"".equals(cursor.getString(3))){
+                                contentStr1 += "\n도르카 스내치 도르카 획득량 증가";
+                                contentStr2 += "\n" + cursor.getString(3);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            drawGridLayoutData(cursor.getString(0), levelColumnWidth, columnHeight, 15, "NCL");
+                            drawGridLayoutData(contentStr1, otherColumnWidth - 50, columnHeight, 15, "NC");
+                            drawGridLayoutData(contentStr2, 50, columnHeight, 15, "NC");
                         }
                         break;
                     case "인형술" :
-                        ergGridLayout.setColumnCount(5);
+                        ergGridLayout.setColumnCount(3);
 
-                        drawGridLayoutData("레벨",50,65,18, "M");
-                        drawGridLayoutData("마리오네트 \n공격력 증가",150,65,18, "M");
-                        drawGridLayoutData("마리오네트 \n방어, 보호, 마법방어, 마법보호 증가",270,65,18, "M");
-                        drawGridLayoutData("마리오네트 \n경직 저항 확률 증가",150,65,18, "M");
-                        drawGridLayoutData("인형극 스킬 \n쿨타임 감소",150,65,18, "M");
+                        drawGridLayoutData("레벨", levelColumnWidth,65,18, "M");
+                        drawGridLayoutData("효과", otherColumnWidth,65,18, "M");
 
                         while (cursor.moveToNext()) {
-                            drawGridLayoutData(cursor.getString(0), 50, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(1), 150, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(2), 270, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(3), 150, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(4), 150, 30, 15, "C");
+                            String contentStr1 = "";
+                            String contentStr2 = "";
+                            int columnHeight = 0;
+
+                            if(!"".equals(cursor.getString(1))){
+                                contentStr1 += "마리오네트 공격력 증가";
+                                contentStr2 += cursor.getString(1);
+                                columnHeight = columnHeight + 30;
+                            }
+
+                            if(!"".equals(cursor.getString(2))){
+                                contentStr1 += "\n마리오네트 방어/보호, 마법방어/보호 증가";
+                                contentStr2 += "\n" + cursor.getString(2);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            if(!"".equals(cursor.getString(3))){
+                                contentStr1 += "\n마리오네트 경직 저항 확률 증가";
+                                contentStr2 += "\n" + cursor.getString(3);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            if(!"".equals(cursor.getString(4))){
+                                contentStr1 += "\n인형극 스킬 쿨타임 감소";
+                                contentStr2 += "\n" + cursor.getString(4);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            drawGridLayoutData(cursor.getString(0), levelColumnWidth, columnHeight, 15, "NCL");
+                            drawGridLayoutData(contentStr1, otherColumnWidth - 50, columnHeight, 15, "NC");
+                            drawGridLayoutData(contentStr2, 50, columnHeight, 15, "NC");
                         }
                         break;
                     case "활, 석궁" :
-                        ergGridLayout.setColumnCount(5);
+                        ergGridLayout.setColumnCount(3);
 
-                        drawGridLayoutData("레벨",50,65,18, "M");
-                        drawGridLayoutData("무기 공격력 증가",150,65,18, "M");
-                        drawGridLayoutData("레인지 계열 공격 \n조준 속도 증가",150,65,18, "M");
-                        drawGridLayoutData("조준 실패 시 \n해당 스킬의 쿨타임 감소",200,65,18, "M");
-                        drawGridLayoutData("크래시 샷 \n쿨타임 감소",150,65,18, "M");
+                        drawGridLayoutData("레벨", levelColumnWidth,65,18, "M");
+                        drawGridLayoutData("효과", otherColumnWidth,65,18, "M");
 
                         while (cursor.moveToNext()) {
-                            drawGridLayoutData(cursor.getString(0), 50, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(1), 150, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(2), 150, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(3), 200, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(4), 150, 30, 15, "C");
+                            String contentStr1 = "";
+                            String contentStr2 = "";
+                            int columnHeight = 0;
+
+                            if(!"".equals(cursor.getString(1))){
+                                contentStr1 += "무기 공격력 증가";
+                                contentStr2 += cursor.getString(1);
+                                columnHeight = columnHeight + 30;
+                            }
+
+                            if(!"".equals(cursor.getString(2))){
+                                contentStr1 += "\n레인지 계열 공격 조준 속도 증가";
+                                contentStr2 += "\n" + cursor.getString(2);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            if(!"".equals(cursor.getString(3))){
+                                contentStr1 += "\n조준 실패 시 해당 스킬의 쿨타임 감소";
+                                contentStr2 += "\n" + cursor.getString(3);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            if(!"".equals(cursor.getString(4))){
+                                contentStr1 += "\n크래시 샷 쿨타임 감소";
+                                contentStr2 += "\n" + cursor.getString(4);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            drawGridLayoutData(cursor.getString(0), levelColumnWidth, columnHeight, 15, "NCL");
+                            drawGridLayoutData(contentStr1, otherColumnWidth - 50, columnHeight, 15, "NC");
+                            drawGridLayoutData(contentStr2, 50, columnHeight, 15, "NC");
                         }
                         break;
                     case "너클" :
-                        ergGridLayout.setColumnCount(5);
+                        ergGridLayout.setColumnCount(3);
 
-                        drawGridLayoutData("레벨",50,65,18, "M");
-                        drawGridLayoutData("무기 공격력 증가",150,65,18, "M");
-                        drawGridLayoutData("적 경직 시간 증가",150,65,18, "M");
-                        drawGridLayoutData("연속기 데미지 증가",150,65,18, "M");
-                        drawGridLayoutData("연속기 쿨타임 감소",150,65,18, "M");
+                        drawGridLayoutData("레벨", levelColumnWidth,65,18, "M");
+                        drawGridLayoutData("효과", otherColumnWidth,65,18, "M");
 
                         while (cursor.moveToNext()) {
-                            drawGridLayoutData(cursor.getString(0), 50, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(1), 150, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(2), 150, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(3), 150, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(4), 150, 30, 15, "C");
+                            String contentStr1 = "";
+                            String contentStr2 = "";
+                            int columnHeight = 0;
+
+                            if(!"".equals(cursor.getString(1))){
+                                contentStr1 += "무기 공격력 증가";
+                                contentStr2 += cursor.getString(1);
+                                columnHeight = columnHeight + 30;
+                            }
+
+                            if(!"".equals(cursor.getString(2))){
+                                contentStr1 += "\n적 경직 시간 증가";
+                                contentStr2 += "\n" + cursor.getString(2);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            if(!"".equals(cursor.getString(3))){
+                                contentStr1 += "\n연속기 데미지 증가";
+                                contentStr2 += "\n" + cursor.getString(3);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            if(!"".equals(cursor.getString(4))){
+                                contentStr1 += "\n연속기 쿨타임 감소";
+                                contentStr2 += "\n" + cursor.getString(4);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            drawGridLayoutData(cursor.getString(0), levelColumnWidth, columnHeight, 15, "NCL");
+                            drawGridLayoutData(contentStr1, otherColumnWidth - 50, columnHeight, 15, "NC");
+                            drawGridLayoutData(contentStr2, 50, columnHeight, 15, "NC");
                         }
                         break;
                     case "스태프" :
-                        ergGridLayout.setColumnCount(4);
+                        ergGridLayout.setColumnCount(3);
 
-                        drawGridLayoutData("레벨",50,65,18, "M");
-                        drawGridLayoutData("마법 공격력 증가",150,65,18, "M");
-                        drawGridLayoutData("중급 마법 스킬 \n마나 소모량 감소",200,65,18, "M");
-                        drawGridLayoutData("중급 마법 스킬 \n시전 시간 감소",200,65,18, "M");
+                        drawGridLayoutData("레벨", levelColumnWidth,65,18, "M");
+                        drawGridLayoutData("효과", otherColumnWidth,65,18, "M");
 
                         while (cursor.moveToNext()) {
-                            drawGridLayoutData(cursor.getString(0), 50, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(1), 150, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(2), 200, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(3), 200, 30, 15, "C");
+                            String contentStr1 = "";
+                            String contentStr2 = "";
+                            int columnHeight = 0;
+
+                            if(!"".equals(cursor.getString(1))){
+                                contentStr1 += "마법 공격력 증가";
+                                contentStr2 += cursor.getString(1);
+                                columnHeight = columnHeight + 30;
+                            }
+
+                            if(!"".equals(cursor.getString(2))){
+                                contentStr1 += "\n중급 마법 스킬 마나 소모량 감소";
+                                contentStr2 += "\n" + cursor.getString(2);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            if(!"".equals(cursor.getString(3))){
+                                contentStr1 += "\n중급 마법 스킬 시전 시간 감소";
+                                contentStr2 += "\n" + cursor.getString(3);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            drawGridLayoutData(cursor.getString(0), levelColumnWidth, columnHeight, 15, "NCL");
+                            drawGridLayoutData(contentStr1, otherColumnWidth - 50, columnHeight, 15, "NC");
+                            drawGridLayoutData(contentStr2, 50, columnHeight, 15, "NC");
                         }
                         break;
                     case "실린더" :
-                        ergGridLayout.setColumnCount(5);
+                        ergGridLayout.setColumnCount(3);
 
-                        drawGridLayoutData("레벨",50,65,18, "M");
-                        drawGridLayoutData("4대 속성 연금술 \n데미지 증가",150,65,18, "M");
-                        drawGridLayoutData("히트 버스터 \n효과 증가",150,65,18, "M");
-                        drawGridLayoutData("플레이머 데미지 \n주기 감소",150,65,18, "M");
-                        drawGridLayoutData("체인 실린더 \n쿨타임 감소",150,65,18, "M");
+                        drawGridLayoutData("레벨", levelColumnWidth,65,18, "M");
+                        drawGridLayoutData("효과", otherColumnWidth,65,18, "M");
 
                         while (cursor.moveToNext()) {
-                            drawGridLayoutData(cursor.getString(0), 50, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(1), 150, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(2), 150, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(3), 150, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(4), 150, 30, 15, "C");
+                            String contentStr1 = "";
+                            String contentStr2 = "";
+                            int columnHeight = 0;
+
+                            if(!"".equals(cursor.getString(1))){
+                                contentStr1 += "4대 속성 연금술 데미지 증가";
+                                contentStr2 += cursor.getString(1);
+                                columnHeight = columnHeight + 30;
+                            }
+
+                            if(!"".equals(cursor.getString(2))){
+                                contentStr1 += "\n히트 버스터 효과 증가";
+                                contentStr2 += "\n" + cursor.getString(2);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            if(!"".equals(cursor.getString(3))){
+                                contentStr1 += "\n플레이머 데미지 주기 감소";
+                                contentStr2 += "\n" + cursor.getString(3);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            if(!"".equals(cursor.getString(4))){
+                                contentStr1 += "\n체인 실린더 쿨타임 감소";
+                                contentStr2 += "\n" + cursor.getString(4);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            drawGridLayoutData(cursor.getString(0), levelColumnWidth, columnHeight, 15, "NCL");
+                            drawGridLayoutData(contentStr1, otherColumnWidth - 50, columnHeight, 15, "NC");
+                            drawGridLayoutData(contentStr2, 50, columnHeight, 15, "NC");
                         }
 
                         break;
                     case "양손검" :
-                        gridColumnCount = 5;
-                        ergGridLayout.setColumnCount(gridColumnCount);
+                        ergGridLayout.setColumnCount(3);
 
-                        drawGridLayoutData("레벨",50,65,18, "M");
-                        drawGridLayoutData("무기 공격력 증가",150,65,18, "M");
-                        drawGridLayoutData("방어, 보호, \n마법방어, 마법보호 증가",180,65,18, "M");
-                        drawGridLayoutData("스플래시 반경 증가",150,65,18, "M");
-                        drawGridLayoutData("근접 전투 재능 스킬 \n쿨타임 감소",170,65,18, "M");
+                        drawGridLayoutData("레벨", levelColumnWidth,65,18, "M");
+                        drawGridLayoutData("효과", otherColumnWidth,65,18, "M");
 
                         while (cursor.moveToNext()) {
-                            drawGridLayoutData(cursor.getString(0), 50, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(1), 150, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(2), 180, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(3), 150, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(4), 170, 30, 15, "C");
+                            String contentStr1 = "";
+                            String contentStr2 = "";
+                            int columnHeight = 0;
+
+                            if(!"".equals(cursor.getString(1))){
+                                contentStr1 += "무기 공격력 증가";
+                                contentStr2 += cursor.getString(1);
+                                columnHeight = columnHeight + 30;
+                            }
+
+                            if(!"".equals(cursor.getString(2))){
+                                contentStr1 += "\n방어/보호, 마법방어/보호 증가";
+                                contentStr2 += "\n" + cursor.getString(2);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            if(!"".equals(cursor.getString(3))){
+                                contentStr1 += "\n스플래시 반경 증가";
+                                contentStr2 += "\n" + cursor.getString(3);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            if(!"".equals(cursor.getString(4))){
+                                contentStr1 += "\n근접 전투 재능 스킬 쿨타임 감소";
+                                contentStr2 += "\n" + cursor.getString(4);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            drawGridLayoutData(cursor.getString(0), levelColumnWidth, columnHeight, 15, "NCL");
+                            drawGridLayoutData(contentStr1, otherColumnWidth - 50, columnHeight, 15, "NC");
+                            drawGridLayoutData(contentStr2, 50, columnHeight, 15, "NC");
                         }
+
                         break;
                     case "원드" :
-                        ergGridLayout.setColumnCount(2);
+                        ergGridLayout.setColumnCount(3);
 
-                        drawGridLayoutData("레벨",50,65,18, "M");
-                        drawGridLayoutData("마법 공격력 증가",150,65,18, "M");
+                        drawGridLayoutData("레벨", levelColumnWidth,65,18, "M");
+                        drawGridLayoutData("효과", otherColumnWidth,65,18, "M");
 
                         while (cursor.moveToNext()) {
-                            drawGridLayoutData(cursor.getString(0), 50, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(1), 150, 30, 15, "C");
+                            String contentStr1 = "";
+                            String contentStr2 = "";
+                            int columnHeight = 0;
+
+                            if(!"".equals(cursor.getString(1))){
+                                contentStr1 += "마법 공격력 증가";
+                                contentStr2 += cursor.getString(1);
+                                columnHeight = columnHeight + 30;
+                            }
+
+                            drawGridLayoutData(cursor.getString(0), levelColumnWidth, columnHeight, 15, "NCL");
+                            drawGridLayoutData(contentStr1, otherColumnWidth - 50, columnHeight, 15, "NC");
+                            drawGridLayoutData(contentStr2, 50, columnHeight, 15, "NC");
                         }
 
                         break;
                     case "한손검, 아틀라틀" :
-                        ergGridLayout.setColumnCount(2);
+                        ergGridLayout.setColumnCount(3);
 
-                        drawGridLayoutData("레벨",50,65,18, "M");
-                        drawGridLayoutData("무기 공격력 증가",150,65,18, "M");
+                        drawGridLayoutData("레벨", levelColumnWidth,65,18, "M");
+                        drawGridLayoutData("효과", otherColumnWidth,65,18, "M");
 
                         while (cursor.moveToNext()) {
-                            drawGridLayoutData(cursor.getString(0), 50, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(1), 150, 30, 15, "C");
+                            String contentStr1 = "";
+                            String contentStr2 = "";
+                            int columnHeight = 0;
+
+                            if(!"".equals(cursor.getString(1))){
+                                contentStr1 += "무기 공격력 증가";
+                                contentStr2 += cursor.getString(1);
+                                columnHeight = columnHeight + 30;
+                            }
+
+                            drawGridLayoutData(cursor.getString(0), levelColumnWidth, columnHeight, 15, "NCL");
+                            drawGridLayoutData(contentStr1, otherColumnWidth - 50, columnHeight, 15, "NC");
+                            drawGridLayoutData(contentStr2, 50, columnHeight, 15, "NC");
                         }
 
                         break;
                     case "랜스" :
-                        ergGridLayout.setColumnCount(4);
+                        ergGridLayout.setColumnCount(3);
 
-                        drawGridLayoutData("레벨",50,65,18, "M");
-                        drawGridLayoutData("무기 공격력 증가",150,65,18, "M");
-                        drawGridLayoutData("방어, 보호, \n마법방어, 마법보호 증가",180,65,18, "M");
-                        drawGridLayoutData("경직 저항 확률 증가",170,65,18, "M");
+                        drawGridLayoutData("레벨", levelColumnWidth,65,18, "M");
+                        drawGridLayoutData("효과", otherColumnWidth,65,18, "M");
 
                         while (cursor.moveToNext()) {
-                            drawGridLayoutData(cursor.getString(0), 50, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(1), 150, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(2), 180, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(3), 170, 30, 15, "C");
+                            String contentStr1 = "";
+                            String contentStr2 = "";
+                            int columnHeight = 0;
+
+                            if(!"".equals(cursor.getString(1))){
+                                contentStr1 += "무기 공격력 증가";
+                                contentStr2 += cursor.getString(1);
+                                columnHeight = columnHeight + 30;
+                            }
+
+                            if(!"".equals(cursor.getString(2))){
+                                contentStr1 += "\n방어/보호, 마법방어/보호 증가";
+                                contentStr2 += "\n" + cursor.getString(2);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            if(!"".equals(cursor.getString(3))){
+                                contentStr1 += "\n경직 저항 확률 증가";
+                                contentStr2 += "\n" + cursor.getString(3);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            drawGridLayoutData(cursor.getString(0), levelColumnWidth, columnHeight, 15, "NCL");
+                            drawGridLayoutData(contentStr1, otherColumnWidth - 50, columnHeight, 15, "NC");
+                            drawGridLayoutData(contentStr2, 50, columnHeight, 15, "NC");
                         }
 
                         break;
                     case "양손도끼, 둔기" :
-                        ergGridLayout.setColumnCount(5);
+                        ergGridLayout.setColumnCount(3);
 
-                        drawGridLayoutData("레벨",50,65,18, "M");
-                        drawGridLayoutData("무기 공격력 증가",150,65,18, "M");
-                        drawGridLayoutData("방어, 보호, \n마법방어, 마법보호 증가",180,65,18, "M");
-                        drawGridLayoutData("경직 저항 확률 증가",170,65,18, "M");
-                        drawGridLayoutData("근접 전투 재능 스킬 \n쿨타임 감소",170,65,18, "M");
+                        drawGridLayoutData("레벨", levelColumnWidth,65,18, "M");
+                        drawGridLayoutData("효과", otherColumnWidth,65,18, "M");
 
                         while (cursor.moveToNext()) {
-                            drawGridLayoutData(cursor.getString(0), 50, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(1), 150, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(2), 180, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(3), 170, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(4), 170, 30, 15, "C");
+                            String contentStr1 = "";
+                            String contentStr2 = "";
+                            int columnHeight = 0;
+
+                            if(!"".equals(cursor.getString(1))){
+                                contentStr1 += "무기 공격력 증가";
+                                contentStr2 += cursor.getString(1);
+                                columnHeight = columnHeight + 30;
+                            }
+
+                            if(!"".equals(cursor.getString(2))){
+                                contentStr1 += "\n방어/보호, 마법방어/보호 증가";
+                                contentStr2 += "\n" + cursor.getString(2);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            if(!"".equals(cursor.getString(3))){
+                                contentStr1 += "\n경직 저항 확률 증가";
+                                contentStr2 += "\n" + cursor.getString(3);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            if(!"".equals(cursor.getString(4))){
+                                contentStr1 += "\n근접 전투 재능 스킬 쿨타임 감소";
+                                contentStr2 += "\n" + cursor.getString(4);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            drawGridLayoutData(cursor.getString(0), levelColumnWidth, columnHeight, 15, "NCL");
+                            drawGridLayoutData(contentStr1, otherColumnWidth - 50, columnHeight, 15, "NC");
+                            drawGridLayoutData(contentStr2, 50, columnHeight, 15, "NC");
                         }
 
                         break;
                     case "한손둔기" :
-                        gridColumnCount = 5;
-                        ergGridLayout.setColumnCount(gridColumnCount);
+                        ergGridLayout.setColumnCount(3);
 
-                        drawGridLayoutData("레벨",50,65,18, "M");
-                        drawGridLayoutData("무기 공격력 증가",150,65,18, "M");
-                        drawGridLayoutData("방어, 보호, \n마법방어, 마법보호 증가",180,65,18, "M");
-                        drawGridLayoutData("경직 저항 확률 증가",170,65,18, "M");
-                        drawGridLayoutData("근접 전투 재능 스킬 \n쿨타임 감소",170,65,18, "M");
+                        drawGridLayoutData("레벨", levelColumnWidth,65,18, "M");
+                        drawGridLayoutData("효과", otherColumnWidth,65,18, "M");
 
                         while (cursor.moveToNext()) {
-                            drawGridLayoutData(cursor.getString(0), 50, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(1), 150, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(2), 180, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(3), 170, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(4), 170, 30, 15, "C");
+                            String contentStr1 = "";
+                            String contentStr2 = "";
+                            int columnHeight = 0;
+
+                            if(!"".equals(cursor.getString(1))){
+                                contentStr1 += "무기 공격력 증가";
+                                contentStr2 += cursor.getString(1);
+                                columnHeight = columnHeight + 30;
+                            }
+
+                            if(!"".equals(cursor.getString(2))){
+                                contentStr1 += "\n방어/보호, 마법방어/보호 증가";
+                                contentStr2 += "\n" + cursor.getString(2);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            if(!"".equals(cursor.getString(3))){
+                                contentStr1 += "\n경직 저항 확률 증가";
+                                contentStr2 += "\n" + cursor.getString(3);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            if(!"".equals(cursor.getString(4))){
+                                contentStr1 += "\n근접 전투 재능 스킬 쿨타임 감소";
+                                contentStr2 += "\n" + cursor.getString(4);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            drawGridLayoutData(cursor.getString(0), levelColumnWidth, columnHeight, 15, "NCL");
+                            drawGridLayoutData(contentStr1, otherColumnWidth - 50, columnHeight, 15, "NC");
+                            drawGridLayoutData(contentStr2, 50, columnHeight, 15, "NC");
                         }
 
                         break;
                     case "한손도끼" :
-                        gridColumnCount = 5;
-                        ergGridLayout.setColumnCount(gridColumnCount);
+                        ergGridLayout.setColumnCount(3);
 
-                        drawGridLayoutData("레벨",50,65,18, "M");
-                        drawGridLayoutData("무기 공격력 증가",150,65,18, "M");
-                        drawGridLayoutData("방어, 보호, \n마법방어, 마법보호 증가",180,65,18, "M");
-                        drawGridLayoutData("윈드밀 데미지 증가",170,65,18, "M");
-                        drawGridLayoutData("근접 전투 재능 스킬 \n쿨타임 감소",170,65,18, "M");
+                        drawGridLayoutData("레벨", levelColumnWidth,65,18, "M");
+                        drawGridLayoutData("효과", otherColumnWidth,65,18, "M");
 
                         while (cursor.moveToNext()) {
-                            drawGridLayoutData(cursor.getString(0), 50, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(1), 150, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(2), 180, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(3), 170, 30, 15, "C");
-                            drawGridLayoutData(cursor.getString(4), 170, 30, 15, "C");
+                            String contentStr1 = "";
+                            String contentStr2 = "";
+                            int columnHeight = 0;
+
+                            if(!"".equals(cursor.getString(1))){
+                                contentStr1 += "무기 공격력 증가";
+                                contentStr2 += cursor.getString(1);
+                                columnHeight = columnHeight + 30;
+                            }
+
+                            if(!"".equals(cursor.getString(2))){
+                                contentStr1 += "\n방어/보호, 마법방어/보호 증가";
+                                contentStr2 += "\n" + cursor.getString(2);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            if(!"".equals(cursor.getString(3))){
+                                contentStr1 += "\n윈드밀 데미지 증가";
+                                contentStr2 += "\n" + cursor.getString(3);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            if(!"".equals(cursor.getString(4))){
+                                contentStr1 += "\n근접 전투 재능 스킬 쿨타임 감소";
+                                contentStr2 += "\n" + cursor.getString(4);
+                                columnHeight = columnHeight + 14;
+                            }
+
+                            drawGridLayoutData(cursor.getString(0), levelColumnWidth, columnHeight, 15, "NCL");
+                            drawGridLayoutData(contentStr1, otherColumnWidth - 50, columnHeight, 15, "NC");
+                            drawGridLayoutData(contentStr2, 50, columnHeight, 15, "NC");
                         }
 
                         break;
@@ -474,9 +787,12 @@ public class ErgLayout extends BaseLinearLayout {
                 ergGridLayout.setColumnCount(3);
                 ergGridLayout.setRowCount(50);
 
-                drawGridLayoutData("레벨",130,30,25, "M");
-                drawGridLayoutData("경험치",130,30,25, "M");
-                drawGridLayoutData("누적 경험치",130,30,25, "M");
+                int columnWidth = (int) ((float)( allSizeWidthWithMargin ) / 3 );
+                int lastColumnWidth = allSizeWidthWithMargin - ( columnWidth * 2 );
+
+                drawGridLayoutData("레벨", columnWidth,30,25, "M");
+                drawGridLayoutData("경험치", columnWidth,30,25, "M");
+                drawGridLayoutData("누적 경험치", lastColumnWidth,30,25, "M");
 
                 // 에르그 데이터 가져오는 SQL 작성
                 sql = "SELECT ergLevel, exp, totalExp FROM ERGEXP";
@@ -484,13 +800,13 @@ public class ErgLayout extends BaseLinearLayout {
                 cursor = ergDb.rawQuery(sql, null);
                 while (cursor.moveToNext()) {
                     // 레벨
-                    drawGridLayoutData(cursor.getString(0), 130, 30, 15, "C");
+                    drawGridLayoutData(cursor.getString(0), columnWidth, 30, 15, "C");
 
                     // 경험치
-                    drawGridLayoutData(cursor.getString(1), 130, 30, 15, "C");
+                    drawGridLayoutData(cursor.getString(1), columnWidth, 30, 15, "C");
 
                     // 누적 경험치
-                    drawGridLayoutData(cursor.getString(2), 130, 30, 15, "C");
+                    drawGridLayoutData(cursor.getString(2), lastColumnWidth, 30, 15, "C");
                 }
 
                 break;
@@ -531,6 +847,26 @@ public class ErgLayout extends BaseLinearLayout {
             tempParams.width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, objWidth, getResources().getDisplayMetrics());
             tempParams.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, objHeight, getResources().getDisplayMetrics());
             tempView.setLayoutParams(tempParams);
+
+            //tempView.setBackgroundResource(R.drawable.grid_border_2);
+
+            ergGridLayout.addView(tempView);
+        }else if("NCL".equals(kindGubun) || "NC".equals(kindGubun)) {
+            TextView tempView = new TextView(context);
+            tempView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, objTextSize);
+            tempView.setTextColor(Color.parseColor("#FFFFFF"));
+            tempView.setText(data);
+
+            ViewGroup.LayoutParams tempParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            tempParams.width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, objWidth, getResources().getDisplayMetrics());
+            tempParams.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, objHeight, getResources().getDisplayMetrics());
+            tempView.setLayoutParams(tempParams);
+
+            if("NCL".equals(kindGubun)) {
+                tempView.setGravity(Gravity.CENTER);
+            }else{
+                tempView.setGravity(Gravity.CENTER_VERTICAL);
+            }
 
             //tempView.setBackgroundResource(R.drawable.grid_border_2);
 
