@@ -5,6 +5,7 @@
 
 package com.addon.user.myapplication.layout;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -50,6 +51,7 @@ public class HomeLayout extends BaseLinearLayout {
         super(context);
     }
 
+    @SuppressLint("HandlerLeak")
     public void initialization(Object[] obj) {
 
         layout = (RelativeLayout)getView(R.layout.home_layout);
@@ -61,7 +63,7 @@ public class HomeLayout extends BaseLinearLayout {
         // EVENT SETTING
         setEvent();
 
-        /*handler = new Handler()
+        handler = new Handler()
         {
             public void handleMessage(Message msg)
             {
@@ -84,17 +86,17 @@ public class HomeLayout extends BaseLinearLayout {
                 Message msg = handler.obtainMessage();
                 handler.sendMessage(msg);
             }
-        }.start();*/
+        }.start();
 
         // 1초 마다 실행하는 타이머 세팅
-        Timer m_timer = new Timer(true);
+        /*Timer m_timer = new Timer(true);
         TimerTask m_task = new TimerTask() {
             @Override
             public void run() {
                 errinTimeUpdate();
             }
         };
-        m_timer.schedule(m_task, 0, 1000);
+        m_timer.schedule(m_task, 0, 1000);*/
 
         // 에린의 요일 세팅
         setErrinWeekay();

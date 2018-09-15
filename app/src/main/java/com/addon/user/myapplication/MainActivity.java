@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseAnalytics mFirebaseAnalytics;
 
     // VIEW
-    private RelativeLayout contentView;
+    private LinearLayout contentView;
     private LinearLayout contentLayout;
     public NavigationView navigationView;
     private AdView mAdView;
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(this);
 
-        contentView = (RelativeLayout) findViewById(R.id.contentView);
+        contentView = (LinearLayout) findViewById(R.id.contentView);
         contentLayout = findViewById(R.id.contentLayout);
 
         // 광고
@@ -150,14 +150,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        Timer m_timer = new Timer(true);
+        /*Timer m_timer = new Timer(true);
         TimerTask m_task = new TimerTask() {
             @Override
             public void run() {
-                mAdView.getLayoutParams().height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, deviceHeight - getPixelToDp(thisActivity, contentView.getHeight()), getResources().getDisplayMetrics());
+                contentView.getLayoutParams().height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, deviceHeight - getPixelToDp(thisActivity, mAdView.getHeight()), getResources().getDisplayMetrics());
             }
         };
-        m_timer.schedule(m_task, 1000);
+        m_timer.schedule(m_task, 1000);*/
 
         firstScreen();
     }
