@@ -68,35 +68,25 @@ public class HomeLayout extends BaseLinearLayout {
             public void handleMessage(Message msg)
             {
                 // 원래 하고싶었던 일들 (UI변경작업 등...)
-                // 1초 마다 실행하는 타이머 세팅
-                Timer m_timer = new Timer(true);
-                TimerTask m_task = new TimerTask() {
-                    @Override
-                    public void run() {
-                        errinTimeUpdate();
-                    }
-                };
-                m_timer.schedule(m_task, 0, 1000);
-            }
-        };
-
-        new Thread(){
-            public void run()
-            {
-                Message msg = handler.obtainMessage();
-                handler.sendMessage(msg);
-            }
-        }.start();
-
-        // 1초 마다 실행하는 타이머 세팅
-        /*Timer m_timer = new Timer(true);
-        TimerTask m_task = new TimerTask() {
-            @Override
-            public void run() {
                 errinTimeUpdate();
             }
         };
-        m_timer.schedule(m_task, 0, 1000);*/
+
+        // 1초 마다 실행하는 타이머 세팅
+        Timer m_timer = new Timer(true);
+        TimerTask m_task = new TimerTask() {
+            @Override
+            public void run() {
+                new Thread(){
+                    public void run()
+                    {
+                        Message msg = handler.obtainMessage();
+                        handler.sendMessage(msg);
+                    }
+                }.start();
+            }
+        };
+        m_timer.schedule(m_task, 0, 1000);
 
         // 에린의 요일 세팅
         setErrinWeekay();

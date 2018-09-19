@@ -28,7 +28,6 @@ import com.addon.user.myapplication.layout.ErgLayout;
 import com.addon.user.myapplication.layout.HistoryLayout;
 import com.addon.user.myapplication.layout.HomeLayout;
 import com.addon.user.myapplication.layout.MusicLayout;
-import com.addon.user.myapplication.layout.TestLayout;
 import com.addon.user.myapplication.view.NoticeItem;
 import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
@@ -305,7 +304,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             toolbarTitleView.setText("연주도우미");
             whereCurrentLayout = "music";
-        }else if(id == R.id.nav_test) {
+        }/*else if(id == R.id.nav_test) {
             if(contentView != null) {
                 contentView.removeAllViews();
             }
@@ -317,7 +316,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             toolbarTitleView.setText("테스트도우미");
             whereCurrentLayout = "test";
-        }
+        }*/
 
         /*
         else if(id == R.id.nav_title) {

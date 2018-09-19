@@ -6,7 +6,7 @@
         <item android:icon="@mipmap/trade_logo_64" android:id="@+id/nav_trade" android:title="교역도우미" />
         <item android:icon="@mipmap/ic_erg" android:id="@+id/nav_erg" android:title="에르그도우미" />
         <item android:icon="@mipmap/music_64" android:id="@+id/nav_music" android:title="연주도우미" />
-        <item android:icon="@mipmap/music_64" android:id="@+id/nav_test" android:title="테스트" />
+        <!--<item android:icon="@mipmap/music_64" android:id="@+id/nav_test" android:title="테스트" />-->
         <!--
         <item android:icon="@mipmap/music_64" android:id="@+id/nav_title" android:title="타이틀도우미" />
         <item android:icon="@mipmap/music_64" android:id="@+id/nav_music" android:title="악기도우미" />
