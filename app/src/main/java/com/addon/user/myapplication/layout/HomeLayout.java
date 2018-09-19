@@ -5,25 +5,15 @@
 
 package com.addon.user.myapplication.layout;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Handler;
-import android.os.Message;
-import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.addon.user.myapplication.MainActivity;
 import com.addon.user.myapplication.R;
-
-import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -31,6 +21,8 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static com.google.android.gms.internal.zzahn.runOnUiThread;
 
 public class HomeLayout extends BaseLinearLayout {
     public RelativeLayout layout;
@@ -44,14 +36,10 @@ public class HomeLayout extends BaseLinearLayout {
     private TextView mainMenu2;
     private TextView mainMenu3;
 
-    // Handler
-    private Handler handler;
-
     public HomeLayout(Context context) {
         super(context);
     }
 
-    @SuppressLint("HandlerLeak")
     public void initialization(Object[] obj) {
 
         layout = (RelativeLayout)getView(R.layout.home_layout);
@@ -63,30 +51,49 @@ public class HomeLayout extends BaseLinearLayout {
         // EVENT SETTING
         setEvent();
 
-        handler = new Handler()
+        /*handler = new Handler()
         {
             public void handleMessage(Message msg)
             {
-                // 원래 하고싶었던 일들 (UI변경작업 등...)
                 errinTimeUpdate();
             }
-        };
+        };*/
 
-        // 1초 마다 실행하는 타이머 세팅
         Timer m_timer = new Timer(true);
         TimerTask m_task = new TimerTask() {
             @Override
             public void run() {
-                new Thread(){
+                /*new Thread(new Runnable() {
                     public void run()
                     {
                         Message msg = handler.obtainMessage();
                         handler.sendMessage(msg);
                     }
-                }.start();
+                }.start();*/
+
+                new Thread(new Runnable() {
+                    @Override public void run() {
+                        // 현재 UI 스레드가 아니기 때문에 메시지 큐에 Runnable을 등록 함
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                errinTimeUpdate();
+                            }
+                        });
+                    }
+                }).start();
             }
         };
         m_timer.schedule(m_task, 0, 1000);
+
+        // 1초 마다 실행하는 타이머 세팅
+        /*Timer m_timer = new Timer(true);
+        TimerTask m_task = new TimerTask() {
+            @Override
+            public void run() {
+                errinTimeUpdate();
+            }
+        };
+        m_timer.schedule(m_task, 0, 1000);*/
 
         // 에린의 요일 세팅
         setErrinWeekay();

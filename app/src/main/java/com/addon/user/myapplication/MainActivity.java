@@ -41,9 +41,12 @@ import android.view.MenuItem;
 import com.addon.user.myapplication.layout.TradeLayout;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
+
+import static com.google.android.gms.internal.zzahn.runOnUiThread;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private long backKeyPressedTime;
@@ -55,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public SQLiteDatabase tradeDb;
 
     private TextView toolbarTitleView;
+    private Toolbar toolbar;
 
     private FirebaseAnalytics mFirebaseAnalytics;
 
@@ -95,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         deviceWidth = getPixelToDp(this, displayMetrics.widthPixels);
         deviceHeight = getPixelToDp(this, displayMetrics.heightPixels);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbarTitleView = (TextView) findViewById(R.id.toolbar_title);
         setSupportActionBar(toolbar);
 
@@ -112,10 +116,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         contentView = (LinearLayout) findViewById(R.id.contentView);
         contentLayout = findViewById(R.id.contentLayout);
 
+        mAdView = findViewById(R.id.adView);
+
+        // 광고 세팅 및 화면 세팅
+        setAdViewAndShow();
+
+        firstScreen();
+    }
+
+    /**
+     * 광고 및 화면 세팅 호출
+     */
+    private void setAdViewAndShow(){
+
         // 광고
         MobileAds.initialize(this, getString(R.string.ad_unit_id));
 
-        mAdView = findViewById(R.id.adView);
         // .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
@@ -150,16 +166,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        /*Timer m_timer = new Timer(true);
+        Timer m_timer = new Timer(true);
         TimerTask m_task = new TimerTask() {
             @Override
             public void run() {
-                contentView.getLayoutParams().height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, deviceHeight - getPixelToDp(thisActivity, mAdView.getHeight()), getResources().getDisplayMetrics());
+                new Thread(new Runnable() {
+                    @Override public void run() {
+                        // 현재 UI 스레드가 아니기 때문에 메시지 큐에 Runnable을 등록 함
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                contentView.getLayoutParams().height = contentLayout.getHeight() - mAdView.getHeight();
+                                contentView.requestLayout();
+                            }
+                        });
+                    }
+                }).start();
             }
         };
-        m_timer.schedule(m_task, 1000);*/
-
-        firstScreen();
+        m_timer.schedule(m_task, 1000);
     }
 
     /**
@@ -403,7 +427,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      * @param DP
      * @return
      */
-    /*public int getDpToPixel(Context context, int DP) {
+    public int getDpToPixel(Context context, int DP) {
         float px = 0;
         try {
             px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, DP, context.getResources().getDisplayMetrics());
@@ -412,7 +436,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         return (int) px;
-    }*/
+    }
 
     /**
      * PX -> DP
