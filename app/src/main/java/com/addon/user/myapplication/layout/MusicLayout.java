@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,12 +32,14 @@ import org.w3c.dom.Text;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MusicLayout extends BaseLinearLayout {
     public LinearLayout layout;
     public MainActivity mainActivity;
 
-    // VIEW
+    // 랭크 SPINNER
     private Spinner instrumentRankSpinner;
     private Spinner songRankSpinner;
     private Spinner BFRankSpinner;
@@ -45,8 +48,100 @@ public class MusicLayout extends BaseLinearLayout {
     private Spinner MCRankSpinner;
     private Spinner SPRankSpinner;
 
+    // 랭크 SPINNER DATA ARRAY
+    private ArrayAdapter<CharSequence> IRSDataArray;
+    private ArrayAdapter<CharSequence> SONGDataArray;
+    private ArrayAdapter<CharSequence> BFRDataArray;
+    private ArrayAdapter<CharSequence> VVRDataArray;
+    private ArrayAdapter<CharSequence> BVRDataArray;
+    private ArrayAdapter<CharSequence> MCRDataArray;
+    private ArrayAdapter<CharSequence> SPRDataArray;
+
+    // 타이틀 SPINNER
     private Spinner firstTitleSpinner;
     private Spinner secondTitleSpinner;
+
+    // 타이틀 SPINNER DATA ARRAY
+    private ArrayAdapter<CharSequence> firstTitleDataArray;
+    private ArrayAdapter<CharSequence> secondTitleDataArray;
+
+    // 왼쪽 악세 SPINNER
+    private Spinner leftAccessoryInchant1Spinner;
+    private Spinner leftAccessoryInchant2Spinner;
+    private Spinner leftAccessoryNMESpinner;
+    private Spinner leftAccessoryGMESpinner;
+    private Spinner leftAccessoryBMESpinner;
+    private Spinner leftAccessoryVVMSSpinner;
+    private Spinner leftAccessoryVVASSpinner;
+    private Spinner leftAccessoryBVGSSpinner;
+
+    // 오른쪽 악세 SPINNER
+    private Spinner rightAccessoryInchant1Spinner;
+    private Spinner rightAccessoryInchant2Spinner;
+    private Spinner rightAccessoryNMESpinner;
+    private Spinner rightAccessoryGMESpinner;
+    private Spinner rightAccessoryBMESpinner;
+    private Spinner rightAccessoryVVMSSpinner;
+    private Spinner rightAccessoryVVASSpinner;
+    private Spinner rightAccessoryBVGSSpinner;
+
+    // 머리 SPINNER
+    // private Spinner headInchant1Spinner;
+    private Spinner headInchant2Spinner;
+
+    // 옷 SPINNER
+    private Spinner clothInchant1Spinner;
+    private Spinner clothInchant2Spinner;
+
+    // 장갑 SPINNER
+    private Spinner handClothInchant1Spinner;
+    // private Spinner handClothInchant2Spinner;
+    private Spinner handClothBVGSSpinner;
+
+    // 신발 SPINNER
+    private Spinner shoesInchant1Spinner;
+    // private Spinner shoesInchant2Spinner;
+    private Spinner shoesVVMSSpinner;
+    private Spinner shoesVVASSpinner;
+
+    // 왼쪽 악세 SPINNER DATA ARRAY
+    private ArrayAdapter<CharSequence> leftAccessoryInchant1DataArray;
+    private ArrayAdapter<CharSequence> leftAccessoryInchant2DataArray;
+    private ArrayAdapter<CharSequence> leftAccessoryNMEDataArray;
+    private ArrayAdapter<CharSequence> leftAccessoryGMEDataArray;
+    private ArrayAdapter<CharSequence> leftAccessoryBMEDataArray;
+    private ArrayAdapter<CharSequence> leftAccessoryVVMSDataArray;
+    private ArrayAdapter<CharSequence> leftAccessoryVVASDataArray;
+    private ArrayAdapter<CharSequence> leftAccessoryBVGSDataArray;
+
+    // 오른쪽 악세 SPINNER DATA ARRAY
+    private ArrayAdapter<CharSequence> rightAccessoryInchant1DataArray;
+    private ArrayAdapter<CharSequence> rightAccessoryInchant2DataArray;
+    private ArrayAdapter<CharSequence> rightAccessoryNMEDataArray;
+    private ArrayAdapter<CharSequence> rightAccessoryGMEDataArray;
+    private ArrayAdapter<CharSequence> rightAccessoryBMEDataArray;
+    private ArrayAdapter<CharSequence> rightAccessoryVVMSDataArray;
+    private ArrayAdapter<CharSequence> rightAccessoryVVASDataArray;
+    private ArrayAdapter<CharSequence> rightAccessoryBVGSDataArray;
+
+    // 머리 SPINNER DATA ARRAY
+    private ArrayAdapter<CharSequence> headInchant1DataArray;
+    private ArrayAdapter<CharSequence> headInchant2DataArray;
+
+    // 옷 SPINNER DATA ARRAY
+    private ArrayAdapter<CharSequence> clothInchant1DataArray;
+    private ArrayAdapter<CharSequence> clothInchant2DataArray;
+
+    // 장갑 SPINNER DATA ARRAY
+    private ArrayAdapter<CharSequence> handClothInchant1DataArray;
+    private ArrayAdapter<CharSequence> handClothInchant2DataArray;
+    private ArrayAdapter<CharSequence> handClothBVGSDataArray;
+
+    // 신발 SPINNER DATA ARRAY
+    private ArrayAdapter<CharSequence> shoesInchant1DataArray;
+    private ArrayAdapter<CharSequence> shoesInchant2DataArray;
+    private ArrayAdapter<CharSequence> shoesVVMSDataArray;
+    private ArrayAdapter<CharSequence> shoesVVASDataArray;
 
     // TEXTVIEW
     // 전장의 서곡
@@ -98,24 +193,6 @@ public class MusicLayout extends BaseLinearLayout {
     private TextView spValueTextView_2_3;
     private TextView spValueTextView_3_3;
 
-    // 플러스 요인 ( 인챈트/아이템 효과 )
-    // VIEW
-    private EditText musicPlusCountEditText;
-    private EditText BFCountEditText;
-    private EditText VVCountEditText;
-    private EditText BYCountEditText;
-    private EditText MCCountEditText;
-    private EditText SPCountEditText;
-
-    // 플러스 요인 ( 세공 vs 에코스톤 )
-    // VIEW
-    private EditText VVMSCountEditText;
-    private EditText VVASCountEditText;
-    private EditText BVGSCountEditText;
-    private EditText NMECountEditText;
-    private EditText GMECountEditText;
-    private EditText BMECountEditText;
-
     // DATA
     private int musicPlusCountInt = 0;
     private int BFCountInt = 0;
@@ -130,18 +207,6 @@ public class MusicLayout extends BaseLinearLayout {
     private int NMECountInt = 0;
     private int GMECountInt = 0;
     private int BMECountInt = 0;
-
-    // SPINNER DATA ARRAY
-    private ArrayAdapter<CharSequence> IRSDataArray;
-    private ArrayAdapter<CharSequence> SONGDataArray;
-    private ArrayAdapter<CharSequence> BFRDataArray;
-    private ArrayAdapter<CharSequence> VVRDataArray;
-    private ArrayAdapter<CharSequence> BVRDataArray;
-    private ArrayAdapter<CharSequence> MCRDataArray;
-    private ArrayAdapter<CharSequence> SPRDataArray;
-
-    private ArrayAdapter<CharSequence> firstTitleDataArray;
-    private ArrayAdapter<CharSequence> secondTitleDataArray;
 
     // 스킬 랭크에 따른 기본 수치
     // 악기 연주
@@ -174,6 +239,15 @@ public class MusicLayout extends BaseLinearLayout {
     // 처음 시작 및 저장 데이터를 주기 위해서 db 호출
     private SQLiteDatabase localDb;
 
+    // 데이터 맵
+    private Map<String, String> dataMap = new HashMap<String, String>();
+
+    // 탭
+    private LinearLayout tab1Layout;
+    private LinearLayout tab2Layout;
+    private TextView tab1Button;
+    private TextView tab2Button;
+
     public MusicLayout(Context context) {
         super(context);
     }
@@ -182,7 +256,7 @@ public class MusicLayout extends BaseLinearLayout {
         layout = (LinearLayout)getView(R.layout.music_layout);
         addView(layout);
 
-        // SPINNER SETTING
+        // 랭크 SPINNER SETTING
         instrumentRankSpinner = layout.findViewById(R.id.instrumentRankSpinner);
         songRankSpinner = layout.findViewById(R.id.songRankSpinner);
         BFRankSpinner = layout.findViewById(R.id.BFRankSpinner);
@@ -190,11 +264,49 @@ public class MusicLayout extends BaseLinearLayout {
         BVRankSpinner = layout.findViewById(R.id.BVRankSpinner);
         MCRankSpinner = layout.findViewById(R.id.MCRankSpinner);
         SPRankSpinner = layout.findViewById(R.id.SPRankSpinner);
-/*
 
+        // 타이틀 SPINNER SETTING
         firstTitleSpinner = layout.findViewById(R.id.firstTitleSpinner);
         secondTitleSpinner = layout.findViewById(R.id.secondTitleSpinner);
-*/
+
+        // 왼쪽 악세 SPINNER SETTING
+        leftAccessoryInchant1Spinner = layout.findViewById(R.id.leftAccessoryInchant1);
+        leftAccessoryInchant2Spinner = layout.findViewById(R.id.leftAccessoryInchant2);
+        leftAccessoryNMESpinner = layout.findViewById(R.id.leftAccessoryNME);
+        leftAccessoryGMESpinner = layout.findViewById(R.id.leftAccessoryGME);
+        leftAccessoryBMESpinner = layout.findViewById(R.id.leftAccessoryBME);
+        leftAccessoryVVMSSpinner = layout.findViewById(R.id.leftAccessoryVVMS);
+        leftAccessoryVVASSpinner = layout.findViewById(R.id.leftAccessoryVVAS);
+        leftAccessoryBVGSSpinner = layout.findViewById(R.id.leftAccessoryBVGS);
+
+        // 오른쪽 악세 SPINNER SETTING
+        rightAccessoryInchant1Spinner = layout.findViewById(R.id.rightAccessoryInchant1);
+        rightAccessoryInchant2Spinner = layout.findViewById(R.id.rightAccessoryInchant2);
+        rightAccessoryNMESpinner = layout.findViewById(R.id.rightAccessoryNME);
+        rightAccessoryGMESpinner = layout.findViewById(R.id.rightAccessoryGME);
+        rightAccessoryBMESpinner = layout.findViewById(R.id.rightAccessoryBME);
+        rightAccessoryVVMSSpinner = layout.findViewById(R.id.rightAccessoryVVMS);
+        rightAccessoryVVASSpinner = layout.findViewById(R.id.rightAccessoryVVAS);
+        rightAccessoryBVGSSpinner = layout.findViewById(R.id.rightAccessoryBVGS);
+
+        // 머리 SPINNER SETTING
+        // headInchant1Spinner = layout.findViewById(R.id.headInchant1);
+        headInchant2Spinner = layout.findViewById(R.id.headInchant2);
+
+        // 옷 SPINNER SETTING
+        clothInchant1Spinner = layout.findViewById(R.id.clothInchant1);
+        clothInchant2Spinner = layout.findViewById(R.id.clothInchant2);
+
+        // 장갑 SPINNER SETTING
+        handClothInchant1Spinner = layout.findViewById(R.id.handClothInchant1);
+        // handClothInchant2Spinner = layout.findViewById(R.id.handClothInchant2);
+        handClothBVGSSpinner = layout.findViewById(R.id.handClothBVGS);
+
+        // 신발 SPINNER SETTING
+        shoesInchant1Spinner = layout.findViewById(R.id.shoesInchant1);
+        // shoesInchant2Spinner = layout.findViewById(R.id.shoesInchant2);
+        shoesVVMSSpinner = layout.findViewById(R.id.shoesVVMS);
+        shoesVVASSpinner = layout.findViewById(R.id.shoesVVAS);
 
         // TEXTVIEW
         bfValueTextView_1_1 = findViewById(R.id.bf_value_1_1);
@@ -241,25 +353,39 @@ public class MusicLayout extends BaseLinearLayout {
         spValueTextView_2_3 = findViewById(R.id.sp_value_2_3);
         spValueTextView_3_3 = findViewById(R.id.sp_value_3_3);
 
-        // PLUS TEXT VIEW
-        musicPlusCountEditText = findViewById(R.id.musicPlusCount);
-        BFCountEditText = findViewById(R.id.BFCount);
-        VVCountEditText = findViewById(R.id.VVCount);
-        BYCountEditText = findViewById(R.id.BYCount);
-        MCCountEditText = findViewById(R.id.MCCount);
-        SPCountEditText = findViewById(R.id.SPCount);
-
-        VVMSCountEditText = findViewById(R.id.VVMSCount);
-        VVASCountEditText = findViewById(R.id.VVASCount);
-        BVGSCountEditText = findViewById(R.id.BVGSCount);
-        NMECountEditText = findViewById(R.id.NMECount);
-        GMECountEditText = findViewById(R.id.GMECount);
-        BMECountEditText = findViewById(R.id.BMECount);
+        // 탭 버튼
+        tab1Layout = findViewById(R.id.tab1Layout);
+        tab2Layout = findViewById(R.id.tab2Layout);
+        tab1Button = findViewById(R.id.tab_1);
+        tab2Button = findViewById(R.id.tab_2);
 
         this.setSpinnerData();
+        this.tabButtonSetting();
     }
 
+    private void tabButtonSetting(){
+        tab1Button.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tab1Layout.setVisibility(View.VISIBLE);
+                tab2Layout.setVisibility(View.GONE);
+            }
+        });
+
+        tab2Button.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tab1Layout.setVisibility(View.GONE);
+                tab2Layout.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+    /**
+     * SPINNER 데이터 세팅
+     */
     public void setSpinnerData(){
+        //************************ 랭크 시작 ************************/
         // 악기 연주 랭크
         // instrumentRankSpinner.setPrompt("출발 마을을 선택하시오.");
         IRSDataArray = ArrayAdapter.createFromResource(context, R.array.masterySelected, R.layout.support_simple_spinner_dropdown_item);
@@ -405,9 +531,7 @@ public class MusicLayout extends BaseLinearLayout {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 setBaseValueFromRank("SP", SPRDataArray.getItem(i).toString());
-
                 setFinishValue("SP");
-
                 setUpdateData("SPRank", String.valueOf(i));
             }
 
@@ -416,363 +540,80 @@ public class MusicLayout extends BaseLinearLayout {
 
             }
         });
+        //************************ 랭크 종료 ************************/
 
         //************************ 타이틀 시작 ************************/
-        /*firstTitleDataArray = ArrayAdapter.createFromResource(context, R.array.musicFirstTitleArray, R.layout.support_simple_spinner_dropdown_item);
-        firstTitleDataArray.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        firstTitleSpinner.setAdapter(firstTitleDataArray);
-        firstTitleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                *//*setBaseValueFromRank("SP", SPRDataArray.getItem(i).toString());
-
-                setFinishValue("SP");
-
-                setUpdateData("SPRank", String.valueOf(i));*//*
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-        secondTitleDataArray = ArrayAdapter.createFromResource(context, R.array.musicSecondTitleArray, R.layout.support_simple_spinner_dropdown_item);
-        secondTitleDataArray.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        secondTitleSpinner.setAdapter(secondTitleDataArray);
-        secondTitleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                *//*setBaseValueFromRank("SP", SPRDataArray.getItem(i).toString());
-
-                setFinishValue("SP");
-
-                setUpdateData("SPRank", String.valueOf(i));*//*
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });*/
+        // 1차 타이틀
+        setSpinnerView(firstTitleSpinner, firstTitleDataArray, R.array.musicFirstTitleArray, "firstTitleSpinner");
+        // 2차 타이틀
+        setSpinnerView(secondTitleSpinner, secondTitleDataArray, R.array.musicSecondTitleArray, "secondTitleSpinner");
         //************************ 타이틀 종료 ************************/
 
-        //************************ 플러스 요인 ************************/
-        // 악기 연주 효과
-        musicPlusCountEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if("".equals(charSequence.toString())){
-                    musicPlusCountInt = 0;
-                }else{
-                    musicPlusCountInt = Integer.parseInt(charSequence.toString());
-                }
-                setFinishValue("BF");
-                setFinishValue("VV");
-                setFinishValue("BV");
-                setFinishValue("MC");
-                setFinishValue("SP");
-
-                setUpdateData("musicPlusCountEditText", String.valueOf(musicPlusCountInt));
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        // 전장의 서곡 효과
-        BFCountEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if("".equals(charSequence.toString())){
-                    BFCountInt = 0;
-                }else{
-                    BFCountInt = Integer.parseInt(charSequence.toString());
-                }
-                setFinishValue("BF");
-
-                setUpdateData("BFCountEditText", String.valueOf(BFCountInt));
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        // 비바체 효과
-        VVCountEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if("".equals(charSequence.toString())){
-                    VVCountInt = 0;
-                }else{
-                    VVCountInt = Integer.parseInt(charSequence.toString());
-                }
-                setFinishValue("VV");
-
-                setUpdateData("VVCountEditText", String.valueOf(VVCountInt));
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        // 풍년가 효과
-        BYCountEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if("".equals(charSequence.toString())){
-                    BYCountInt = 0;
-                }else{
-                    BYCountInt = Integer.parseInt(charSequence.toString());
-                }
-                setFinishValue("BV");
-
-                setUpdateData("BYCountEditText", String.valueOf(BYCountInt));
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        // 행진곡 효과
-        MCCountEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if("".equals(charSequence.toString())){
-                    MCCountInt = 0;
-                }else{
-                    MCCountInt = Integer.parseInt(charSequence.toString());
-                }
-                setFinishValue("MC");
-
-                setUpdateData("MCCountEditText", String.valueOf(MCCountInt));
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        // 인내의 노래
-        SPCountEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if("".equals(charSequence.toString())){
-                    SPCountInt = 0;
-                }else{
-                    SPCountInt = Integer.parseInt(charSequence.toString());
-                }
-                setFinishValue("SP");
-
-                setUpdateData("SPCountEditText", String.valueOf(SPCountInt));
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        // 비바체 마시속
-        VVMSCountEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if("".equals(charSequence.toString())){
-                    VVMSCountInt = 0;
-                }else{
-                    VVMSCountInt = Integer.parseInt(charSequence.toString());
-                }
-                setFinishValue("VV");
-
-                setUpdateData("VVMSCountEditText", String.valueOf(VVMSCountInt));
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        // 비바체 공격속도
-        VVASCountEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if("".equals(charSequence.toString())){
-                    VVASCountInt = 0;
-                }else{
-                    VVASCountInt = Integer.parseInt(charSequence.toString());
-                }
-                setFinishValue("VV");
-
-                setUpdateData("VVASCountEditText", String.valueOf(VVASCountInt));
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        // 풍년가 채집속도
-        BVGSCountEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if("".equals(charSequence.toString())){
-                    BVGSCountInt = 0;
-                }else{
-                    BVGSCountInt = Integer.parseInt(charSequence.toString());
-                }
-                setFinishValue("BV");
-
-                setUpdateData("BVGSCountEditText", String.valueOf(BVGSCountInt));
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        // 보통 연주 효과
-        NMECountEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if("".equals(charSequence.toString())){
-                    NMECountInt = 0;
-                }else{
-                    NMECountInt = Integer.parseInt(charSequence.toString());
-                }
-                setFinishValue("BF");
-                setFinishValue("VV");
-                setFinishValue("BV");
-                setFinishValue("MC");
-                setFinishValue("SP");
-
-                setUpdateData("NMECountEditText", String.valueOf(NMECountInt));
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        // 훌륭한 연주 효과
-        GMECountEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if("".equals(charSequence.toString())){
-                    GMECountInt = 0;
-                }else{
-                    GMECountInt = Integer.parseInt(charSequence.toString());
-                }
-                setFinishValue("BF");
-                setFinishValue("VV");
-                setFinishValue("BV");
-                setFinishValue("MC");
-                setFinishValue("SP");
-
-                setUpdateData("GMECountEditText", String.valueOf(GMECountInt));
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        // 신들린 연주 효과
-        BMECountEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if("".equals(charSequence.toString())){
-                    BMECountInt = 0;
-                }else{
-                    BMECountInt = Integer.parseInt(charSequence.toString());
-                }
-                setFinishValue("BF");
-                setFinishValue("VV");
-                setFinishValue("BV");
-                setFinishValue("MC");
-                setFinishValue("SP");
-
-                setUpdateData("BMECountEditText", String.valueOf(BMECountInt));
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
+        //************************ 왼쪽 악세 시작 ************************/
+        // 접두 인챈트
+        setSpinnerView(leftAccessoryInchant1Spinner, leftAccessoryInchant1DataArray, R.array.musicInchantForAccessory1, "leftAccessoryInchant1Spinner");
+        // 접미 인챈트
+        setSpinnerView(leftAccessoryInchant2Spinner, leftAccessoryInchant2DataArray, R.array.musicInchantForAccessory2, "leftAccessoryInchant2Spinner");
+        // 보통 연주
+        setSpinnerView(leftAccessoryNMESpinner, leftAccessoryNMEDataArray, R.array.workmangshipSelectedFor3, "leftAccessoryNMESpinner");
+        // 훌륭한 연주
+        setSpinnerView(leftAccessoryGMESpinner, leftAccessoryGMEDataArray, R.array.workmangshipSelectedFor3, "leftAccessoryGMESpinner");
+        // 신들린 연주
+        setSpinnerView(leftAccessoryBMESpinner, leftAccessoryBMEDataArray, R.array.workmangshipSelectedFor3, "leftAccessoryBMESpinner");
+        // 마법 시전 속도
+        setSpinnerView(leftAccessoryVVMSSpinner, leftAccessoryVVMSDataArray, R.array.workmangshipSelectedFor3, "leftAccessoryVVMSSpinner");
+        // 공격 속도
+        setSpinnerView(leftAccessoryVVASSpinner, leftAccessoryVVASDataArray, R.array.workmangshipSelectedFor3, "leftAccessoryVVASSpinner");
+        // 풍년가 채집 속도
+        setSpinnerView(leftAccessoryBVGSSpinner, leftAccessoryBVGSDataArray, R.array.workmangshipSelectedFor3, "leftAccessoryBVGSSpinner");
+        //************************ 왼쪽 악세 종료 ************************/
+
+        //************************ 오른쪽 악세 시작 ************************/
+        // 접두 인챈트
+        setSpinnerView(rightAccessoryInchant1Spinner, rightAccessoryInchant1DataArray, R.array.musicInchantForAccessory1, "rightAccessoryInchant1Spinner");
+        // 접미 인챈트
+        setSpinnerView(rightAccessoryInchant2Spinner, rightAccessoryInchant2DataArray, R.array.musicInchantForAccessory2, "rightAccessoryInchant2Spinner");
+        // 보통 연주
+        setSpinnerView(rightAccessoryNMESpinner, rightAccessoryNMEDataArray, R.array.workmangshipSelectedFor3, "rightAccessoryNMESpinner");
+        // 훌륭한 연주
+        setSpinnerView(rightAccessoryGMESpinner, rightAccessoryGMEDataArray, R.array.workmangshipSelectedFor3, "rightAccessoryGMESpinner");
+        // 신들린 연주
+        setSpinnerView(rightAccessoryBMESpinner, rightAccessoryBMEDataArray, R.array.workmangshipSelectedFor3, "rightAccessoryBMESpinner");
+        // 마법 시전 속도
+        setSpinnerView(rightAccessoryVVMSSpinner, rightAccessoryVVMSDataArray, R.array.workmangshipSelectedFor3, "rightAccessoryVVMSSpinner");
+        // 공격 속도
+        setSpinnerView(rightAccessoryVVASSpinner, rightAccessoryVVASDataArray, R.array.workmangshipSelectedFor3, "rightAccessoryVVASSpinner");
+        // 풍년가 채집 속도
+        setSpinnerView(rightAccessoryBVGSSpinner, rightAccessoryBVGSDataArray, R.array.workmangshipSelectedFor3, "rightAccessoryBVGSSpinner");
+        //************************ 오른쪽 악세 종료 ************************/
+
+        //************************ 머리 시작 ************************/
+        // 접미 인챈트
+        setSpinnerView(headInchant2Spinner, headInchant2DataArray, R.array.musicInchantForHead, "headInchant2Spinner");
+        //************************ 머리 종료 ************************/
+
+        //************************ 옷 시작 ************************/
+        // 접두 인챈트
+        setSpinnerView(clothInchant1Spinner, clothInchant1DataArray, R.array.musicInchantForCloth1, "clothInchant1Spinner");
+        // 접미 인챈트
+        setSpinnerView(clothInchant2Spinner, clothInchant2DataArray, R.array.musicInchantForCloth2, "clothInchant2Spinner");
+        //************************ 옷 종료 ************************/
+
+        //************************ 장갑 시작 ************************/
+        // 접두 인챈트
+        setSpinnerView(handClothInchant1Spinner, handClothInchant1DataArray, R.array.musicInchantForShoes, "handClothInchant1Spinner");
+        // 풍년가 채집 속도
+        setSpinnerView(handClothBVGSSpinner, handClothBVGSDataArray, R.array.workmangshipSelectedFor3, "handClothBVGSSpinner");
+        //************************ 장갑 종료 ************************/
+
+        //************************ 신발 시작 ************************/
+        // 접두 인챈트
+        setSpinnerView(shoesInchant1Spinner, shoesInchant1DataArray, R.array.musicInchantForShoes, "shoesInchant1Spinner");
+        // 마법 시전 속도
+        setSpinnerView(shoesVVMSSpinner, shoesVVMSDataArray, R.array.workmangshipSelectedFor3, "shoesVVMSSpinner");
+        // 비바체 공격 속도
+        setSpinnerView(shoesVVASSpinner, shoesVVASDataArray, R.array.workmangshipSelectedFor3, "shoesVVASSpinner");
+        //************************ 신발 종료 ************************/
     }
 
     /**
@@ -823,42 +664,6 @@ public class MusicLayout extends BaseLinearLayout {
             case "SPRank" :
                 SPRankSpinner.setSelection(Integer.parseInt(keyContent));
             break;
-            case "musicPlusCountEditText" :
-                musicPlusCountEditText.setText(keyContent);
-            break;
-            case "BFCountEditText" :
-                BFCountEditText.setText(keyContent);
-            break;
-            case "VVCountEditText" :
-                VVCountEditText.setText(keyContent);
-            break;
-            case "BYCountEditText" :
-                BYCountEditText.setText(keyContent);
-            break;
-            case "MCCountEditText" :
-                MCCountEditText.setText(keyContent);
-            break;
-            case "SPCountEditText" :
-                SPCountEditText.setText(keyContent);
-            break;
-            case "VVMSCountEditText" :
-                VVMSCountEditText.setText(keyContent);
-            break;
-            case "VVASCountEditText" :
-                VVASCountEditText.setText(keyContent);
-            break;
-            case "BVGSCountEditText" :
-                BVGSCountEditText.setText(keyContent);
-            break;
-            case "NMECountEditText" :
-                NMECountEditText.setText(keyContent);
-            break;
-            case "GMECountEditText" :
-                GMECountEditText.setText(keyContent);
-            break;
-            case "BMECountEditText" :
-                BMECountEditText.setText(keyContent);
-            break;
         }
     }
 
@@ -879,6 +684,10 @@ public class MusicLayout extends BaseLinearLayout {
         // 보연은 기본 + 0
         // 훌연은 기본 + 10
         // 신들은 기본 + 30
+
+
+        // 연주효과 +부분 넣어줘야함
+        // 보연/훌연/신들 세공 및 에코스톤 확인해서 리턴 필요
 
         // 보통 연주
         int normalMusicInt = NMECountInt;
@@ -909,174 +718,179 @@ public class MusicLayout extends BaseLinearLayout {
         // (악기 연주 랭크 + 노래 랭크 + 악기 연주 효과) + 인내의 노래 효과
         int musicEffectForSPInt = musicEffectFromRankInt + SPCountInt;
 
-        // 풍채 제외
-        switch (gubun){
-            case "IRS" :
-                break;
-            case "SONG" :
-                break;
-            case "BF" :
-                //****************** 전장의 서곡 보통 연주 START ******************/
-                float bfValue1_1 = baseBFValue1 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
-                bfValueTextView_1_1.setText(String.format("%.2f", bfValue1_1));
+        //****************** 전장의 서곡 보통 연주 START ******************/
+        float bfValue1_1 = baseBFValue1 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
+        bfValueTextView_1_1.setText(String.format("%.2f", bfValue1_1));
 
-                float bfValue2_1 = baseBFValue2 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
-                bfValueTextView_2_1.setText(String.format("%.2f", bfValue2_1));
+        float bfValue2_1 = baseBFValue2 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
+        bfValueTextView_2_1.setText(String.format("%.2f", bfValue2_1));
 
-                float bfValue3_1 = baseBFValue3 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
-                bfValueTextView_3_1.setText(String.format("%.2f", bfValue3_1));
-                //****************** 전장의 서곡 보통 연주 END ******************/
+        float bfValue3_1 = baseBFValue3 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
+        bfValueTextView_3_1.setText(String.format("%.2f", bfValue3_1));
+        //****************** 전장의 서곡 보통 연주 END ******************/
 
-                //****************** 전장의 서곡 훌륭한 연주 START ******************/
-                float bfValue1_2 = baseBFValue1 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
-                bfValueTextView_1_2.setText(String.format("%.2f", bfValue1_2));
+        //****************** 전장의 서곡 훌륭한 연주 START ******************/
+        float bfValue1_2 = baseBFValue1 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
+        bfValueTextView_1_2.setText(String.format("%.2f", bfValue1_2));
 
-                float bfValue2_2 = baseBFValue2 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
-                bfValueTextView_2_2.setText(String.format("%.2f", bfValue2_2));
+        float bfValue2_2 = baseBFValue2 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
+        bfValueTextView_2_2.setText(String.format("%.2f", bfValue2_2));
 
-                float bfValue3_2 = baseBFValue3 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
-                bfValueTextView_3_2.setText(String.format("%.2f", bfValue3_2));
-                //****************** 전장의 서곡 훌륭한 연주 END ******************/
+        float bfValue3_2 = baseBFValue3 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
+        bfValueTextView_3_2.setText(String.format("%.2f", bfValue3_2));
+        //****************** 전장의 서곡 훌륭한 연주 END ******************/
 
-                //****************** 전장의 서곡 신들린 연주 START ******************/
-                float bfValue1_3 = baseBFValue1 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
-                bfValueTextView_1_3.setText(String.format("%.2f", bfValue1_3));
+        //****************** 전장의 서곡 신들린 연주 START ******************/
+        float bfValue1_3 = baseBFValue1 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
+        bfValueTextView_1_3.setText(String.format("%.2f", bfValue1_3));
 
-                float bfValue2_3 = baseBFValue2 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
-                bfValueTextView_2_3.setText(String.format("%.2f", bfValue2_3));
+        float bfValue2_3 = baseBFValue2 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
+        bfValueTextView_2_3.setText(String.format("%.2f", bfValue2_3));
 
-                float bfValue3_3 = baseBFValue3 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
-                bfValueTextView_3_3.setText(String.format("%.2f", bfValue3_3));
-                //****************** 전장의 서곡 신들린 연주 END ******************/
+        float bfValue3_3 = baseBFValue3 * ( 100 + musicEffectForBFInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
+        bfValueTextView_3_3.setText(String.format("%.2f", bfValue3_3));
+        //****************** 전장의 서곡 신들린 연주 END ******************/
 
-                break;
-            case "VV" :
+        //****************** 비바체 보통 연주 START ******************/
+        float vvValue1_1 = baseVVValue1 * ( 100 + musicEffectForVVMSInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
+        vvValueTextView_1_1.setText(String.format("%.2f", vvValue1_1));
 
-                //****************** 비바체 보통 연주 START ******************/
-                float vvValue1_1 = baseVVValue1 * ( 100 + musicEffectForVVMSInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
-                vvValueTextView_1_1.setText(String.format("%.2f", vvValue1_1));
+        float vvValue2_1 = baseVVValue2 * ( 100 + musicEffectForVVASInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
+        vvValueTextView_2_1.setText(String.format("%.2f", vvValue2_1));
 
-                float vvValue2_1 = baseVVValue2 * ( 100 + musicEffectForVVASInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
-                vvValueTextView_2_1.setText(String.format("%.2f", vvValue2_1));
+        float vvValue3_1 = baseVVValue3 * ( 100 + musicEffectForVVInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
+        vvValueTextView_3_1.setText(String.format("%.2f", vvValue3_1));
+        //****************** 비바체 보통 연주 END ******************/
 
-                float vvValue3_1 = baseVVValue3 * ( 100 + musicEffectForVVInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
-                vvValueTextView_3_1.setText(String.format("%.2f", vvValue3_1));
-                //****************** 비바체 보통 연주 END ******************/
+        //****************** 비바체 훌륭한 연주 START ******************/
+        float vvValue1_2 = baseVVValue1 * ( 100 + musicEffectForVVMSInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
+        vvValueTextView_1_2.setText(String.format("%.2f", vvValue1_2));
 
-                //****************** 비바체 훌륭한 연주 START ******************/
-                float vvValue1_2 = baseVVValue1 * ( 100 + musicEffectForVVMSInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
-                vvValueTextView_1_2.setText(String.format("%.2f", vvValue1_2));
+        float vvValue2_2 = baseVVValue2 * ( 100 + musicEffectForVVASInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
+        vvValueTextView_2_2.setText(String.format("%.2f", vvValue2_2));
 
-                float vvValue2_2 = baseVVValue2 * ( 100 + musicEffectForVVASInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
-                vvValueTextView_2_2.setText(String.format("%.2f", vvValue2_2));
+        float vvValue3_2 = baseVVValue3 * ( 100 + musicEffectForVVInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
+        vvValueTextView_3_2.setText(String.format("%.2f", vvValue3_2));
+        //****************** 비바체 훌륭한 연주 END ******************/
 
-                float vvValue3_2 = baseVVValue3 * ( 100 + musicEffectForVVInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
-                vvValueTextView_3_2.setText(String.format("%.2f", vvValue3_2));
-                //****************** 비바체 훌륭한 연주 END ******************/
+        //****************** 비바체 신들린 연주 START ******************/
+        float vvValue1_3 = baseVVValue1 * ( 100 + musicEffectForVVMSInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
+        vvValueTextView_1_3.setText(String.format("%.2f", vvValue1_3));
 
-                //****************** 비바체 신들린 연주 START ******************/
-                float vvValue1_3 = baseVVValue1 * ( 100 + musicEffectForVVMSInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
-                vvValueTextView_1_3.setText(String.format("%.2f", vvValue1_3));
+        float vvValue2_3 = baseVVValue2 * ( 100 + musicEffectForVVASInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
+        vvValueTextView_2_3.setText(String.format("%.2f", vvValue2_3));
 
-                float vvValue2_3 = baseVVValue2 * ( 100 + musicEffectForVVASInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
-                vvValueTextView_2_3.setText(String.format("%.2f", vvValue2_3));
+        float vvValue3_3 = baseVVValue3 * ( 100 + musicEffectForVVInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
+        vvValueTextView_3_3.setText(String.format("%.2f", vvValue3_3));
 
-                float vvValue3_3 = baseVVValue3 * ( 100 + musicEffectForVVInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
-                vvValueTextView_3_3.setText(String.format("%.2f", vvValue3_3));
-                //****************** 비바체 신들린 연주 END ******************/
+        //****************** 풍년가 보통 연주 START ******************/
+        float bvValue1_1 = baseBVValue1;
+        bvValueTextView_1_1.setText(String.format("%.2f", bvValue1_1));
 
-                break;
-            case "BV" :
+        float bvValue2_1 = baseBVValue2;
+        bvValueTextView_2_1.setText(String.format("%.2f", bvValue2_1));
 
-                //****************** 풍년가 보통 연주 START ******************/
-                float bvValue1_1 = baseBVValue1;
-                bvValueTextView_1_1.setText(String.format("%.2f", bvValue1_1));
+        float bvValue3_1 = baseBVValue3 * ( 100 + musicEffectForBVInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
+        bvValueTextView_3_1.setText(String.format("%.2f", bvValue3_1));
+        //****************** 풍년가 보통 연주 END ******************/
 
-                float bvValue2_1 = baseBVValue2;
-                bvValueTextView_2_1.setText(String.format("%.2f", bvValue2_1));
+        //****************** 풍년가 훌륭한 연주 START ******************/
+        float bvValue1_2 = baseBVValue1;
+        bvValueTextView_1_2.setText(String.format("%.2f", bvValue1_2));
 
-                float bvValue3_1 = baseBVValue3 * ( 100 + musicEffectForBVInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
-                bvValueTextView_3_1.setText(String.format("%.2f", bvValue3_1));
-                //****************** 풍년가 보통 연주 END ******************/
+        float bvValue2_2 = baseBVValue2;
+        bvValueTextView_2_2.setText(String.format("%.2f", bvValue2_2));
 
-                //****************** 풍년가 훌륭한 연주 START ******************/
-                float bvValue1_2 = baseBVValue1;
-                bvValueTextView_1_2.setText(String.format("%.2f", bvValue1_2));
+        float bvValue3_2 = baseBVValue3 * ( 100 + musicEffectForBVInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
+        bvValueTextView_3_2.setText(String.format("%.2f", bvValue3_2));
+        //****************** 풍년가 훌륭한 연주 END ******************/
 
-                float bvValue2_2 = baseBVValue2;
-                bvValueTextView_2_2.setText(String.format("%.2f", bvValue2_2));
+        //****************** 풍년가 신들린 연주 START ******************/
+        float bvValue1_3 = baseBVValue1;
+        bvValueTextView_1_3.setText(String.format("%.2f", bvValue1_3));
 
-                float bvValue3_2 = baseBVValue3 * ( 100 + musicEffectForBVInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
-                bvValueTextView_3_2.setText(String.format("%.2f", bvValue3_2));
-                //****************** 풍년가 훌륭한 연주 END ******************/
+        float bvValue2_3 = baseBVValue2;
+        bvValueTextView_2_3.setText(String.format("%.2f", bvValue2_3));
 
-                //****************** 풍년가 신들린 연주 START ******************/
-                float bvValue1_3 = baseBVValue1;
-                bvValueTextView_1_3.setText(String.format("%.2f", bvValue1_3));
+        float bvValue3_3 = baseBVValue3 * ( 100 + musicEffectForBVInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
+        bvValueTextView_3_3.setText(String.format("%.2f", bvValue3_3));
+        //****************** 풍년가 신들린 연주 END ******************/
 
-                float bvValue2_3 = baseBVValue2;
-                bvValueTextView_2_3.setText(String.format("%.2f", bvValue2_3));
+        //****************** 행진곡 보통 연주 START ******************/
+        float mcValue1_1 = baseMCValue1 * ( 100 + musicEffectForMCInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
+        mcValueTextView_1_1.setText(String.format("%.2f", mcValue1_1));
+        //****************** 행진곡 보통 연주 END ******************/
 
-                float bvValue3_3 = baseBVValue3 * ( 100 + musicEffectForBVInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
-                bvValueTextView_3_3.setText(String.format("%.2f", bvValue3_3));
-                //****************** 풍년가 신들린 연주 END ******************/
-                
-                break;
-            case "MC" :
+        //****************** 행진곡 훌륭한 연주 START ******************/
+        float mcValue1_2 = baseMCValue1 * ( 100 + musicEffectForMCInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
+        mcValueTextView_1_2.setText(String.format("%.2f", mcValue1_2));
+        //****************** 행진곡 훌륭한 연주 END ******************/
 
-                //****************** 행진곡 보통 연주 START ******************/
-                float mcValue1_1 = baseMCValue1 * ( 100 + musicEffectForMCInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
-                mcValueTextView_1_1.setText(String.format("%.2f", mcValue1_1));
-                //****************** 행진곡 보통 연주 END ******************/
+        //****************** 행진곡 신들린 연주 START ******************/
+        float mcValue1_3 = baseMCValue1 * ( 100 + musicEffectForMCInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
+        mcValueTextView_1_3.setText(String.format("%.2f", mcValue1_3));
+        //****************** 행진곡 신들린 연주 END ******************/
 
-                //****************** 행진곡 훌륭한 연주 START ******************/
-                float mcValue1_2 = baseMCValue1 * ( 100 + musicEffectForMCInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
-                mcValueTextView_1_2.setText(String.format("%.2f", mcValue1_2));
-                //****************** 행진곡 훌륭한 연주 END ******************/
+        //****************** 인내의 노래 보통 연주 START ******************/
+        float spValue1_1 = baseSPValue1 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
+        spValueTextView_1_1.setText(String.format("%.2f", spValue1_1));
 
-                //****************** 행진곡 신들린 연주 START ******************/
-                float mcValue1_3 = baseMCValue1 * ( 100 + musicEffectForMCInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
-                mcValueTextView_1_3.setText(String.format("%.2f", mcValue1_3));
-                //****************** 행진곡 신들린 연주 END ******************/
-                
-                break;
-            case "SP" :
+        float spValue2_1 = baseSPValue2 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
+        spValueTextView_2_1.setText(String.format("%.2f", spValue2_1));
 
-                //****************** 인내의 노래 보통 연주 START ******************/
-                float spValue1_1 = baseSPValue1 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
-                spValueTextView_1_1.setText(String.format("%.2f", spValue1_1));
+        float spValue3_1 = baseSPValue3 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
+        spValueTextView_3_1.setText(String.format("%.2f", spValue3_1));
+        //****************** 인내의 노래 보통 연주 END ******************/
 
-                float spValue2_1 = baseSPValue2 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
-                spValueTextView_2_1.setText(String.format("%.2f", spValue2_1));
+        //****************** 인내의 노래 훌륭한 연주 START ******************/
+        float spValue1_2 = baseSPValue1 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
+        spValueTextView_1_2.setText(String.format("%.2f", spValue1_2));
 
-                float spValue3_1 = baseSPValue3 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
-                spValueTextView_3_1.setText(String.format("%.2f", spValue3_1));
-                //****************** 인내의 노래 보통 연주 END ******************/
+        float spValue2_2 = baseSPValue2 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
+        spValueTextView_2_2.setText(String.format("%.2f", spValue2_2));
 
-                //****************** 인내의 노래 훌륭한 연주 START ******************/
-                float spValue1_2 = baseSPValue1 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
-                spValueTextView_1_2.setText(String.format("%.2f", spValue1_2));
+        float spValue3_2 = baseSPValue3 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
+        spValueTextView_3_2.setText(String.format("%.2f", spValue3_2));
+        //****************** 인내의 노래 훌륭한 연주 END ******************/
 
-                float spValue2_2 = baseSPValue2 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
-                spValueTextView_2_2.setText(String.format("%.2f", spValue2_2));
+        //****************** 인내의 노래 신들린 연주 START ******************/
+        float spValue1_3 = baseSPValue1 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
+        spValueTextView_1_3.setText(String.format("%.2f", spValue1_3));
 
-                float spValue3_2 = baseSPValue3 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
-                spValueTextView_3_2.setText(String.format("%.2f", spValue3_2));
-                //****************** 인내의 노래 훌륭한 연주 END ******************/
+        float spValue2_3 = baseSPValue2 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
+        spValueTextView_2_3.setText(String.format("%.2f", spValue2_3));
 
-                //****************** 인내의 노래 신들린 연주 START ******************/
-                float spValue1_3 = baseSPValue1 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
-                spValueTextView_1_3.setText(String.format("%.2f", spValue1_3));
+        float spValue3_3 = baseSPValue3 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
+        spValueTextView_3_3.setText(String.format("%.2f", spValue3_3));
+        //****************** 인내의 노래 신들린 연주 END ******************/
+    }
 
-                float spValue2_3 = baseSPValue2 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
-                spValueTextView_2_3.setText(String.format("%.2f", spValue2_3));
+    /**
+     * DataArray와 ArrayInt 받아서 Spinner 세팅
+     * @param tempSpinner
+     * @param tempDataArray
+     * @param textArrayResId
+     * @param gubun
+     */
+    private void setSpinnerView(Spinner tempSpinner, ArrayAdapter<CharSequence> tempDataArray, int textArrayResId, final String gubun){
+        tempDataArray = ArrayAdapter.createFromResource(context, textArrayResId, R.layout.support_simple_spinner_dropdown_item);
+        tempDataArray.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        tempSpinner.setAdapter(tempDataArray);
+        final ArrayAdapter<CharSequence> finalTempDataArray = tempDataArray;
+        tempSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                /*setBaseValueFromRank("SP", SPRDataArray.getItem(i).toString());
+                setFinishValue("SP");
+                setUpdateData("SPRank", String.valueOf(i));*/
+                dataMap.put(gubun, finalTempDataArray.getItem(i).toString());
+            }
 
-                float spValue3_3 = baseSPValue3 * ( 100 + musicEffectForSPInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
-                spValueTextView_3_3.setText(String.format("%.2f", spValue3_3));
-                //****************** 인내의 노래 신들린 연주 END ******************/
-                
-                break;
-        }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     /**

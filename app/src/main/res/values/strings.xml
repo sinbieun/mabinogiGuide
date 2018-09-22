@@ -27,4 +27,20 @@
     <string name="music_label_content_1_7">인내의 노래 랭크</string>
     <string name="music_label_title_2">인챈트/아이템 효과</string>
     <string name="music_label_title_3">타이틀</string>
+
+    <string name="music_label_title_item_1">왼쪽악세</string>
+    <string name="music_label_title_item_2">오른쪽악세</string>
+    <string name="music_label_title_item_3">머리</string>
+    <string name="music_label_title_item_4">옷</string>
+    <string name="music_label_title_item_5">장갑</string>
+    <string name="music_label_title_item_6">신발</string>
+
+    <string name="music_label_title_item_property_1">접두 인챈트</string>
+    <string name="music_label_title_item_property_2">접미 인챈트</string>
+    <string name="music_label_title_item_property_3">보통연주 세공</string>
+    <string name="music_label_title_item_property_4">훌륭한연주 세공</string>
+    <string name="music_label_title_item_property_5">신들린연주 세공</string>
+    <string name="music_label_title_item_property_6">마시속 세공</string>
+    <string name="music_label_title_item_property_7">비바속 세공</string>
+    <string name="music_label_title_item_property_8">풍년채속 세공</string>
 </resources>

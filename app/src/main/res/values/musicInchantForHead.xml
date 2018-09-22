@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="musicInchantForHead">
+        <item>없음</item>
+        <item>코러스 2옵</item>
+        <item>코러스 3옵</item>
+    </string-array>
+</resources>

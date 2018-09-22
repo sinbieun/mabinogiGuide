@@ -4,6 +4,49 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TabHost
+            android:id="@+id/tab_host"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TabWidget
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+                    <TextView
+                        android:id="@+id/tab_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:tag="tab0"
+                        android:text="입력"
+                        android:textSize="20dp"
+                        android:textColor="#FFFFFF"
+                        android:gravity="center"
+                        android:background="@drawable/tab_background_gradient_selected"
+                        />
+                    <TextView
+                        android:id="@+id/tab_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:tag="tab1"
+                        android:text="계산"
+                        android:textSize="20dp"
+                        android:textColor="#AAAAAA"
+                        android:gravity="center"
+                        android:background="@drawable/tab_background_gradient"
+                        />
+                </TabWidget>
+            </LinearLayout>
+        </TabHost>
+    </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,1351 +60,1741 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/tab1Layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/border"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <GridLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:columnCount="2"
-                    android:orientation="horizontal"
-                    android:rowCount="7">
+                    android:background="@drawable/border"
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="fill_parent"
-                        android:layout_height="30.0dip"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="2"
-                        android:background="@drawable/title_background_music"
-                        android:gravity="center"
-                        android:text="@string/music_label_title_1"
-                        android:textColor="#ffffffff"
-                        android:textSize="17.0dip" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="0dp"
-                        android:text="@string/music_label_content_1_1"
-                        android:textColor="#ff000000" />
-
-                    <Spinner
-                        android:id="@+id/instrumentRankSpinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="0dp" />
-
-                    <View
+                    <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="2"
-                        android:background="#FF7E7E" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="0dp"
-                        android:text="@string/music_label_content_1_2"
-                        android:textColor="#ff000000" />
-
-                    <Spinner
-                        android:id="@+id/songRankSpinner"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="0dp" />
+                        android:layout_margin="10dp"
+                        android:columnCount="2"
+                        android:orientation="horizontal"
+                        android:rowCount="7">
 
-                    <View
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="30.0dip"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="@drawable/title_background_music"
+                            android:gravity="center"
+                            android:text="@string/music_label_title_1"
+                            android:textColor="#ffffffff"
+                            android:textSize="17.0dip" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="0dp"
+                            android:text="@string/music_label_content_1_1"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/instrumentRankSpinner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="0dp"
+                            android:text="@string/music_label_content_1_2"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/songRankSpinner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="0dp"
+                            android:text="@string/music_label_content_1_3"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/BFRankSpinner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="0dp"
+                            android:text="@string/music_label_content_1_4"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/VVRankSpinner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="0dp"
+                            android:text="@string/music_label_content_1_5"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/BVRankSpinner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="0dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_content_1_6"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/MCRankSpinner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="0dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_content_1_7"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/SPRankSpinner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+                    </GridLayout>
+                </LinearLayout>
+
+                <!-- 타이틀 START -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/border"
+                    android:orientation="vertical">
+
+                    <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="2"
-                        android:background="#FF7E7E" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="0dp"
-                        android:text="@string/music_label_content_1_3"
-                        android:textColor="#ff000000" />
-
-                    <Spinner
-                        android:id="@+id/BFRankSpinner"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="0dp" />
+                        android:layout_margin="10dp"
+                        android:columnCount="2"
+                        android:orientation="horizontal"
+                        android:rowCount="7">
 
-                    <View
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="@drawable/title_background_music"
+                            android:gravity="center"
+                            android:text="@string/music_label_title_3"
+                            android:textColor="#ffffffff"
+                            android:textSize="17.0dip" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="1차 타이틀"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/firstTitleSpinner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="2차 타이틀"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/secondTitleSpinner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+                    </GridLayout>
+                </LinearLayout>
+                <!-- 타이틀 END -->
+
+                <!-- 왼쪽 악세 START -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/border"
+                    android:orientation="vertical">
+
+                    <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="2"
-                        android:background="#FF7E7E" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="0dp"
-                        android:text="@string/music_label_content_1_4"
-                        android:textColor="#ff000000" />
-
-                    <Spinner
-                        android:id="@+id/VVRankSpinner"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="0dp" />
+                        android:layout_margin="10dp"
+                        android:columnCount="2"
+                        android:orientation="horizontal"
+                        android:rowCount="2">
 
-                    <View
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="@drawable/title_background_music"
+                            android:gravity="center"
+                            android:text="@string/music_label_title_item_1"
+                            android:textColor="#ffffffff"
+                            android:textSize="17.0dip" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_1"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/leftAccessoryInchant1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_2"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/leftAccessoryInchant2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_3"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/leftAccessoryNME"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_4"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/leftAccessoryGME"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_5"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/leftAccessoryBME"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_6"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/leftAccessoryVVMS"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_7"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/leftAccessoryVVAS"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_8"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/leftAccessoryBVGS"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+                    </GridLayout>
+                </LinearLayout>
+                <!-- 왼쪽 악세 END -->
+
+                <!-- 오른쪽 악세 START -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/border"
+                    android:orientation="vertical">
+
+                    <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="2"
-                        android:background="#FF7E7E" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="0dp"
-                        android:text="@string/music_label_content_1_5"
-                        android:textColor="#ff000000" />
-
-                    <Spinner
-                        android:id="@+id/BVRankSpinner"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="0dp" />
+                        android:layout_margin="10dp"
+                        android:columnCount="2"
+                        android:orientation="horizontal"
+                        android:rowCount="2">
 
-                    <View
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="@drawable/title_background_music"
+                            android:gravity="center"
+                            android:text="@string/music_label_title_item_2"
+                            android:textColor="#ffffffff"
+                            android:textSize="17.0dip" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_1"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/rightAccessoryInchant1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_2"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/rightAccessoryInchant2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_3"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/rightAccessoryNME"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_4"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/rightAccessoryGME"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_5"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/rightAccessoryBME"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_6"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/rightAccessoryVVMS"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_7"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/rightAccessoryVVAS"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_8"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/rightAccessoryBVGS"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+                    </GridLayout>
+                </LinearLayout>
+                <!-- 오른쪽 악세 END -->
+
+                <!-- 머리 START -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/border"
+                    android:orientation="vertical">
+
+                    <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="2"
-                        android:background="#FF7E7E" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="0dp"
-                        android:gravity="left"
-                        android:text="@string/music_label_content_1_6"
-                        android:textColor="#ff000000" />
-
-                    <Spinner
-                        android:id="@+id/MCRankSpinner"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="0dp" />
+                        android:layout_margin="10dp"
+                        android:columnCount="2"
+                        android:orientation="horizontal"
+                        android:rowCount="2">
 
-                    <View
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="@drawable/title_background_music"
+                            android:gravity="center"
+                            android:text="@string/music_label_title_item_3"
+                            android:textColor="#ffffffff"
+                            android:textSize="17.0dip" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_2"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/headInchant2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+                    </GridLayout>
+                </LinearLayout>
+                <!-- 머리 END -->
+
+                <!-- 옷 START -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/border"
+                    android:orientation="vertical">
+
+                    <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="2"
-                        android:background="#FF7E7E" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="0dp"
-                        android:gravity="left"
-                        android:text="@string/music_label_content_1_7"
-                        android:textColor="#ff000000" />
-
-                    <Spinner
-                        android:id="@+id/SPRankSpinner"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="0dp" />
+                        android:layout_margin="10dp"
+                        android:columnCount="2"
+                        android:orientation="horizontal"
+                        android:rowCount="2">
 
-                    <View
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="@drawable/title_background_music"
+                            android:gravity="center"
+                            android:text="@string/music_label_title_item_4"
+                            android:textColor="#ffffffff"
+                            android:textSize="17.0dip" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_1"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/clothInchant1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_2"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/clothInchant2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+                    </GridLayout>
+                </LinearLayout>
+                <!-- 옷 END -->
+
+                <!-- 장갑 START -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/border"
+                    android:orientation="vertical">
+
+                    <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="2"
-                        android:background="#FF7E7E" />
-                </GridLayout>
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:columnCount="2"
+                        android:orientation="horizontal"
+                        android:rowCount="2">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="@drawable/title_background_music"
+                            android:gravity="center"
+                            android:text="@string/music_label_title_item_5"
+                            android:textColor="#ffffffff"
+                            android:textSize="17.0dip" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_1"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/handClothInchant1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_8"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/handClothBVGS"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+                    </GridLayout>
+                </LinearLayout>
+                <!-- 장갑 END -->
+
+                <!-- 신발 START -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/border"
+                    android:orientation="vertical">
+
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:columnCount="2"
+                        android:orientation="horizontal"
+                        android:rowCount="2">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="@drawable/title_background_music"
+                            android:gravity="center"
+                            android:text="@string/music_label_title_item_6"
+                            android:textColor="#ffffffff"
+                            android:textSize="17.0dip" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_1"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/shoesInchant1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_8"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/shoesVVMS"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_8"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/shoesVVAS"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+                    </GridLayout>
+                </LinearLayout>
+                <!-- 신발 END -->
             </LinearLayout>
-<!--
 
             <LinearLayout
+                android:id="@+id/tab2Layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/border"
-                android:orientation="vertical">
-
-                <GridLayout
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:columnCount="2"
-                    android:orientation="horizontal"
-                    android:rowCount="7">
+                    android:background="@drawable/border"
+                    android:orientation="vertical">
 
-                    <TextView
+                    <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="2"
-                        android:background="@drawable/title_background_music"
-                        android:gravity="center"
-                        android:text="@string/music_label_title_3"
-                        android:textColor="#ffffffff"
-                        android:textSize="17.0dip" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="left"
-                        android:text="1차 타이틀"
-                        android:textColor="#ff000000" />
-
-                    <Spinner
-                        android:id="@+id/firstTitleSpinner"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="0dp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="2"
-                        android:background="#FF7E7E" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="left"
-                        android:text="2차 타이틀"
-                        android:textColor="#ff000000" />
-
-                    <Spinner
-                        android:id="@+id/secondTitleSpinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="0dp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="2"
-                        android:background="#FF7E7E" />
-                </GridLayout>
-            </LinearLayout>
--->
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/border"
-                android:orientation="vertical">
-
-                <GridLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:columnCount="2"
-                    android:orientation="horizontal"
-                    android:rowCount="7">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="2"
-                        android:background="@drawable/title_background_music"
-                        android:gravity="center"
-                        android:text="@string/music_label_title_2"
-                        android:textColor="#ffffffff"
-                        android:textSize="17.0dip" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="left"
-                        android:text="악기연주 증가 효과"
-                        android:textColor="#ff000000" />
-
-                    <EditText
-                        android:id="@+id/musicPlusCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:inputType="number"
-                        android:text="0" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="2"
-                        android:background="#FF7E7E" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="left"
-                        android:text="전장의 서곡 증가 효과"
-                        android:textColor="#ff000000" />
-
-                    <EditText
-                        android:id="@+id/BFCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:inputType="number"
-                        android:text="0" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="2"
-                        android:background="#FF7E7E" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="left"
-                        android:text="비바체 증가 효과"
-                        android:textColor="#ff000000" />
-
-                    <EditText
-                        android:id="@+id/VVCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:inputType="number"
-                        android:text="0" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="2"
-                        android:background="#FF7E7E" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="left"
-                        android:text="풍년가 증가 효과"
-                        android:textColor="#ff000000" />
-
-                    <EditText
-                        android:id="@+id/BYCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:inputType="number"
-                        android:text="0" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="2"
-                        android:background="#FF7E7E" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="left"
-                        android:text="행진곡 증가 효과"
-                        android:textColor="#ff000000" />
-
-                    <EditText
-                        android:id="@+id/MCCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:inputType="number"
-                        android:text="0" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="2"
-                        android:background="#FF7E7E" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="left"
-                        android:text="인내의 노래 증가 효과"
-                        android:textColor="#ff000000" />
-
-                    <EditText
-                        android:id="@+id/SPCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:inputType="number"
-                        android:text="0" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="2"
-                        android:background="#FF7E7E" />
-                </GridLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/border"
-                android:orientation="vertical">
-
-                <GridLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:columnCount="2"
-                    android:orientation="horizontal"
-                    android:rowCount="7">
-
-                    <TextView
-                        android:layout_width="fill_parent"
-                        android:layout_height="30dp"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="2"
-                        android:background="@drawable/title_background_music"
-                        android:gravity="center"
-                        android:text="세공 vs 에코스톤"
-                        android:textColor="#ffffffff"
-                        android:textSize="17dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="left"
-                        android:text="비바체 마시속"
-                        android:textColor="#ff000000" />
-
-                    <EditText
-                        android:id="@+id/VVMSCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:inputType="number"
-                        android:text="0" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="2"
-                        android:background="#FF7E7E" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="left"
-                        android:text="비바체 공격속도"
-                        android:textColor="#ff000000" />
-
-                    <EditText
-                        android:id="@+id/VVASCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:inputType="number"
-                        android:text="0" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="2"
-                        android:background="#FF7E7E" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="left"
-                        android:text="풍년가 채집속도"
-                        android:textColor="#ff000000" />
-
-                    <EditText
-                        android:id="@+id/BVGSCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:inputType="number"
-                        android:text="0" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="2"
-                        android:background="#FF7E7E" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="left"
-                        android:text="보통 연주 효과"
-                        android:textColor="#ff000000" />
-
-                    <EditText
-                        android:id="@+id/NMECount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:inputType="number"
-                        android:text="0" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="2"
-                        android:background="#FF7E7E" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="left"
-                        android:text="훌륭한 연주 효과"
-                        android:textColor="#ff000000" />
-
-                    <EditText
-                        android:id="@+id/GMECount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:inputType="number"
-                        android:text="0" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="2"
-                        android:background="#FF7E7E" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="left"
-                        android:text="신들린 연주 효과     "
-                        android:textColor="#ff000000" />
-
-                    <EditText
-                        android:id="@+id/BMECount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:inputType="number"
-                        android:text="0" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="2"
-                        android:background="#FF7E7E" />
-                </GridLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/border"
-                android:orientation="vertical">
-
-                <GridLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:columnCount="4"
-                    android:orientation="horizontal"
-                    android:rowCount="7">
-
-                    <TextView
-                        android:layout_width="fill_parent"
-                        android:layout_height="30dp"
-                        android:layout_centerInParent="true"
-                        android:layout_columnSpan="4"
-                        android:background="@drawable/title_background_music"
-                        android:gravity="center"
-                        android:text="최종 결과(%)"
-                        android:textColor="#ffffffff"
-                        android:textSize="17dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="보통"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="훌륭한"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="신들린"
-                        android:textColor="#ff000000" />
-
-                    <!-- 전장의 서곡 타이틀 -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnSpan="4"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:background="#FF0000"
-                        android:gravity="center"
-                        android:text="전장의 서곡"
-                        android:textColor="#ffffff" />
-
-                    <!-- 전장의 서곡 ( 최대 데미지 ) -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="최대 데미지"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/bf_value_1_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/bf_value_1_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/bf_value_1_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <!-- 전장의 서곡 ( 최소 데미지 ) -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="최소 데미지"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/bf_value_2_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/bf_value_2_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/bf_value_2_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <!-- 전장의 서곡 ( 크리티컬 ) -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="크리티컬"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/bf_value_3_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/bf_value_3_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/bf_value_3_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <!-- 비바체 타이틀 -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnSpan="4"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:background="#DAD9FF"
-                        android:gravity="center"
-                        android:text="비바체"
-                        android:textColor="#ffffff" />
-
-                    <!-- 비바체 ( 마시속 ) -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="마시속"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/vv_value_1_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/vv_value_1_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/vv_value_1_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <!-- 비바체 ( 공속 ) -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="공속"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/vv_value_2_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/vv_value_2_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/vv_value_2_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <!-- 비바체 ( 연금속 ) -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="연금속"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/vv_value_3_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/vv_value_3_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/vv_value_3_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <!-- 풍년가 타이틀 -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnSpan="4"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:background="#ABF200"
-                        android:gravity="center"
-                        android:text="풍년가"
-                        android:textColor="#ffffff" />
-
-                    <!-- 풍년가 ( 채집성공 ) -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="채집성공"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/bv_value_1_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/bv_value_1_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/bv_value_1_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <!-- 풍년가 ( 생산성공 ) -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="생산성공"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/bv_value_2_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/bv_value_2_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/bv_value_2_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <!-- 풍년가 ( 채집속도 ) -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="채집속도"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/bv_value_3_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/bv_value_3_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/bv_value_3_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <!-- 행진곡 타이틀 -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnSpan="4"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:background="#00D8FF"
-                        android:gravity="center"
-                        android:text="행진곡"
-                        android:textColor="#ffffff" />
-
-                    <!-- 행진곡 ( 이동속도 ) -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="이동속도"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/mc_value_1_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/mc_value_1_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/mc_value_1_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <!-- 인내의 노래 타이틀 -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnSpan="4"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:background="#8041D9"
-                        android:gravity="center"
-                        android:text="인내의 노래"
-                        android:textColor="#ffffff" />
-
-                    <!-- 인내의 노래 ( 방어/마방 ) -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="방어/마방"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/sp_value_1_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/sp_value_1_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/sp_value_1_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <!-- 인내의 노래 ( 보호/마보 ) -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="보호/마보"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/sp_value_2_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/sp_value_2_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/sp_value_2_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <!-- 인내의 노래 ( 마나/스테 ) -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="마나/스테"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/sp_value_3_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/sp_value_3_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-
-                    <TextView
-                        android:id="@+id/sp_value_3_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="#ff000000" />
-                </GridLayout>
+                        android:layout_margin="10dp"
+                        android:columnCount="4"
+                        android:orientation="horizontal"
+                        android:rowCount="7">
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="30dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="4"
+                            android:background="@drawable/title_background_music"
+                            android:gravity="center"
+                            android:text="최종 결과(%)"
+                            android:textColor="#ffffffff"
+                            android:textSize="17dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="보통"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="훌륭한"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="신들린"
+                            android:textColor="#ff000000" />
+
+                        <!-- 전장의 서곡 타이틀 -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnSpan="4"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:background="#FF0000"
+                            android:gravity="center"
+                            android:text="전장의 서곡"
+                            android:textColor="#ffffff" />
+
+                        <!-- 전장의 서곡 ( 최대 데미지 ) -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="최대 데미지"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/bf_value_1_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/bf_value_1_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/bf_value_1_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <!-- 전장의 서곡 ( 최소 데미지 ) -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="최소 데미지"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/bf_value_2_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/bf_value_2_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/bf_value_2_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <!-- 전장의 서곡 ( 크리티컬 ) -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="크리티컬"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/bf_value_3_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/bf_value_3_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/bf_value_3_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <!-- 비바체 타이틀 -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnSpan="4"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:background="#DAD9FF"
+                            android:gravity="center"
+                            android:text="비바체"
+                            android:textColor="#ffffff" />
+
+                        <!-- 비바체 ( 마시속 ) -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="마시속"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/vv_value_1_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/vv_value_1_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/vv_value_1_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <!-- 비바체 ( 공속 ) -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="공속"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/vv_value_2_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/vv_value_2_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/vv_value_2_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <!-- 비바체 ( 연금속 ) -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="연금속"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/vv_value_3_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/vv_value_3_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/vv_value_3_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <!-- 풍년가 타이틀 -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnSpan="4"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:background="#ABF200"
+                            android:gravity="center"
+                            android:text="풍년가"
+                            android:textColor="#ffffff" />
+
+                        <!-- 풍년가 ( 채집성공 ) -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="채집성공"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/bv_value_1_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/bv_value_1_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/bv_value_1_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <!-- 풍년가 ( 생산성공 ) -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="생산성공"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/bv_value_2_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/bv_value_2_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/bv_value_2_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <!-- 풍년가 ( 채집속도 ) -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="채집속도"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/bv_value_3_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/bv_value_3_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/bv_value_3_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <!-- 행진곡 타이틀 -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnSpan="4"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:background="#00D8FF"
+                            android:gravity="center"
+                            android:text="행진곡"
+                            android:textColor="#ffffff" />
+
+                        <!-- 행진곡 ( 이동속도 ) -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="이동속도"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/mc_value_1_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/mc_value_1_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/mc_value_1_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <!-- 인내의 노래 타이틀 -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnSpan="4"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:background="#8041D9"
+                            android:gravity="center"
+                            android:text="인내의 노래"
+                            android:textColor="#ffffff" />
+
+                        <!-- 인내의 노래 ( 방어/마방 ) -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="방어/마방"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/sp_value_1_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/sp_value_1_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/sp_value_1_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <!-- 인내의 노래 ( 보호/마보 ) -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="보호/마보"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/sp_value_2_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/sp_value_2_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/sp_value_2_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <!-- 인내의 노래 ( 마나/스테 ) -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="마나/스테"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/sp_value_3_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/sp_value_3_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+
+                        <TextView
+                            android:id="@+id/sp_value_3_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_columnWeight="1"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="#ff000000" />
+                    </GridLayout>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
