@@ -6,8 +6,8 @@ android {
         applicationId "com.addon.user.myapplication"
         minSdkVersion 22
         targetSdkVersion 26
-        versionCode 20
-        versionName "12.5"
+        versionCode 22
+        versionName "13.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

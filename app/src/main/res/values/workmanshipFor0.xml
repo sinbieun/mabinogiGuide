@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="musicInchantForCloth2">
-        <item>없음</item>
+    <string-array name="workmangshipSelectedFor0">
+        <item>0레벨</item>
     </string-array>
 </resources>

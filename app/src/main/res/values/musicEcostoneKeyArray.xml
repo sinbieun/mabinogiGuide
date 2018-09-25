@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="musicEcostoneKeyArray">
+        <item>없음</item>
+        <item>악기 연주 효과</item>
+        <item>보통 연주 효과</item>
+        <item>훌륭한 연주 효과</item>
+        <item>신들린 연주 효과</item>
+        <item>비바체 마시속</item>
+        <item>비바체 공속</item>
+        <item>풍년가 채집속도</item>
+    </string-array>
+</resources>

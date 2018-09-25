@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="musicInchantForWeapon1">
+        <item>없음</item>
+        <item>조화/앙상블</item>
+        <item>알레그로</item>
+        <item>모데라토</item>
+    </string-array>
+</resources>

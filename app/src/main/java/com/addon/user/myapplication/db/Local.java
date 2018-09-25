@@ -17,17 +17,62 @@ public class Local {
         paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'BVRank', '0');");
         paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'MCRank', '0');");
         paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'SPRank', '0');");
-        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'musicPlusCountEditText', '0');");
-        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'BFCountEditText', '0');");
-        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'VVCountEditText', '0');");
-        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'BYCountEditText', '0');");
-        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'MCCountEditText', '0');");
-        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'SPCountEditText', '0');");
-        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'VVMSCountEditText', '0');");
-        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'VVASCountEditText', '0');");
-        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'BVGSCountEditText', '0');");
-        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'NMECountEditText', '0');");
-        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'GMECountEditText', '0');");
-        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'BMECountEditText', '0');");
+
+        // 타이틀 SPINNER SETTING
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'firstTitleSpinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'secondTitleSpinner', '0');");
+
+        // 무기 SPINNER SETTING
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'weaponSelectedSpinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'weaponInchant1Spinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'weaponInchant2Spinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'weaponMusicPlusSpinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'weaponNMESpinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'weaponGMESpinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'weaponBMESpinner', '0');");
+
+        // 왼쪽 악세 SPINNER SETTING
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'leftAccessoryInchant1Spinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'leftAccessoryInchant2Spinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'leftAccessoryNMESpinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'leftAccessoryGMESpinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'leftAccessoryBMESpinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'leftAccessoryVVMSSpinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'leftAccessoryVVASSpinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'leftAccessoryBVGSSpinner', '0');");
+
+        // 오른쪽 악세 SPINNER SETTING
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'rightAccessoryInchant1Spinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'rightAccessoryInchant2Spinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'rightAccessoryNMESpinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'rightAccessoryGMESpinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'rightAccessoryBMESpinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'rightAccessoryVVMSSpinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'rightAccessoryVVASSpinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'rightAccessoryBVGSSpinner', '0');");
+
+        // 머리 SPINNER SETTING
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'headInchant2Spinner', '0');");
+
+        // 옷 SPINNER SETTING
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'clothInchant1Spinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'clothInchant2Spinner', '0');");
+
+        // 장갑 SPINNER SETTING
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'handClothInchant1Spinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'handClothBVGSSpinner', '0');");
+
+        // 신발 SPINNER SETTING
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'shoesInchant1Spinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'shoesVVMSSpinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'shoesVVASSpinner', '0');");
+
+        // 추가 요소
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'otherGrandMasterSpinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'otherTrumpetSpinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'otherPotionSpinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'otherPartySpinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'otherEcostoneKeySpinner', '0');");
+        paramSQLiteDatabase.execSQL("INSERT INTO LOCALDATATABLE ( useLayout, keyName, keyContent ) VALUES ('MUSIC', 'otherEcostoneValueSpinner', '0');");
     }
 }

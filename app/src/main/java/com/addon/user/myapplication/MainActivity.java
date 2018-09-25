@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         thisActivity = this;
 
-        dbHelper = new DBHelper(getApplicationContext(), "tradeItem.db", null, 3);
+        dbHelper = new DBHelper(getApplicationContext(), "tradeItem.db", null, 4);
         tradeDb = dbHelper.getReadableDatabase();
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);

@@ -53,7 +53,6 @@
         android:fillViewport="true">
 
         <LinearLayout
-            android:id="@+id/tradeLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/background_1"
@@ -72,24 +71,44 @@
                     android:background="@drawable/border"
                     android:orientation="vertical">
 
-                    <GridLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:columnCount="2"
-                        android:orientation="horizontal"
-                        android:rowCount="7">
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
 
                         <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="30.0dip"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
                             android:layout_centerInParent="true"
-                            android:layout_columnSpan="2"
                             android:background="@drawable/title_background_music"
                             android:gravity="center"
                             android:text="@string/music_label_title_1"
                             android:textColor="#ffffffff"
-                            android:textSize="17.0dip" />
+                            android:textSize="17dp"
+                            />
+
+                        <ImageView
+                            android:id="@+id/rankHideButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:src="@drawable/icon_minus"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            />
+                    </RelativeLayout>
+
+                    <GridLayout
+                        android:id="@+id/rankGridLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:columnCount="2"
+                        android:orientation="horizontal"
+                        android:rowCount="7">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -264,24 +283,44 @@
                     android:background="@drawable/border"
                     android:orientation="vertical">
 
-                    <GridLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:columnCount="2"
-                        android:orientation="horizontal"
-                        android:rowCount="7">
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
                             android:layout_centerInParent="true"
-                            android:layout_columnSpan="2"
                             android:background="@drawable/title_background_music"
                             android:gravity="center"
                             android:text="@string/music_label_title_3"
                             android:textColor="#ffffffff"
-                            android:textSize="17.0dip" />
+                            android:textSize="17dp"
+                            />
+
+                        <ImageView
+                            android:id="@+id/titleHideButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:src="@drawable/icon_minus"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            />
+                    </RelativeLayout>
+
+                    <GridLayout
+                        android:id="@+id/titleGridLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:columnCount="2"
+                        android:orientation="horizontal"
+                        android:rowCount="7">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -334,6 +373,224 @@
                 </LinearLayout>
                 <!-- 타이틀 END -->
 
+                <!-- 무기 START -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/border"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_centerInParent="true"
+                            android:background="@drawable/title_background_music"
+                            android:gravity="center"
+                            android:text="@string/music_label_title_item_weapon"
+                            android:textColor="#ffffffff"
+                            android:textSize="17dp"
+                            />
+
+                        <ImageView
+                            android:id="@+id/weaponHideButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:src="@drawable/icon_minus"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            />
+                    </RelativeLayout>
+
+                    <GridLayout
+                        android:id="@+id/weaponGridLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:columnCount="2"
+                        android:orientation="horizontal"
+                        android:rowCount="2">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_10"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/weaponSelected"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_1"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/weaponInchant1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_2"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/weaponInchant2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_9"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/weaponMusicPlus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_3"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/weaponNME"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_4"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/weaponGME"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_item_property_5"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/weaponBME"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="2"
+                            android:background="#FF7E7E" />
+                    </GridLayout>
+                </LinearLayout>
+                <!-- 무기 END -->
+
                 <!-- 왼쪽 악세 START -->
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -342,24 +599,44 @@
                     android:background="@drawable/border"
                     android:orientation="vertical">
 
-                    <GridLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:columnCount="2"
-                        android:orientation="horizontal"
-                        android:rowCount="2">
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
                             android:layout_centerInParent="true"
-                            android:layout_columnSpan="2"
                             android:background="@drawable/title_background_music"
                             android:gravity="center"
                             android:text="@string/music_label_title_item_1"
                             android:textColor="#ffffffff"
-                            android:textSize="17.0dip" />
+                            android:textSize="17dp"
+                            />
+
+                        <ImageView
+                            android:id="@+id/leftAccessoryHideButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:src="@drawable/icon_minus"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            />
+                    </RelativeLayout>
+
+                    <GridLayout
+                        android:id="@+id/leftAccessoryGridLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:columnCount="2"
+                        android:orientation="horizontal"
+                        android:rowCount="2">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -564,24 +841,44 @@
                     android:background="@drawable/border"
                     android:orientation="vertical">
 
-                    <GridLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:columnCount="2"
-                        android:orientation="horizontal"
-                        android:rowCount="2">
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
                             android:layout_centerInParent="true"
-                            android:layout_columnSpan="2"
                             android:background="@drawable/title_background_music"
                             android:gravity="center"
                             android:text="@string/music_label_title_item_2"
                             android:textColor="#ffffffff"
-                            android:textSize="17.0dip" />
+                            android:textSize="17dp"
+                            />
+
+                        <ImageView
+                            android:id="@+id/rightAccessoryHideButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:src="@drawable/icon_minus"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            />
+                    </RelativeLayout>
+
+                    <GridLayout
+                        android:id="@+id/rightAccessoryGridLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:columnCount="2"
+                        android:orientation="horizontal"
+                        android:rowCount="2">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -786,24 +1083,44 @@
                     android:background="@drawable/border"
                     android:orientation="vertical">
 
-                    <GridLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:columnCount="2"
-                        android:orientation="horizontal"
-                        android:rowCount="2">
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
                             android:layout_centerInParent="true"
-                            android:layout_columnSpan="2"
                             android:background="@drawable/title_background_music"
                             android:gravity="center"
                             android:text="@string/music_label_title_item_3"
                             android:textColor="#ffffffff"
-                            android:textSize="17.0dip" />
+                            android:textSize="17dp"
+                            />
+
+                        <ImageView
+                            android:id="@+id/headHideButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:src="@drawable/icon_minus"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            />
+                    </RelativeLayout>
+
+                    <GridLayout
+                        android:id="@+id/headGridLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:columnCount="2"
+                        android:orientation="horizontal"
+                        android:rowCount="2">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -840,24 +1157,44 @@
                     android:background="@drawable/border"
                     android:orientation="vertical">
 
-                    <GridLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:columnCount="2"
-                        android:orientation="horizontal"
-                        android:rowCount="2">
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
                             android:layout_centerInParent="true"
-                            android:layout_columnSpan="2"
                             android:background="@drawable/title_background_music"
                             android:gravity="center"
                             android:text="@string/music_label_title_item_4"
                             android:textColor="#ffffffff"
-                            android:textSize="17.0dip" />
+                            android:textSize="17dp"
+                            />
+
+                        <ImageView
+                            android:id="@+id/clothHideButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:src="@drawable/icon_minus"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            />
+                    </RelativeLayout>
+
+                    <GridLayout
+                        android:id="@+id/clothGridLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:columnCount="2"
+                        android:orientation="horizontal"
+                        android:rowCount="2">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -882,30 +1219,6 @@
                             android:layout_centerInParent="true"
                             android:layout_columnSpan="2"
                             android:background="#FF7E7E" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="fill_parent"
-                            android:layout_gravity="fill_horizontal"
-                            android:layout_marginTop="5dp"
-                            android:gravity="left"
-                            android:text="@string/music_label_title_item_property_2"
-                            android:textColor="#ff000000" />
-
-                        <Spinner
-                            android:id="@+id/clothInchant2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="fill_horizontal"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginTop="0dp" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:layout_centerInParent="true"
-                            android:layout_columnSpan="2"
-                            android:background="#FF7E7E" />
                     </GridLayout>
                 </LinearLayout>
                 <!-- 옷 END -->
@@ -918,24 +1231,44 @@
                     android:background="@drawable/border"
                     android:orientation="vertical">
 
-                    <GridLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:columnCount="2"
-                        android:orientation="horizontal"
-                        android:rowCount="2">
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
                             android:layout_centerInParent="true"
-                            android:layout_columnSpan="2"
                             android:background="@drawable/title_background_music"
                             android:gravity="center"
                             android:text="@string/music_label_title_item_5"
                             android:textColor="#ffffffff"
-                            android:textSize="17.0dip" />
+                            android:textSize="17dp"
+                            />
+
+                        <ImageView
+                            android:id="@+id/handClothHideButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:src="@drawable/icon_minus"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            />
+                    </RelativeLayout>
+
+                    <GridLayout
+                        android:id="@+id/handClothGridLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:columnCount="2"
+                        android:orientation="horizontal"
+                        android:rowCount="2">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -996,24 +1329,44 @@
                     android:background="@drawable/border"
                     android:orientation="vertical">
 
-                    <GridLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:columnCount="2"
-                        android:orientation="horizontal"
-                        android:rowCount="2">
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
                             android:layout_centerInParent="true"
-                            android:layout_columnSpan="2"
                             android:background="@drawable/title_background_music"
                             android:gravity="center"
                             android:text="@string/music_label_title_item_6"
                             android:textColor="#ffffffff"
-                            android:textSize="17.0dip" />
+                            android:textSize="17dp"
+                            />
+
+                        <ImageView
+                            android:id="@+id/shoesHideButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:src="@drawable/icon_minus"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            />
+                    </RelativeLayout>
+
+                    <GridLayout
+                        android:id="@+id/shoesGridLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:columnCount="2"
+                        android:orientation="horizontal"
+                        android:rowCount="2">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -1089,6 +1442,187 @@
                     </GridLayout>
                 </LinearLayout>
                 <!-- 신발 END -->
+
+                <!-- 추가 요소 START -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/border"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_centerInParent="true"
+                            android:background="@drawable/title_background_music"
+                            android:gravity="center"
+                            android:text="@string/music_label_title_item_7"
+                            android:textColor="#ffffffff"
+                            android:textSize="17dp"
+                            />
+
+                        <ImageView
+                            android:id="@+id/otherHideButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:src="@drawable/icon_minus"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            />
+                    </RelativeLayout>
+
+                    <GridLayout
+                        android:id="@+id/otherGridLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:columnCount="3"
+                        android:orientation="horizontal"
+                        android:rowCount="6">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_other_1"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/otherGrandMaster"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_columnSpan="2"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="3"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_other_2"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/otherTrumpet"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_columnSpan="2"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="3"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_other_3"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/otherPotion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_columnSpan="2"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="3"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_other_4"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/otherParty"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_columnSpan="2"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="3"
+                            android:background="#FF7E7E" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:text="@string/music_label_title_other_5"
+                            android:textColor="#ff000000" />
+
+                        <Spinner
+                            android:id="@+id/otherEcostoneKey"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp" />
+
+                        <Spinner
+                            android:id="@+id/otherEcostoneValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_marginTop="0dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_centerInParent="true"
+                            android:layout_columnSpan="3"
+                            android:background="#FF7E7E" />
+                    </GridLayout>
+                </LinearLayout>
+                <!-- 추가 요소 END -->
             </LinearLayout>
 
             <LinearLayout
@@ -1099,14 +1633,14 @@
                 android:visibility="gone">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:background="@drawable/border"
                     android:orientation="vertical">
 
                     <GridLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_margin="10dp"
                         android:columnCount="4"
                         android:orientation="horizontal"

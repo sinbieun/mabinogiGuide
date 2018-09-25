@@ -2,8 +2,9 @@
 <resources>
     <string-array name="musicInchantForCloth1">
         <item>없음</item>
-        <item>소나타</item>
+        <item>소나타 4옵</item>
+        <item>소나타 5옵</item>
+        <item>소나타 6옵</item>
         <item>앙코르</item>
-        <item>장조의</item>
     </string-array>
 </resources>

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="musicInchantForCloth2">
+    <string-array name="musicInchantForWeapon2">
         <item>없음</item>
+        <item>코드</item>
+        <item>안단테</item>
     </string-array>
 </resources>

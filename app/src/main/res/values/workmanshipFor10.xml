@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="workmangshipSelectedFor10">
+        <item>0레벨</item>
+        <item>1레벨</item>
+        <item>2레벨</item>
+        <item>3레벨</item>
+        <item>4레벨</item>
+        <item>5레벨</item>
+        <item>6레벨</item>
+        <item>7레벨</item>
+        <item>8레벨</item>
+        <item>9레벨</item>
+        <item>10레벨</item>
+    </string-array>
+</resources>

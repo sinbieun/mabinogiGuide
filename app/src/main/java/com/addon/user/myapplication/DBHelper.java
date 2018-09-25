@@ -45,11 +45,14 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        // 3 연주 도우미 추가
+        // 4 연주 도우미 변경
         db.execSQL("DROP TABLE IF EXISTS TRADEITEM");
         db.execSQL("DROP TABLE IF EXISTS TRADECONTENT");
         db.execSQL("DROP TABLE IF EXISTS ERGMATERIAL");
         db.execSQL("DROP TABLE IF EXISTS ERGEXP");
         db.execSQL("DROP TABLE IF EXISTS ERGEFFECT");
+        db.execSQL("DROP TABLE IF EXISTS LOCALDATATABLE");
 
         onCreate(db);
         /*switch(oldVersion) {

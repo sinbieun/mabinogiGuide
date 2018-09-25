@@ -8,6 +8,8 @@ package com.addon.user.myapplication.layout;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -15,6 +17,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.GridLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -61,9 +65,14 @@ public class MusicLayout extends BaseLinearLayout {
     private Spinner firstTitleSpinner;
     private Spinner secondTitleSpinner;
 
-    // 타이틀 SPINNER DATA ARRAY
-    private ArrayAdapter<CharSequence> firstTitleDataArray;
-    private ArrayAdapter<CharSequence> secondTitleDataArray;
+    // 무기 SPINNER
+    private Spinner weaponSelectedSpinner;
+    private Spinner weaponInchant1Spinner;
+    private Spinner weaponInchant2Spinner;
+    private Spinner weaponMusicPlusSpinner;
+    private Spinner weaponNMESpinner;
+    private Spinner weaponGMESpinner;
+    private Spinner weaponBMESpinner;
 
     // 왼쪽 악세 SPINNER
     private Spinner leftAccessoryInchant1Spinner;
@@ -91,7 +100,6 @@ public class MusicLayout extends BaseLinearLayout {
 
     // 옷 SPINNER
     private Spinner clothInchant1Spinner;
-    private Spinner clothInchant2Spinner;
 
     // 장갑 SPINNER
     private Spinner handClothInchant1Spinner;
@@ -104,44 +112,13 @@ public class MusicLayout extends BaseLinearLayout {
     private Spinner shoesVVMSSpinner;
     private Spinner shoesVVASSpinner;
 
-    // 왼쪽 악세 SPINNER DATA ARRAY
-    private ArrayAdapter<CharSequence> leftAccessoryInchant1DataArray;
-    private ArrayAdapter<CharSequence> leftAccessoryInchant2DataArray;
-    private ArrayAdapter<CharSequence> leftAccessoryNMEDataArray;
-    private ArrayAdapter<CharSequence> leftAccessoryGMEDataArray;
-    private ArrayAdapter<CharSequence> leftAccessoryBMEDataArray;
-    private ArrayAdapter<CharSequence> leftAccessoryVVMSDataArray;
-    private ArrayAdapter<CharSequence> leftAccessoryVVASDataArray;
-    private ArrayAdapter<CharSequence> leftAccessoryBVGSDataArray;
-
-    // 오른쪽 악세 SPINNER DATA ARRAY
-    private ArrayAdapter<CharSequence> rightAccessoryInchant1DataArray;
-    private ArrayAdapter<CharSequence> rightAccessoryInchant2DataArray;
-    private ArrayAdapter<CharSequence> rightAccessoryNMEDataArray;
-    private ArrayAdapter<CharSequence> rightAccessoryGMEDataArray;
-    private ArrayAdapter<CharSequence> rightAccessoryBMEDataArray;
-    private ArrayAdapter<CharSequence> rightAccessoryVVMSDataArray;
-    private ArrayAdapter<CharSequence> rightAccessoryVVASDataArray;
-    private ArrayAdapter<CharSequence> rightAccessoryBVGSDataArray;
-
-    // 머리 SPINNER DATA ARRAY
-    private ArrayAdapter<CharSequence> headInchant1DataArray;
-    private ArrayAdapter<CharSequence> headInchant2DataArray;
-
-    // 옷 SPINNER DATA ARRAY
-    private ArrayAdapter<CharSequence> clothInchant1DataArray;
-    private ArrayAdapter<CharSequence> clothInchant2DataArray;
-
-    // 장갑 SPINNER DATA ARRAY
-    private ArrayAdapter<CharSequence> handClothInchant1DataArray;
-    private ArrayAdapter<CharSequence> handClothInchant2DataArray;
-    private ArrayAdapter<CharSequence> handClothBVGSDataArray;
-
-    // 신발 SPINNER DATA ARRAY
-    private ArrayAdapter<CharSequence> shoesInchant1DataArray;
-    private ArrayAdapter<CharSequence> shoesInchant2DataArray;
-    private ArrayAdapter<CharSequence> shoesVVMSDataArray;
-    private ArrayAdapter<CharSequence> shoesVVASDataArray;
+    // 추가 요소 SPINNER
+    private Spinner otherGrandMasterSpinner;
+    private Spinner otherTrumpetSpinner;
+    private Spinner otherPotionSpinner;
+    private Spinner otherPartySpinner;
+    private Spinner otherEcostoneKeySpinner;
+    private Spinner otherEcostoneValueSpinner;
 
     // TEXTVIEW
     // 전장의 서곡
@@ -193,21 +170,6 @@ public class MusicLayout extends BaseLinearLayout {
     private TextView spValueTextView_2_3;
     private TextView spValueTextView_3_3;
 
-    // DATA
-    private int musicPlusCountInt = 0;
-    private int BFCountInt = 0;
-    private int VVCountInt = 0;
-    private int BYCountInt = 0;
-    private int MCCountInt = 0;
-    private int SPCountInt = 0;
-
-    private int VVMSCountInt = 0;
-    private int VVASCountInt = 0;
-    private int BVGSCountInt = 0;
-    private int NMECountInt = 0;
-    private int GMECountInt = 0;
-    private int BMECountInt = 0;
-
     // 스킬 랭크에 따른 기본 수치
     // 악기 연주
     private int baseIRSValue = 0;
@@ -248,6 +210,43 @@ public class MusicLayout extends BaseLinearLayout {
     private TextView tab1Button;
     private TextView tab2Button;
 
+    // 현재 탭 레이아웃
+    private String currentTabLayout = "tab1";
+
+    // 하이드 버튼 및 레이아웃 세팅
+    private ImageView weaponHideButton;
+    private GridLayout weaponGridLayout;
+    private ImageView rankHideButton;
+    private GridLayout rankGridLayout;
+    private ImageView titleHideButton;
+    private GridLayout titleGridLayout;
+    private ImageView leftAccessoryHideButton;
+    private GridLayout leftAccessoryGridLayout;
+    private ImageView rightAccessoryHideButton;
+    private GridLayout rightAccessoryGridLayout;
+    private ImageView headHideButton;
+    private GridLayout headGridLayout;
+    private ImageView clothHideButton;
+    private GridLayout clothGridLayout;
+    private ImageView handClothHideButton;
+    private GridLayout handClothGridLayout;
+    private ImageView shoesHideButton;
+    private GridLayout shoesGridLayout;
+    private ImageView otherHideButton;
+    private GridLayout otherGridLayout;
+
+    // 하이드 및 쇼 boolean
+    private boolean isWeaponLayoutVisible = true;
+    private boolean isRankLayoutVisible = true;
+    private boolean isTitleLayoutVisible = true;
+    private boolean isLeftAccessoryLayoutVisible = true;
+    private boolean isRightAccessoryLayoutVisible = true;
+    private boolean isHeadLayoutVisible = true;
+    private boolean isClothLayoutVisible = true;
+    private boolean isHandClothLayoutVisible = true;
+    private boolean isShoesLayoutVisible = true;
+    private boolean isOtherLayoutVisible = true;
+
     public MusicLayout(Context context) {
         super(context);
     }
@@ -268,6 +267,15 @@ public class MusicLayout extends BaseLinearLayout {
         // 타이틀 SPINNER SETTING
         firstTitleSpinner = layout.findViewById(R.id.firstTitleSpinner);
         secondTitleSpinner = layout.findViewById(R.id.secondTitleSpinner);
+
+        // 무기 SPINNER SETTING
+        weaponSelectedSpinner = layout.findViewById(R.id.weaponSelected);
+        weaponInchant1Spinner = layout.findViewById(R.id.weaponInchant1);
+        weaponInchant2Spinner = layout.findViewById(R.id.weaponInchant2);
+        weaponMusicPlusSpinner = layout.findViewById(R.id.weaponMusicPlus);
+        weaponNMESpinner = layout.findViewById(R.id.weaponNME);
+        weaponGMESpinner = layout.findViewById(R.id.weaponGME);
+        weaponBMESpinner = layout.findViewById(R.id.weaponBME);
 
         // 왼쪽 악세 SPINNER SETTING
         leftAccessoryInchant1Spinner = layout.findViewById(R.id.leftAccessoryInchant1);
@@ -295,18 +303,50 @@ public class MusicLayout extends BaseLinearLayout {
 
         // 옷 SPINNER SETTING
         clothInchant1Spinner = layout.findViewById(R.id.clothInchant1);
-        clothInchant2Spinner = layout.findViewById(R.id.clothInchant2);
 
         // 장갑 SPINNER SETTING
         handClothInchant1Spinner = layout.findViewById(R.id.handClothInchant1);
-        // handClothInchant2Spinner = layout.findViewById(R.id.handClothInchant2);
         handClothBVGSSpinner = layout.findViewById(R.id.handClothBVGS);
 
         // 신발 SPINNER SETTING
         shoesInchant1Spinner = layout.findViewById(R.id.shoesInchant1);
-        // shoesInchant2Spinner = layout.findViewById(R.id.shoesInchant2);
         shoesVVMSSpinner = layout.findViewById(R.id.shoesVVMS);
         shoesVVASSpinner = layout.findViewById(R.id.shoesVVAS);
+
+        otherGrandMasterSpinner = layout.findViewById(R.id.otherGrandMaster);
+        otherTrumpetSpinner = layout.findViewById(R.id.otherTrumpet);
+        otherPotionSpinner = layout.findViewById(R.id.otherPotion);
+        otherPartySpinner = layout.findViewById(R.id.otherParty);
+        otherEcostoneKeySpinner = layout.findViewById(R.id.otherEcostoneKey);
+        otherEcostoneValueSpinner = layout.findViewById(R.id.otherEcostoneValue);
+
+        // 탭 버튼
+        tab1Layout = findViewById(R.id.tab1Layout);
+        tab2Layout = findViewById(R.id.tab2Layout);
+        tab1Button = findViewById(R.id.tab_1);
+        tab2Button = findViewById(R.id.tab_2);
+
+        // 숨기기 버튼 및 레이아웃 세팅
+        weaponHideButton = findViewById(R.id.weaponHideButton);
+        weaponGridLayout = findViewById(R.id.weaponGridLayout);
+        rankHideButton = findViewById(R.id.rankHideButton);
+        rankGridLayout = findViewById(R.id.rankGridLayout);
+        titleHideButton = findViewById(R.id.titleHideButton);
+        titleGridLayout = findViewById(R.id.titleGridLayout);
+        leftAccessoryHideButton = findViewById(R.id.leftAccessoryHideButton);
+        leftAccessoryGridLayout = findViewById(R.id.leftAccessoryGridLayout);
+        rightAccessoryHideButton = findViewById(R.id.rightAccessoryHideButton);
+        rightAccessoryGridLayout = findViewById(R.id.rightAccessoryGridLayout);
+        headHideButton = findViewById(R.id.headHideButton);
+        headGridLayout = findViewById(R.id.headGridLayout);
+        clothHideButton = findViewById(R.id.clothHideButton);
+        clothGridLayout = findViewById(R.id.clothGridLayout);
+        handClothHideButton = findViewById(R.id.handClothHideButton);
+        handClothGridLayout = findViewById(R.id.handClothGridLayout);
+        shoesHideButton = findViewById(R.id.shoesHideButton);
+        shoesGridLayout = findViewById(R.id.shoesGridLayout);
+        otherHideButton = findViewById(R.id.otherHideButton);
+        otherGridLayout = findViewById(R.id.otherGridLayout);
 
         // TEXTVIEW
         bfValueTextView_1_1 = findViewById(R.id.bf_value_1_1);
@@ -353,30 +393,206 @@ public class MusicLayout extends BaseLinearLayout {
         spValueTextView_2_3 = findViewById(R.id.sp_value_2_3);
         spValueTextView_3_3 = findViewById(R.id.sp_value_3_3);
 
-        // 탭 버튼
-        tab1Layout = findViewById(R.id.tab1Layout);
-        tab2Layout = findViewById(R.id.tab2Layout);
-        tab1Button = findViewById(R.id.tab_1);
-        tab2Button = findViewById(R.id.tab_2);
-
         this.setSpinnerData();
         this.tabButtonSetting();
+        this.hideAndShowButtonSetting();
     }
 
+    /**
+     * 탭 버튼 세팅
+     */
     private void tabButtonSetting(){
         tab1Button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                tab1Layout.setVisibility(View.VISIBLE);
-                tab2Layout.setVisibility(View.GONE);
+                if(!"tab1".equals(currentTabLayout)){
+                    tab1Layout.setVisibility(View.VISIBLE);
+                    tab2Layout.setVisibility(View.GONE);
+
+                    tab1Button.setBackgroundResource(R.drawable.tab_background_gradient_selected);
+                    tab2Button.setBackgroundResource(R.drawable.tab_background_gradient);
+
+                    tab1Button.setTextColor(Color.parseColor("#FFFFFF"));
+                    tab2Button.setTextColor(Color.parseColor("#AAAAAA"));
+
+                    currentTabLayout = "tab1";
+                }
             }
         });
 
         tab2Button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                tab1Layout.setVisibility(View.GONE);
-                tab2Layout.setVisibility(View.VISIBLE);
+                if(!"tab2".equals(currentTabLayout)) {
+                    tab1Layout.setVisibility(View.GONE);
+                    tab2Layout.setVisibility(View.VISIBLE);
+
+                    tab1Button.setBackgroundResource(R.drawable.tab_background_gradient);
+                    tab2Button.setBackgroundResource(R.drawable.tab_background_gradient_selected);
+
+                    tab1Button.setTextColor(Color.parseColor("#AAAAAA"));
+                    tab2Button.setTextColor(Color.parseColor("#FFFFFF"));
+
+                    setFinishValue();
+
+                    currentTabLayout = "tab2";
+                }
+            }
+        });
+    }
+
+    /**
+     * 하이드 및 쇼 버튼 세팅
+     */
+    private void hideAndShowButtonSetting() {
+
+        weaponHideButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isWeaponLayoutVisible){
+                    weaponGridLayout.setVisibility(View.GONE);
+                    isWeaponLayoutVisible = false;
+                    weaponHideButton.setImageDrawable(getResources().getDrawable(R.drawable.icon_plus));
+                }else{
+                    weaponGridLayout.setVisibility(View.VISIBLE);
+                    isWeaponLayoutVisible = true;
+                    weaponHideButton.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));
+                }
+            }
+        });
+
+        rankHideButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isRankLayoutVisible){
+                    rankGridLayout.setVisibility(View.GONE);
+                    isRankLayoutVisible = false;
+                    rankHideButton.setImageDrawable(getResources().getDrawable(R.drawable.icon_plus));
+                }else{
+                    rankGridLayout.setVisibility(View.VISIBLE);
+                    isRankLayoutVisible = true;
+                    rankHideButton.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));
+                }
+            }
+        });
+
+        titleHideButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isTitleLayoutVisible){
+                    titleGridLayout.setVisibility(View.GONE);
+                    isTitleLayoutVisible = false;
+                    titleHideButton.setImageDrawable(getResources().getDrawable(R.drawable.icon_plus));
+                }else{
+                    titleGridLayout.setVisibility(View.VISIBLE);
+                    isTitleLayoutVisible = true;
+                    titleHideButton.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));
+                }
+            }
+        });
+
+        leftAccessoryHideButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isLeftAccessoryLayoutVisible){
+                    leftAccessoryGridLayout.setVisibility(View.GONE);
+                    isLeftAccessoryLayoutVisible = false;
+                    leftAccessoryHideButton.setImageDrawable(getResources().getDrawable(R.drawable.icon_plus));
+                }else{
+                    leftAccessoryGridLayout.setVisibility(View.VISIBLE);
+                    isLeftAccessoryLayoutVisible = true;
+                    leftAccessoryHideButton.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));
+                }
+            }
+        });
+
+        rightAccessoryHideButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isRightAccessoryLayoutVisible){
+                    rightAccessoryGridLayout.setVisibility(View.GONE);
+                    isRightAccessoryLayoutVisible = false;
+                    rightAccessoryHideButton.setImageDrawable(getResources().getDrawable(R.drawable.icon_plus));
+                }else{
+                    rightAccessoryGridLayout.setVisibility(View.VISIBLE);
+                    isRightAccessoryLayoutVisible = true;
+                    rightAccessoryHideButton.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));
+                }
+            }
+        });
+
+        headHideButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isHeadLayoutVisible){
+                    headGridLayout.setVisibility(View.GONE);
+                    isHeadLayoutVisible = false;
+                    headHideButton.setImageDrawable(getResources().getDrawable(R.drawable.icon_plus));
+                }else{
+                    headGridLayout.setVisibility(View.VISIBLE);
+                    isHeadLayoutVisible = true;
+                    headHideButton.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));
+                }
+            }
+        });
+
+        clothHideButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isClothLayoutVisible){
+                    clothGridLayout.setVisibility(View.GONE);
+                    isClothLayoutVisible = false;
+                    clothHideButton.setImageDrawable(getResources().getDrawable(R.drawable.icon_plus));
+                }else{
+                    clothGridLayout.setVisibility(View.VISIBLE);
+                    isClothLayoutVisible = true;
+                    clothHideButton.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));
+                }
+            }
+        });
+
+        handClothHideButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isHandClothLayoutVisible){
+                    handClothGridLayout.setVisibility(View.GONE);
+                    isHandClothLayoutVisible = false;
+                    handClothHideButton.setImageDrawable(getResources().getDrawable(R.drawable.icon_plus));
+                }else{
+                    handClothGridLayout.setVisibility(View.VISIBLE);
+                    isHandClothLayoutVisible = true;
+                    handClothHideButton.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));
+                }
+            }
+        });
+
+        shoesHideButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isShoesLayoutVisible){
+                    shoesGridLayout.setVisibility(View.GONE);
+                    isShoesLayoutVisible = false;
+                    shoesHideButton.setImageDrawable(getResources().getDrawable(R.drawable.icon_plus));
+                }else{
+                    shoesGridLayout.setVisibility(View.VISIBLE);
+                    isShoesLayoutVisible = true;
+                    shoesHideButton.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));
+                }
+            }
+        });
+
+        otherHideButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isOtherLayoutVisible){
+                    otherGridLayout.setVisibility(View.GONE);
+                    isOtherLayoutVisible = false;
+                    otherHideButton.setImageDrawable(getResources().getDrawable(R.drawable.icon_plus));
+                }else{
+                    otherGridLayout.setVisibility(View.VISIBLE);
+                    isOtherLayoutVisible = true;
+                    otherHideButton.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));
+                }
             }
         });
     }
@@ -395,14 +611,7 @@ public class MusicLayout extends BaseLinearLayout {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 setBaseValueFromRank("IRS", IRSDataArray.getItem(i).toString());
-
                 if(!isFirstMusic) {
-                    setFinishValue("BF");
-                    setFinishValue("VV");
-                    setFinishValue("BV");
-                    setFinishValue("MC");
-                    setFinishValue("SP");
-
                     setUpdateData("instrumentRank", String.valueOf(i));
                 }else{
                     isFirstMusic = false;
@@ -425,12 +634,6 @@ public class MusicLayout extends BaseLinearLayout {
                 setBaseValueFromRank("SONG", SONGDataArray.getItem(i).toString());
 
                 if(!isFirstSong) {
-                    setFinishValue("BF");
-                    setFinishValue("VV");
-                    setFinishValue("BV");
-                    setFinishValue("MC");
-                    setFinishValue("SP");
-
                     setUpdateData("songRank", String.valueOf(i));
                 }else{
                     isFirstSong = false;
@@ -451,9 +654,6 @@ public class MusicLayout extends BaseLinearLayout {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 setBaseValueFromRank("BF", BFRDataArray.getItem(i).toString());
-
-                setFinishValue("BF");
-
                 setUpdateData("BFRank", String.valueOf(i));
             }
 
@@ -471,9 +671,6 @@ public class MusicLayout extends BaseLinearLayout {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 setBaseValueFromRank("VV", VVRDataArray.getItem(i).toString());
-
-                setFinishValue("VV");
-
                 setUpdateData("VVRank", String.valueOf(i));
             }
 
@@ -491,9 +688,6 @@ public class MusicLayout extends BaseLinearLayout {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 setBaseValueFromRank("BV", BVRDataArray.getItem(i).toString());
-
-                setFinishValue("BV");
-
                 setUpdateData("BVRank", String.valueOf(i));
             }
 
@@ -511,9 +705,6 @@ public class MusicLayout extends BaseLinearLayout {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 setBaseValueFromRank("MC", MCRDataArray.getItem(i).toString());
-
-                setFinishValue("MC");
-
                 setUpdateData("MCRank", String.valueOf(i));
             }
 
@@ -531,7 +722,6 @@ public class MusicLayout extends BaseLinearLayout {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 setBaseValueFromRank("SP", SPRDataArray.getItem(i).toString());
-                setFinishValue("SP");
                 setUpdateData("SPRank", String.valueOf(i));
             }
 
@@ -544,76 +734,101 @@ public class MusicLayout extends BaseLinearLayout {
 
         //************************ 타이틀 시작 ************************/
         // 1차 타이틀
-        setSpinnerView(firstTitleSpinner, firstTitleDataArray, R.array.musicFirstTitleArray, "firstTitleSpinner");
+        setSpinnerView(firstTitleSpinner, R.array.musicFirstTitleArray, "firstTitleSpinner");
         // 2차 타이틀
-        setSpinnerView(secondTitleSpinner, secondTitleDataArray, R.array.musicSecondTitleArray, "secondTitleSpinner");
+        setSpinnerView(secondTitleSpinner, R.array.musicSecondTitleArray, "secondTitleSpinner");
         //************************ 타이틀 종료 ************************/
+
+        //************************ 무기 시작 ************************/
+        // 무기 종류
+        setSpinnerView(weaponSelectedSpinner, R.array.musicWeaponArray, "weaponSelectedSpinner");
+        // 접두 인챈트
+        setSpinnerView(weaponInchant1Spinner, R.array.musicInchantForWeapon1, "weaponInchant1Spinner");
+        // 접미 인챈트
+        setSpinnerView(weaponInchant2Spinner, R.array.musicInchantForWeapon2, "weaponInchant2Spinner");
+        // 무기 악기 효과 세공
+        setSpinnerView(weaponMusicPlusSpinner, R.array.workmangshipSelectedFor20, "weaponMusicPlusSpinner");
+        // 보통 연주
+        setSpinnerView(weaponNMESpinner, R.array.workmangshipSelectedFor10, "weaponNMESpinner");
+        // 훌륭한 연주
+        setSpinnerView(weaponGMESpinner, R.array.workmangshipSelectedFor10, "weaponGMESpinner");
+        // 신들린 연주
+        setSpinnerView(weaponBMESpinner, R.array.workmangshipSelectedFor10, "weaponBMESpinner");
+
+        //************************ 무기 종료 ************************/
 
         //************************ 왼쪽 악세 시작 ************************/
         // 접두 인챈트
-        setSpinnerView(leftAccessoryInchant1Spinner, leftAccessoryInchant1DataArray, R.array.musicInchantForAccessory1, "leftAccessoryInchant1Spinner");
+        setSpinnerView(leftAccessoryInchant1Spinner, R.array.musicInchantForAccessory1, "leftAccessoryInchant1Spinner");
         // 접미 인챈트
-        setSpinnerView(leftAccessoryInchant2Spinner, leftAccessoryInchant2DataArray, R.array.musicInchantForAccessory2, "leftAccessoryInchant2Spinner");
+        setSpinnerView(leftAccessoryInchant2Spinner, R.array.musicInchantForAccessory2, "leftAccessoryInchant2Spinner");
         // 보통 연주
-        setSpinnerView(leftAccessoryNMESpinner, leftAccessoryNMEDataArray, R.array.workmangshipSelectedFor3, "leftAccessoryNMESpinner");
+        setSpinnerView(leftAccessoryNMESpinner, R.array.workmangshipSelectedFor3, "leftAccessoryNMESpinner");
         // 훌륭한 연주
-        setSpinnerView(leftAccessoryGMESpinner, leftAccessoryGMEDataArray, R.array.workmangshipSelectedFor3, "leftAccessoryGMESpinner");
+        setSpinnerView(leftAccessoryGMESpinner, R.array.workmangshipSelectedFor3, "leftAccessoryGMESpinner");
         // 신들린 연주
-        setSpinnerView(leftAccessoryBMESpinner, leftAccessoryBMEDataArray, R.array.workmangshipSelectedFor3, "leftAccessoryBMESpinner");
+        setSpinnerView(leftAccessoryBMESpinner, R.array.workmangshipSelectedFor3, "leftAccessoryBMESpinner");
         // 마법 시전 속도
-        setSpinnerView(leftAccessoryVVMSSpinner, leftAccessoryVVMSDataArray, R.array.workmangshipSelectedFor3, "leftAccessoryVVMSSpinner");
+        setSpinnerView(leftAccessoryVVMSSpinner, R.array.workmangshipSelectedFor3, "leftAccessoryVVMSSpinner");
         // 공격 속도
-        setSpinnerView(leftAccessoryVVASSpinner, leftAccessoryVVASDataArray, R.array.workmangshipSelectedFor3, "leftAccessoryVVASSpinner");
+        setSpinnerView(leftAccessoryVVASSpinner, R.array.workmangshipSelectedFor3, "leftAccessoryVVASSpinner");
         // 풍년가 채집 속도
-        setSpinnerView(leftAccessoryBVGSSpinner, leftAccessoryBVGSDataArray, R.array.workmangshipSelectedFor3, "leftAccessoryBVGSSpinner");
+        setSpinnerView(leftAccessoryBVGSSpinner, R.array.workmangshipSelectedFor3, "leftAccessoryBVGSSpinner");
         //************************ 왼쪽 악세 종료 ************************/
 
         //************************ 오른쪽 악세 시작 ************************/
         // 접두 인챈트
-        setSpinnerView(rightAccessoryInchant1Spinner, rightAccessoryInchant1DataArray, R.array.musicInchantForAccessory1, "rightAccessoryInchant1Spinner");
+        setSpinnerView(rightAccessoryInchant1Spinner, R.array.musicInchantForAccessory1, "rightAccessoryInchant1Spinner");
         // 접미 인챈트
-        setSpinnerView(rightAccessoryInchant2Spinner, rightAccessoryInchant2DataArray, R.array.musicInchantForAccessory2, "rightAccessoryInchant2Spinner");
+        setSpinnerView(rightAccessoryInchant2Spinner, R.array.musicInchantForAccessory2, "rightAccessoryInchant2Spinner");
         // 보통 연주
-        setSpinnerView(rightAccessoryNMESpinner, rightAccessoryNMEDataArray, R.array.workmangshipSelectedFor3, "rightAccessoryNMESpinner");
+        setSpinnerView(rightAccessoryNMESpinner, R.array.workmangshipSelectedFor3, "rightAccessoryNMESpinner");
         // 훌륭한 연주
-        setSpinnerView(rightAccessoryGMESpinner, rightAccessoryGMEDataArray, R.array.workmangshipSelectedFor3, "rightAccessoryGMESpinner");
+        setSpinnerView(rightAccessoryGMESpinner, R.array.workmangshipSelectedFor3, "rightAccessoryGMESpinner");
         // 신들린 연주
-        setSpinnerView(rightAccessoryBMESpinner, rightAccessoryBMEDataArray, R.array.workmangshipSelectedFor3, "rightAccessoryBMESpinner");
+        setSpinnerView(rightAccessoryBMESpinner, R.array.workmangshipSelectedFor3, "rightAccessoryBMESpinner");
         // 마법 시전 속도
-        setSpinnerView(rightAccessoryVVMSSpinner, rightAccessoryVVMSDataArray, R.array.workmangshipSelectedFor3, "rightAccessoryVVMSSpinner");
+        setSpinnerView(rightAccessoryVVMSSpinner, R.array.workmangshipSelectedFor3, "rightAccessoryVVMSSpinner");
         // 공격 속도
-        setSpinnerView(rightAccessoryVVASSpinner, rightAccessoryVVASDataArray, R.array.workmangshipSelectedFor3, "rightAccessoryVVASSpinner");
+        setSpinnerView(rightAccessoryVVASSpinner, R.array.workmangshipSelectedFor3, "rightAccessoryVVASSpinner");
         // 풍년가 채집 속도
-        setSpinnerView(rightAccessoryBVGSSpinner, rightAccessoryBVGSDataArray, R.array.workmangshipSelectedFor3, "rightAccessoryBVGSSpinner");
+        setSpinnerView(rightAccessoryBVGSSpinner, R.array.workmangshipSelectedFor3, "rightAccessoryBVGSSpinner");
         //************************ 오른쪽 악세 종료 ************************/
 
         //************************ 머리 시작 ************************/
         // 접미 인챈트
-        setSpinnerView(headInchant2Spinner, headInchant2DataArray, R.array.musicInchantForHead, "headInchant2Spinner");
+        setSpinnerView(headInchant2Spinner, R.array.musicInchantForHead, "headInchant2Spinner");
         //************************ 머리 종료 ************************/
 
         //************************ 옷 시작 ************************/
         // 접두 인챈트
-        setSpinnerView(clothInchant1Spinner, clothInchant1DataArray, R.array.musicInchantForCloth1, "clothInchant1Spinner");
-        // 접미 인챈트
-        setSpinnerView(clothInchant2Spinner, clothInchant2DataArray, R.array.musicInchantForCloth2, "clothInchant2Spinner");
+        setSpinnerView(clothInchant1Spinner, R.array.musicInchantForCloth1, "clothInchant1Spinner");
         //************************ 옷 종료 ************************/
 
         //************************ 장갑 시작 ************************/
         // 접두 인챈트
-        setSpinnerView(handClothInchant1Spinner, handClothInchant1DataArray, R.array.musicInchantForShoes, "handClothInchant1Spinner");
+        setSpinnerView(handClothInchant1Spinner, R.array.musicInchantForShoes, "handClothInchant1Spinner");
         // 풍년가 채집 속도
-        setSpinnerView(handClothBVGSSpinner, handClothBVGSDataArray, R.array.workmangshipSelectedFor3, "handClothBVGSSpinner");
+        setSpinnerView(handClothBVGSSpinner, R.array.workmangshipSelectedFor3, "handClothBVGSSpinner");
         //************************ 장갑 종료 ************************/
 
         //************************ 신발 시작 ************************/
         // 접두 인챈트
-        setSpinnerView(shoesInchant1Spinner, shoesInchant1DataArray, R.array.musicInchantForShoes, "shoesInchant1Spinner");
+        setSpinnerView(shoesInchant1Spinner, R.array.musicInchantForShoes, "shoesInchant1Spinner");
         // 마법 시전 속도
-        setSpinnerView(shoesVVMSSpinner, shoesVVMSDataArray, R.array.workmangshipSelectedFor3, "shoesVVMSSpinner");
+        setSpinnerView(shoesVVMSSpinner, R.array.workmangshipSelectedFor3, "shoesVVMSSpinner");
         // 비바체 공격 속도
-        setSpinnerView(shoesVVASSpinner, shoesVVASDataArray, R.array.workmangshipSelectedFor3, "shoesVVASSpinner");
+        setSpinnerView(shoesVVASSpinner, R.array.workmangshipSelectedFor3, "shoesVVASSpinner");
         //************************ 신발 종료 ************************/
+
+        //************************ 추가요소 시작 ************************/
+        setSpinnerView(otherGrandMasterSpinner, R.array.isUseArray, "otherGrandMasterSpinner");
+        setSpinnerView(otherTrumpetSpinner, R.array.isUseArray, "otherTrumpetSpinner");
+        setSpinnerView(otherPotionSpinner, R.array.isUseArray, "otherPotionSpinner");
+        setSpinnerView(otherPartySpinner, R.array.musicParty, "otherPartySpinner");
+        setSpinnerViewForEcostone(otherEcostoneKeySpinner, R.array.musicEcostoneKeyArray, "otherEcostoneKeySpinner");
+        setSpinnerView(otherEcostoneValueSpinner, R.array.workmangshipSelectedFor0, "otherEcostoneValueSpinner");
+        //************************ 추가종료 시작 ************************/
     }
 
     /**
@@ -645,25 +860,155 @@ public class MusicLayout extends BaseLinearLayout {
         switch (keyName){
             case "instrumentRank" :
                 instrumentRankSpinner.setSelection(Integer.parseInt(keyContent));
-            break;
+                break;
             case "songRank" :
                 songRankSpinner.setSelection(Integer.parseInt(keyContent));
-            break;
+                break;
             case "BFRank" :
                 BFRankSpinner.setSelection(Integer.parseInt(keyContent));
-            break;
+                break;
             case "VVRank" :
                 VVRankSpinner.setSelection(Integer.parseInt(keyContent));
-            break;
+                break;
             case "BVRank" :
                 BVRankSpinner.setSelection(Integer.parseInt(keyContent));
-            break;
+                break;
             case "MCRank" :
                 MCRankSpinner.setSelection(Integer.parseInt(keyContent));
-            break;
+                break;
             case "SPRank" :
                 SPRankSpinner.setSelection(Integer.parseInt(keyContent));
+                break;
+            // 타이틀 SPINNER SETTING
+            case "firstTitleSpinner" :
+                firstTitleSpinner.setSelection(Integer.parseInt(keyContent));
+                break;
+            case "secondTitleSpinner" :
+                secondTitleSpinner.setSelection(Integer.parseInt(keyContent));
+                break;
+
+            case "weaponSelectedSpinner" :
+                weaponSelectedSpinner.setSelection(Integer.parseInt(keyContent));
             break;
+            case "weaponInchant1Spinner" :
+                weaponInchant1Spinner.setSelection(Integer.parseInt(keyContent));
+            break;
+            case "weaponInchant2Spinner" :
+                weaponInchant2Spinner.setSelection(Integer.parseInt(keyContent));
+            break;
+            case "weaponMusicPlusSpinner" :
+                weaponMusicPlusSpinner.setSelection(Integer.parseInt(keyContent));
+            break;
+            case "weaponNMESpinner" :
+                weaponNMESpinner.setSelection(Integer.parseInt(keyContent));
+            break;
+            case "weaponGMESpinner" :
+                weaponGMESpinner.setSelection(Integer.parseInt(keyContent));
+            break;
+            case "weaponBMESpinner" :
+                weaponBMESpinner.setSelection(Integer.parseInt(keyContent));
+            break;
+
+            // 왼쪽 악세 SPINNER SETTING
+            case "leftAccessoryInchant1Spinner" :
+                leftAccessoryInchant1Spinner.setSelection(Integer.parseInt(keyContent));
+                break;
+            case "leftAccessoryInchant2Spinner" :
+                leftAccessoryInchant2Spinner.setSelection(Integer.parseInt(keyContent));
+                break;
+            case "leftAccessoryNMESpinner" :
+                leftAccessoryNMESpinner.setSelection(Integer.parseInt(keyContent));
+                break;
+            case "leftAccessoryGMESpinner" :
+                leftAccessoryGMESpinner.setSelection(Integer.parseInt(keyContent));
+                break;
+            case "leftAccessoryBMESpinner" :
+                leftAccessoryBMESpinner.setSelection(Integer.parseInt(keyContent));
+                break;
+            case "leftAccessoryVVMSSpinner" :
+                leftAccessoryVVMSSpinner.setSelection(Integer.parseInt(keyContent));
+                break;
+            case "leftAccessoryVVASSpinner" :
+                leftAccessoryVVASSpinner.setSelection(Integer.parseInt(keyContent));
+                break;
+            case "leftAccessoryBVGSSpinner" :
+                leftAccessoryBVGSSpinner.setSelection(Integer.parseInt(keyContent));
+                break;
+
+            // 오른쪽 악세 SPINNER SETTING
+            case "rightAccessoryInchant1Spinner" :
+                rightAccessoryInchant1Spinner.setSelection(Integer.parseInt(keyContent));
+                break;
+            case "rightAccessoryInchant2Spinner" :
+                rightAccessoryInchant2Spinner.setSelection(Integer.parseInt(keyContent));
+                break;
+            case "rightAccessoryNMESpinner" :
+                rightAccessoryNMESpinner.setSelection(Integer.parseInt(keyContent));
+                break;
+            case "rightAccessoryGMESpinner" :
+                rightAccessoryGMESpinner.setSelection(Integer.parseInt(keyContent));
+                break;
+            case "rightAccessoryBMESpinner" :
+                rightAccessoryBMESpinner.setSelection(Integer.parseInt(keyContent));
+                break;
+            case "rightAccessoryVVMSSpinner" :
+                rightAccessoryVVMSSpinner.setSelection(Integer.parseInt(keyContent));
+                break;
+            case "rightAccessoryVVASSpinner" :
+                rightAccessoryVVASSpinner.setSelection(Integer.parseInt(keyContent));
+                break;
+            case "rightAccessoryBVGSSpinner" :
+                rightAccessoryBVGSSpinner.setSelection(Integer.parseInt(keyContent));
+                break;
+
+            // 머리 SPINNER SETTING
+            // headInchant1Spinner
+            case "headInchant2Spinner" :
+                headInchant2Spinner.setSelection(Integer.parseInt(keyContent));
+                break;
+
+            // 옷 SPINNER SETTING
+            case "clothInchant1Spinner" :
+                clothInchant1Spinner.setSelection(Integer.parseInt(keyContent));
+                break;
+
+            // 장갑 SPINNER SETTING
+            case "handClothInchant1Spinner" :
+                handClothInchant1Spinner.setSelection(Integer.parseInt(keyContent));
+                break;
+            case "handClothBVGSSpinner" :
+                handClothBVGSSpinner.setSelection(Integer.parseInt(keyContent));
+                break;
+
+            // 신발 SPINNER SETTING
+            case "shoesInchant1Spinner" :
+                shoesInchant1Spinner.setSelection(Integer.parseInt(keyContent));
+                break;
+            case "shoesVVMSSpinner" :
+                shoesVVMSSpinner.setSelection(Integer.parseInt(keyContent));
+                break;
+            case "shoesVVASSpinner" :
+                shoesVVASSpinner.setSelection(Integer.parseInt(keyContent));
+                break;
+
+            case "otherGrandMasterSpinner" :
+                otherGrandMasterSpinner.setSelection(Integer.parseInt(keyContent));
+            break;
+            case "otherTrumpetSpinner" :
+                otherTrumpetSpinner.setSelection(Integer.parseInt(keyContent));
+            break;
+            case "otherPotionSpinner" :
+                otherPotionSpinner.setSelection(Integer.parseInt(keyContent));
+            break;
+            case "otherPartySpinner" :
+                otherPartySpinner.setSelection(Integer.parseInt(keyContent));
+            break;
+            case "otherEcostoneKeySpinner" :
+                otherEcostoneKeySpinner.setSelection(Integer.parseInt(keyContent));
+            break;
+            //case "otherEcostoneValueSpinner" :
+            //    otherEcostoneValueSpinner.setSelection(Integer.parseInt(keyContent));
+            //break;
         }
     }
 
@@ -679,35 +1024,322 @@ public class MusicLayout extends BaseLinearLayout {
     public void setData(Object[] obj) {
     }
 
-    private void setFinishValue(String gubun){
+    private void setFinishValue(){
+        // PARAMETER
+        // DATA
+        int musicPlusCountInt = 0;             // 악기연주 최종 결과
+        int BFCountInt = 0;                    // 전장의 서곡 최종
+        int VVCountInt = 0;                    // 비바체 최종
+        int BYCountInt = 0;                    // 풍년가 최종
+        int MCCountInt = 0;                    // 행진곡 최종
+        int SPCountInt = 0;                    // 인내의 노래 최종
+
+        int musicParty = 0;                    // 파티원 수
+
         // 기본 : 스킬효과 * ( 1 + ( 세공vs에코스톤(연주) ) / 100 ) * ( 100 + 악기연주효과 ) / 10000
         // 보연은 기본 + 0
         // 훌연은 기본 + 10
         // 신들은 기본 + 30
 
+        // 1차 타이틀 계산
+        if(dataMap.containsKey("firstTitleSpinner")){
+            switch(dataMap.get("firstTitleSpinner")){
+                case "없음" :
+                    musicPlusCountInt += 0;
+                    break;
+                case "전장의 서곡 마스터" :
+                    BFCountInt += 8;
+                    break;
+                case "비바체 마스터" :
+                    VVCountInt += 10;
+                    break;
+                case "풍년가 마스터" :
+                    BYCountInt += 10;
+                    break;
+                case "행진곡 마스터" :
+                    MCCountInt += 10;
+                    break;
+                case "인내의 노래 마스터" :
+                    SPCountInt += 10;
+                    break;
+                case "마에스트로" :
+                    musicPlusCountInt += 5;
+                    break;
+            }
+        }
 
-        // 연주효과 +부분 넣어줘야함
-        // 보연/훌연/신들 세공 및 에코스톤 확인해서 리턴 필요
+        // 2차 타이틀 계산
+        if(dataMap.containsKey("secondTitleSpinner")){
+            switch(dataMap.get("secondTitleSpinner")){
+                case "포르티시모" :
+                    musicPlusCountInt += 9;
+                    break;
+                case "포르테" :
+                    musicPlusCountInt += 8;
+                    break;
+                case "디바" :
+                    musicPlusCountInt += 8;
+                    break;
+                case "이보나" :
+                    musicPlusCountInt += 8;
+                    break;
+                case "피아니시모" :
+                    musicPlusCountInt += 7;
+                    break;
+                case "붉은빛오로라" :
+                    musicPlusCountInt += 3;
+                    break;
+                case "푸른빛오로라" :
+                    musicPlusCountInt += 3;
+                    break;
+                case "만렙" :
+                    musicPlusCountInt += 4;
+                    break;
+                case "카가미네 린" :
+                    musicPlusCountInt += 3;
+                    break;
+                case "카가미네 렌" :
+                    musicPlusCountInt += 3;
+                    break;
+                case "카이토" :
+                    musicPlusCountInt += 3;
+                    break;
+                case "하츠네 미쿠" :
+                    musicPlusCountInt += 3;
+                    break;
+                case "무지개빛 오로라" :
+                    musicPlusCountInt += 2;
+                    break;
+                case "11주년 판파" :
+                    musicPlusCountInt += 2;
+                    break;
+                case "에피" :
+                    musicPlusCountInt += 2;
+                    break;
+                case "일라" :
+                    musicPlusCountInt += 2;
+                    break;
+                case "하멜른" :
+                    musicPlusCountInt += 2;
+                    break;
+            }
+        }
+
+        // 무기
+        if(dataMap.containsKey("weaponSelectedSpinner")){
+            switch (dataMap.get("weaponSelectedSpinner")){
+                case "글루미" :
+                    musicPlusCountInt += 15;
+                    break;
+                case "리라" :
+                    musicPlusCountInt += 11;
+                    break;
+                case "바이올린" :
+                    musicPlusCountInt += 11;
+                    break;
+            }
+        }
+
+        // 인챈트
+        if(dataMap.containsKey("weaponInchant1Spinner")){
+            musicPlusCountInt += setValueFromInchant(dataMap.get("weaponInchant1Spinner"));
+        }
+        if(dataMap.containsKey("weaponInchant2Spinner")){
+            musicPlusCountInt += setValueFromInchant(dataMap.get("weaponInchant2Spinner"));
+        }
+        if(dataMap.containsKey("leftAccessoryInchant1Spinner")){
+            musicPlusCountInt += setValueFromInchant(dataMap.get("leftAccessoryInchant1Spinner"));
+        }
+        if(dataMap.containsKey("leftAccessoryInchant2Spinner")){
+            musicPlusCountInt += setValueFromInchant(dataMap.get("leftAccessoryInchant2Spinner"));
+        }
+        if(dataMap.containsKey("rightAccessoryInchant1Spinner")){
+            musicPlusCountInt += setValueFromInchant(dataMap.get("rightAccessoryInchant1Spinner"));
+        }
+        if(dataMap.containsKey("rightAccessoryInchant2Spinner")){
+            musicPlusCountInt += setValueFromInchant(dataMap.get("rightAccessoryInchant2Spinner"));
+        }
+        if(dataMap.containsKey("headInchant2Spinner")){
+            musicPlusCountInt += setValueFromInchant(dataMap.get("headInchant2Spinner"));
+        }
+        if(dataMap.containsKey("clothInchant1Spinner")){
+            musicPlusCountInt += setValueFromInchant(dataMap.get("clothInchant1Spinner"));
+        }
+        if(dataMap.containsKey("handClothInchant1Spinner")){
+            musicPlusCountInt += setValueFromInchant(dataMap.get("handClothInchant1Spinner"));
+        }
+        if(dataMap.containsKey("shoesInchant1Spinner")){
+            musicPlusCountInt += setValueFromInchant(dataMap.get("shoesInchant1Spinner"));
+        }
+
+        // 세공 vs 에코스톤 해줘야함
+        int workManVsEcostoneNME = 0;               // 보연 ( 악세 2개, 무기 )
+        int workManVsEcostoneGME = 0;               // 훌연 ( 악세 2개, 무기 )
+        int workManVsEcostoneBME = 0;               // 신들 ( 악세 2개, 무기 )
+        int workManVsEcostoneVVMS = 0;              // 마시속 ( 악세 2개, 발 )
+        int workManVsEcostoneVVAS = 0;              // 비바공속 ( 악세 2개 )
+        int workManVsEcostoneBVGS = 0;              // 풍년채속 ( 악세 2개, 장갑 )
+        int workManVsEcostoneME = 0;                // 악효 ( 무기 )
+
+        // 우선 세공을 모두 넣어줌
+        // ============ 악효 시작 ============
+        if(dataMap.containsKey("weaponMusicPlusSpinner")){
+            workManVsEcostoneME += Integer.parseInt(dataMap.get("weaponMusicPlusSpinner").replace("레벨",""));
+        }
+        // ============ 악효 종료 ============
+        // ============ 보연 시작 ============
+        if(dataMap.containsKey("leftAccessoryNMESpinner")){
+            workManVsEcostoneNME += Integer.parseInt(dataMap.get("leftAccessoryNMESpinner").replace("레벨",""));
+        }
+        if(dataMap.containsKey("rightAccessoryNMESpinner")){
+            workManVsEcostoneNME += Integer.parseInt(dataMap.get("rightAccessoryNMESpinner").replace("레벨",""));
+        }
+        if(dataMap.containsKey("weaponNMESpinner")){
+            workManVsEcostoneNME += Integer.parseInt(dataMap.get("weaponNMESpinner").replace("레벨",""));
+        }
+        // ============ 보연 종료 ============
+        // ============ 훌연 시작 ============
+        if(dataMap.containsKey("leftAccessoryGMESpinner")){
+            workManVsEcostoneGME += Integer.parseInt(dataMap.get("leftAccessoryGMESpinner").replace("레벨",""));
+        }
+        if(dataMap.containsKey("rightAccessoryGMESpinner")){
+            workManVsEcostoneGME += Integer.parseInt(dataMap.get("rightAccessoryGMESpinner").replace("레벨",""));
+        }
+        if(dataMap.containsKey("weaponGMESpinner")){
+            workManVsEcostoneGME += Integer.parseInt(dataMap.get("weaponGMESpinner").replace("레벨",""));
+        }
+        // ============ 훌연 종료 ============
+        // ============ 신들 시작 ============
+        if(dataMap.containsKey("leftAccessoryBMESpinner")){
+            workManVsEcostoneBME += Integer.parseInt(dataMap.get("leftAccessoryBMESpinner").replace("레벨",""));
+        }
+        if(dataMap.containsKey("rightAccessoryBMESpinner")){
+            workManVsEcostoneBME += Integer.parseInt(dataMap.get("rightAccessoryBMESpinner").replace("레벨",""));
+        }
+        if(dataMap.containsKey("weaponBMESpinner")){
+            workManVsEcostoneBME += Integer.parseInt(dataMap.get("weaponBMESpinner").replace("레벨",""));
+        }
+        // ============ 신들 종료 ============
+        // ============ 마시속 시작 ============
+        if(dataMap.containsKey("leftAccessoryVVMSSpinner")){
+            workManVsEcostoneVVMS += Integer.parseInt(dataMap.get("leftAccessoryVVMSSpinner").replace("레벨",""));
+        }
+        if(dataMap.containsKey("rightAccessoryVVMSSpinner")){
+            workManVsEcostoneVVMS += Integer.parseInt(dataMap.get("rightAccessoryVVMSSpinner").replace("레벨",""));
+        }
+        if(dataMap.containsKey("shoesVVMSSpinner")){
+            workManVsEcostoneVVMS += Integer.parseInt(dataMap.get("shoesVVMSSpinner").replace("레벨",""));
+        }
+        // ============ 마시속 종료 ============
+        // ============ 비바공속 시작 ============
+        if(dataMap.containsKey("leftAccessoryVVASSpinner")){
+            workManVsEcostoneVVAS += Integer.parseInt(dataMap.get("leftAccessoryVVASSpinner").replace("레벨",""));
+        }
+        if(dataMap.containsKey("rightAccessoryVVASSpinner")){
+            workManVsEcostoneVVAS += Integer.parseInt(dataMap.get("rightAccessoryVVASSpinner").replace("레벨",""));
+        }
+        if(dataMap.containsKey("shoesVVASSpinner")){
+            workManVsEcostoneVVAS += Integer.parseInt(dataMap.get("shoesVVASSpinner").replace("레벨",""));
+        }
+        // ============ 비바공속 종료 ============
+        // ============ 풍년채속 시작 ============
+        if(dataMap.containsKey("leftAccessoryBVGSSpinner")){
+            workManVsEcostoneBVGS += Integer.parseInt(dataMap.get("leftAccessoryBVGSSpinner").replace("레벨",""));
+        }
+        if(dataMap.containsKey("rightAccessoryBVGSSpinner")){
+            workManVsEcostoneBVGS += Integer.parseInt(dataMap.get("rightAccessoryBVGSSpinner").replace("레벨",""));
+        }
+        if(dataMap.containsKey("handClothBVGSSpinner")){
+            workManVsEcostoneBVGS += Integer.parseInt(dataMap.get("handClothBVGSSpinner").replace("레벨",""));
+        }
+        // ============ 풍년채속 종료 ============
+
+        // ============ 세공 vs 에코스톤 비교 시작 ============
+        if(dataMap.containsKey("otherEcostoneKeySpinner") && dataMap.containsKey("otherEcostoneKeySpinner")) {
+            int otherEcostoneValue = Integer.parseInt(dataMap.get("otherEcostoneValueSpinner").replace("레벨",""));
+            switch (dataMap.get("otherEcostoneKeySpinner")) {
+                case "악기 연주 효과":
+                    if(otherEcostoneValue > workManVsEcostoneME){
+                        workManVsEcostoneME = otherEcostoneValue;
+                    }
+                    break;
+                case "보통 연주 효과":
+                    if(otherEcostoneValue > workManVsEcostoneNME){
+                        workManVsEcostoneNME = otherEcostoneValue;
+                    }
+                    break;
+                case "훌륭한 연주 효과":
+                    if(otherEcostoneValue > workManVsEcostoneGME){
+                        workManVsEcostoneGME = otherEcostoneValue;
+                    }
+                    break;
+                case "신들린 연주 효과":
+                    if(otherEcostoneValue > workManVsEcostoneBME){
+                        workManVsEcostoneBME = otherEcostoneValue;
+                    }
+                    break;
+                case "비바체 마시속":
+                    if(otherEcostoneValue > workManVsEcostoneVVMS){
+                        workManVsEcostoneVVMS = otherEcostoneValue;
+                    }
+                    break;
+                case "비바체 공속":
+                    if(otherEcostoneValue > workManVsEcostoneVVAS){
+                        workManVsEcostoneVVAS = otherEcostoneValue;
+                    }
+                    break;
+                case "풍년가 채집속도":
+                    if(otherEcostoneValue > workManVsEcostoneBVGS){
+                        workManVsEcostoneBVGS = otherEcostoneValue;
+                    }
+                    break;
+            }
+        }
+        // ============ 세공 vs 에코스톤 종료 시작 ============
+
+        // *************************** 추가 요소
+        // 그랜드마스터
+        if(dataMap.containsKey("otherGrandMasterSpinner")){
+            if("사용".equals(dataMap.get("otherGrandMasterSpinner"))){
+                musicPlusCountInt += 5;
+            }
+        }
+        // 코르플레 나팔 보너스
+        if(dataMap.containsKey("otherTrumpetSpinner")){
+            if("사용".equals(dataMap.get("otherTrumpetSpinner"))){
+                musicPlusCountInt += 3;
+            }
+        }
+        // 음악 부스트 보너스
+        if(dataMap.containsKey("otherPotionSpinner")){
+            if("사용".equals(dataMap.get("otherPotionSpinner"))){
+                musicPlusCountInt += 2;
+            }
+        }
+        // 파티원수 보너스
+        if(dataMap.containsKey("otherPartySpinner")){
+            musicParty += Integer.parseInt(dataMap.get("otherPartySpinner").replace("명","")) * 3;
+        }
 
         // 보통 연주
-        int normalMusicInt = NMECountInt;
+        int normalMusicInt = workManVsEcostoneNME;
 
         // 훌륭한 연주
-        int greatMusicInt = GMECountInt + 10;
+        int greatMusicInt = workManVsEcostoneGME + 10;
 
         // 신들린 연주
-        int bestMusicInt = BMECountInt + 30;
+        int bestMusicInt = workManVsEcostoneBME + 30;
 
         // 악기 연주 랭크 + 노래 랭크 + 악기 연주 효과
-        int musicEffectFromRankInt = baseIRSValue + baseSongValue + musicPlusCountInt;
+        int musicEffectFromRankInt = baseIRSValue + baseSongValue + musicPlusCountInt + workManVsEcostoneME;
 
         // (악기 연주 랭크 + 노래 랭크 + 악기 연주 효과) + 전장의 서곡 효과
         int musicEffectForBFInt = musicEffectFromRankInt + BFCountInt;
 
         // (악기 연주 랭크 + 노래 랭크 + 악기 연주 효과) + 비바체 효과
         int musicEffectForVVInt = musicEffectFromRankInt + VVCountInt;
-        int musicEffectForVVMSInt = musicEffectForVVInt + VVMSCountInt;
-        int musicEffectForVVASInt = musicEffectForVVInt + VVASCountInt;
+        int musicEffectForVVMSInt = musicEffectForVVInt + workManVsEcostoneVVMS;
+        int musicEffectForVVASInt = musicEffectForVVInt + workManVsEcostoneVVAS;
 
         // (악기 연주 랭크 + 노래 랭크 + 악기 연주 효과) + 풍년가 효과
         int musicEffectForBVInt = musicEffectFromRankInt + BYCountInt;
@@ -790,7 +1422,7 @@ public class MusicLayout extends BaseLinearLayout {
         float bvValue2_1 = baseBVValue2;
         bvValueTextView_2_1.setText(String.format("%.2f", bvValue2_1));
 
-        float bvValue3_1 = baseBVValue3 * ( 100 + musicEffectForBVInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100;
+        float bvValue3_1 = ( baseBVValue3 * ( 100 + musicEffectForBVInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100 ) + ( (float) musicParty / 100 );
         bvValueTextView_3_1.setText(String.format("%.2f", bvValue3_1));
         //****************** 풍년가 보통 연주 END ******************/
 
@@ -801,7 +1433,7 @@ public class MusicLayout extends BaseLinearLayout {
         float bvValue2_2 = baseBVValue2;
         bvValueTextView_2_2.setText(String.format("%.2f", bvValue2_2));
 
-        float bvValue3_2 = baseBVValue3 * ( 100 + musicEffectForBVInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100;
+        float bvValue3_2 = ( baseBVValue3 * ( 100 + musicEffectForBVInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100 ) + ( (float) musicParty / 100 );
         bvValueTextView_3_2.setText(String.format("%.2f", bvValue3_2));
         //****************** 풍년가 훌륭한 연주 END ******************/
 
@@ -812,7 +1444,7 @@ public class MusicLayout extends BaseLinearLayout {
         float bvValue2_3 = baseBVValue2;
         bvValueTextView_2_3.setText(String.format("%.2f", bvValue2_3));
 
-        float bvValue3_3 = baseBVValue3 * ( 100 + musicEffectForBVInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100;
+        float bvValue3_3 = ( baseBVValue3 * ( 100 + musicEffectForBVInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100 ) + ( (float) musicParty / 100 );
         bvValueTextView_3_3.setText(String.format("%.2f", bvValue3_3));
         //****************** 풍년가 신들린 연주 END ******************/
 
@@ -868,21 +1500,21 @@ public class MusicLayout extends BaseLinearLayout {
     /**
      * DataArray와 ArrayInt 받아서 Spinner 세팅
      * @param tempSpinner
-     * @param tempDataArray
      * @param textArrayResId
      * @param gubun
      */
-    private void setSpinnerView(Spinner tempSpinner, ArrayAdapter<CharSequence> tempDataArray, int textArrayResId, final String gubun){
-        tempDataArray = ArrayAdapter.createFromResource(context, textArrayResId, R.layout.support_simple_spinner_dropdown_item);
-        tempDataArray.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        tempSpinner.setAdapter(tempDataArray);
-        final ArrayAdapter<CharSequence> finalTempDataArray = tempDataArray;
+    private void setSpinnerView(Spinner tempSpinner, int textArrayResId, final String gubun){
+        final ArrayAdapter<CharSequence> finalTempDataArray;
+        finalTempDataArray = ArrayAdapter.createFromResource(context, textArrayResId, R.layout.support_simple_spinner_dropdown_item);
+        finalTempDataArray.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        tempSpinner.setAdapter(finalTempDataArray);
         tempSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                /*setBaseValueFromRank("SP", SPRDataArray.getItem(i).toString());
-                setFinishValue("SP");
-                setUpdateData("SPRank", String.valueOf(i));*/
+                setUpdateData(gubun, String.valueOf(i));
+                if(dataMap.containsKey(gubun)) {
+                    dataMap.remove(gubun);
+                }
                 dataMap.put(gubun, finalTempDataArray.getItem(i).toString());
             }
 
@@ -891,6 +1523,124 @@ public class MusicLayout extends BaseLinearLayout {
 
             }
         });
+    }
+
+    /**
+     * 에코스톤을 위한 스피너 구분
+     * @param tempSpinner
+     * @param textArrayResId
+     * @param gubun
+     */
+    private void setSpinnerViewForEcostone(Spinner tempSpinner, int textArrayResId, final String gubun){
+        final ArrayAdapter<CharSequence> finalTempDataArray;
+        finalTempDataArray = ArrayAdapter.createFromResource(context, textArrayResId, R.layout.support_simple_spinner_dropdown_item);
+        finalTempDataArray.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        tempSpinner.setAdapter(finalTempDataArray);
+        tempSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                setUpdateData(gubun, String.valueOf(i));
+                if(dataMap.containsKey(gubun)) {
+                    dataMap.remove(gubun);
+                }
+                dataMap.put(gubun, finalTempDataArray.getItem(i).toString());
+
+                int tempArrayId = 0;
+                switch (finalTempDataArray.getItem(i).toString()){
+                    case "없음" :
+                        tempArrayId = R.array.workmangshipSelectedFor0;
+                        break;
+                    case "악기 연주 효과" :
+                        tempArrayId = R.array.workmangshipSelectedFor20;
+                        break;
+                    case "보통 연주 효과" :
+                        tempArrayId = R.array.workmangshipSelectedFor10;
+                        break;
+                    case "훌륭한 연주 효과" :
+                        tempArrayId = R.array.workmangshipSelectedFor10;
+                        break;
+                    case "신들린 연주 효과" :
+                        tempArrayId = R.array.workmangshipSelectedFor10;
+                        break;
+                    case "비바체 마시속" :
+                        tempArrayId = R.array.workmangshipSelectedFor6;
+                        break;
+                    case "비바체 공속" :
+                        tempArrayId = R.array.workmangshipSelectedFor6;
+                        break;
+                    case "풍년가 채집속도" :
+                        tempArrayId = R.array.workmangshipSelectedFor6;
+                        break;
+                    default:
+                        tempArrayId = R.array.workmangshipSelectedFor0;
+                        break;
+                }
+                setSpinnerView(otherEcostoneValueSpinner, tempArrayId, "otherEcostoneValueSpinner");
+                if(dataMap.containsKey("otherEcostoneValueSpinner")) {
+                    dataMap.remove("otherEcostoneValueSpinner");
+                    dataMap.put("otherEcostoneValueSpinner", "0");
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    /**
+     * 인챈트 이름에 따라서 악기 효과 리턴
+     * @param inchantName
+     */
+    private int setValueFromInchant(String inchantName){
+        int musicValueForReturn = 0;
+        switch (inchantName){
+            case "없음" :
+                musicValueForReturn = 0;
+                break;
+            case "소나타 4옵" :
+                musicValueForReturn = 4;
+                break;
+            case "소나타 5옵" :
+                musicValueForReturn = 5;
+                break;
+            case "소나타 6옵" :
+                musicValueForReturn = 6;
+                break;
+            case "카덴차" :
+                musicValueForReturn = 1;
+                break;
+            case "신나는" :
+                musicValueForReturn = 3;
+                break;
+            case "조화/앙상블" :
+                musicValueForReturn = 5;
+                break;
+            case "솔리스트" :
+                musicValueForReturn = 2;
+                break;
+            case "합창/코러스 2옵" :
+                musicValueForReturn = 2;
+                break;
+            case "앙코르" :
+                musicValueForReturn = 3;
+                break;
+            case "코드" :
+                musicValueForReturn = 1;
+                break;
+            case "알레그로" :
+                musicValueForReturn = 3;
+                break;
+            case "모데라토" :
+                musicValueForReturn = 2;
+                break;
+            case "안단테" :
+                musicValueForReturn = 1;
+                break;
+        }
+
+        return musicValueForReturn;
     }
 
     /**

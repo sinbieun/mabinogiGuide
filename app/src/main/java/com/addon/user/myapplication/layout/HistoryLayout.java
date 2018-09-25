@@ -36,6 +36,10 @@ public class HistoryLayout extends BaseLinearLayout {
 
         homeContentLayout = (LinearLayout) findViewById(R.id.homeContentLayout);
 
+        setContentLayout("T", "＊ 2018-09-25");
+        setContentLayout("C", "     ◎ 연주도우미 입력 부분 세분화");
+        setContentLayout("C", "     ◎ 연주도우미 UI 개편");
+
         setContentLayout("T", "＊ 2018-09-17");
         setContentLayout("C", "     ◎ 일부 안드로이드 버젼에서 비정상 종료 오류 수정");
 
