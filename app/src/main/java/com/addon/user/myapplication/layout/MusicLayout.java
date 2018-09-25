@@ -1422,7 +1422,7 @@ public class MusicLayout extends BaseLinearLayout {
         float bvValue2_1 = baseBVValue2;
         bvValueTextView_2_1.setText(String.format("%.2f", bvValue2_1));
 
-        float bvValue3_1 = ( baseBVValue3 * ( 100 + musicEffectForBVInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100 ) + ( (float) musicParty / 100 );
+        float bvValue3_1 = ( ( baseBVValue3 + workManVsEcostoneBVGS ) * ( 100 + musicEffectForBVInt ) * ( 1 + ( (float) normalMusicInt / 100 ) ) / 100 ) + ( (float) musicParty / 100 );
         bvValueTextView_3_1.setText(String.format("%.2f", bvValue3_1));
         //****************** 풍년가 보통 연주 END ******************/
 
@@ -1433,7 +1433,7 @@ public class MusicLayout extends BaseLinearLayout {
         float bvValue2_2 = baseBVValue2;
         bvValueTextView_2_2.setText(String.format("%.2f", bvValue2_2));
 
-        float bvValue3_2 = ( baseBVValue3 * ( 100 + musicEffectForBVInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100 ) + ( (float) musicParty / 100 );
+        float bvValue3_2 = ( ( baseBVValue3 + workManVsEcostoneBVGS ) * ( 100 + musicEffectForBVInt ) * ( 1 + ( (float) greatMusicInt / 100 ) ) / 100 ) + ( (float) musicParty / 100 );
         bvValueTextView_3_2.setText(String.format("%.2f", bvValue3_2));
         //****************** 풍년가 훌륭한 연주 END ******************/
 
@@ -1444,7 +1444,7 @@ public class MusicLayout extends BaseLinearLayout {
         float bvValue2_3 = baseBVValue2;
         bvValueTextView_2_3.setText(String.format("%.2f", bvValue2_3));
 
-        float bvValue3_3 = ( baseBVValue3 * ( 100 + musicEffectForBVInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100 ) + ( (float) musicParty / 100 );
+        float bvValue3_3 = ( ( baseBVValue3 + workManVsEcostoneBVGS ) * ( 100 + musicEffectForBVInt ) * ( 1 + ( (float) bestMusicInt / 100 ) ) / 100 ) + ( (float) musicParty / 100 );
         bvValueTextView_3_3.setText(String.format("%.2f", bvValue3_3));
         //****************** 풍년가 신들린 연주 END ******************/
 

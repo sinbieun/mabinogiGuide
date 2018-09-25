@@ -1398,7 +1398,7 @@
                             android:layout_gravity="fill_horizontal"
                             android:layout_marginTop="5dp"
                             android:gravity="left"
-                            android:text="@string/music_label_title_item_property_8"
+                            android:text="@string/music_label_title_item_property_6"
                             android:textColor="#ff000000" />
 
                         <Spinner
@@ -1422,7 +1422,7 @@
                             android:layout_gravity="fill_horizontal"
                             android:layout_marginTop="5dp"
                             android:gravity="left"
-                            android:text="@string/music_label_title_item_property_8"
+                            android:text="@string/music_label_title_item_property_7"
                             android:textColor="#ff000000" />
 
                         <Spinner
